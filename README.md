@@ -4,10 +4,9 @@ Centrální knihovna pro projekty, brand, prompty a dokumentaci.
 
 ## Struktura
 
-- `/brand` – brand manuály (osobní, Claude Česky, Viva Agency, Vivas CZ)
-- `/prompts` – prompt knihovna pro Claude a ChatGPT
-- `/templates` – šablony analýz, nabídek, reportů
-- `/knowledge` – tech stack, nástroje, workflows
+- `/brand/personal` – osobní brand (barvy, typografie, hlas, tech stack, šablony)
+- `/brand/viva-agency` – brand manuál Viva Agency
+- `/brand/icons` – sdílený icon systém (master-icons.html)
 
 ## Projekty
 
@@ -20,3 +19,4 @@ Centrální knihovna pro projekty, brand, prompty a dokumentaci.
 ## Rychlé odkazy
 
 - [GitHub profil](https://github.com/jirikoukal)
+- [Master Icons](https://jirikoukal.github.io/knowledge/brand/icons/master-icons.html)
