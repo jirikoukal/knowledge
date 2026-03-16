@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Icons - Jiří Koukal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap&subset=latin-ext" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background: #FAFAFA; color: #1D1D1F; padding: 40px 20px; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 50px; }
+        h1 { font-size: 48px; font-weight: 800; color: #00B8A9; margin-bottom: 10px; }
+        .subtitle { font-size: 18px; color: #6E6E73; margin-bottom: 30px; }
+        
+        /* Controls */
+        .controls { background: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-bottom: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .control-group { display: flex; flex-direction: column; gap: 10px; }
+        .control-label { font-weight: 700; font-size: 14px; color: #1D1D1F; text-transform: uppercase; letter-spacing: 0.5px; }
+        .button-group { display: flex; gap: 10px; flex-wrap: wrap; }
+        .btn { padding: 10px 20px; border: 2px solid #E8E8ED; background: white; border-radius: 8px; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.2s; }
+        .btn:hover { border-color: #00B8A9; color: #00B8A9; }
+        .btn.active { background: #00B8A9; color: white; border-color: #00B8A9; }
+        .btn.brand-viva.active { background: #E91E8C; border-color: #E91E8C; }
+        
+        /* Icon Grid */
+        .category { margin-bottom: 50px; }
+        .category-title { font-size: 24px; font-weight: 700; color: #00B8A9; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #E8E8ED; }
+        .icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px; }
+        .icon-card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); display: flex; flex-direction: column; align-items: center; gap: 12px; cursor: pointer; transition: all 0.3s; }
+        .icon-card:hover { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(0,184,169,0.15); }
+        
+        /* Icon Styles */
+        .icon-container { width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+        .icon-container svg { width: 40px; height: 40px; stroke-width: 2; }
+        .icon-container.rounded-square { background: #1A4D4D; border-radius: 12px; }
+        .icon-container.rounded-square svg { stroke: #00B8A9; }
+        .icon-container.piktogram svg { stroke: #00B8A9; }
+        
+        /* VIVA Brand */
+        .brand-viva .icon-container.rounded-square { background: #8B0A4D; }
+        .brand-viva .icon-container.rounded-square svg { stroke: #E91E8C; }
+        .brand-viva .icon-container.piktogram svg { stroke: #E91E8C; }
+        .brand-viva .category-title { color: #E91E8C; }
+        
+        .icon-name { font-size: 13px; font-weight: 600; color: #1D1D1F; text-align: center; }
+        .icon-id { font-size: 11px; color: #6E6E73; font-family: 'Courier New', monospace; }
+        
+        /* Notification */
+        .copy-notification { position: fixed; top: 20px; right: 20px; background: #00B8A9; color: white; padding: 15px 25px; border-radius: 8px; font-weight: 600; box-shadow: 0 4px 20px rgba(0,0,0,0.2); opacity: 0; transform: translateY(-20px); transition: all 0.3s; z-index: 1000; }
+        .copy-notification.show { opacity: 1; transform: translateY(0); }
+        
+        footer { text-align: center; margin-top: 60px; padding-top: 30px; border-top: 2px solid #E8E8ED; color: #6E6E73; font-size: 14px; }
+        footer strong { color: #00B8A9; }
+        .motto { font-style: italic; margin-top: 10px; color: #00B8A9; }
+    </style>
+</head>
+<body>
+    <div class="container" id="main-container">
+        <header>
+            <h1>Master Icons</h1>
+            <p class="subtitle">30 Core Icons • Jiří Koukal Brand System</p>
+        </header>
+        
+        <div class="controls">
+            <div class="control-group">
+                <div class="control-label">Styl</div>
+                <div class="button-group">
+                    <button class="btn active" onclick="setStyle('piktogram')">Piktogram</button>
+                    <button class="btn" onclick="setStyle('rounded-square')">Rounded Square</button>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label">Brand</div>
+                <div class="button-group">
+                    <button class="btn active" onclick="setBrand('jirikoukal')">Jiří Koukal</button>
+                    <button class="btn brand-viva" onclick="setBrand('viva')">VIVA Agency</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- STRATEGIE & BYZNYS -->
+        <div class="category">
+            <h2 class="category-title">Strategie & Byznys</h2>
+            <div class="icon-grid">
+                <div class="icon-card" onclick="copyIcon('target')">
+                    <div class="icon-container piktogram"><i data-lucide="target"></i></div>
+                    <div class="icon-name">Cíle</div>
+                    <div class="icon-id">target</div>
+                </div>
+                <div class="icon-card" onclick="copyIcon('trending-up')">
+                    <div class="icon-container piktogram"><i data-lucide="trending-up"></i></div>
+                    <div class="icon-name">Růst</div>
+                    <div class="icon-id">trending-up</div>
+                </div>
+                <div class="icon-card" onclick="copyIcon('brain')">
+                    <div class="icon-container piktogram"><i data-lucide="brain"></i></div>
+                    <div class="icon-name">AI / Myšlení</div>
+                    <div class="icon-id">brain</div>
+                </div>
+                <div class="icon-card" onclick="copyIcon('scale')">
+                    <div class="icon-container piktogram"><i data-lucide="scale"></i></div>
+                    <div class="icon-name">Hodnocení</div>
+                    <div class="icon-id">scale</div>
+                </div>
+                <div class="icon-card" onclick="copyIcon('shield-check')">
+                    <div class="icon-container piktogram"><i data-lucide="shield-check"></i></div>
+                    <div class="icon-name">Bezpečnost</div>
+                    <div class="icon-id">shield-check</div>
+                </div>
+                <div class="icon-card" onclick="copyIcon('briefcase')">
+                    <div class="icon-container piktogram"><i data-lucide="briefcase"></i></div>
+                    <div class="icon-name">Business</div>
+                    <div class="icon-id">briefcase</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- KOMUNIKACE & PEOPLE -->
+        <div class="category">
+            <h2 class="category-title">Komunikace & People</h2>
+            <div class="icon-grid">
+                <div class="icon-card" onclick="copyIcon('users')">
+                    <div class="icon-container piktogram"><i data-lucide="users"></i></div>
+                    <div class="icon-name">Tým</div>
+                    <div class="icon-id">users</div>
+                </div>
+                <div class="icon-card" onclick="copyIcon('message-circle')">
+                    <div class="icon-container piktogram"><i data-lucide="message-circle"></i></div>
+                    <div class="icon-name">Chat</div>
+                    <div class="icon-id">message-circle</div>
+                </div>
+                <div class="icon-card" onclick="copyIcon('presentation')">
+                    <div class="icon-container piktogram"><i data-lucide="presentation"></i></div>
+                    <div class="icon-name">Školení</div>
+                    <div class="icon-id">presentation</div>
+                </div>
+                <div class="icon-card" onclick="copyIcon('lightbulb')">
+                    <div class="icon-container piktogram"><i data-lucide="lightbulb"></i></div>
+                    <div class="icon-name">Nápady</div>
+                    <div class="icon-id">lightbulb</div>
+                </div>
+                <div class="icon-card" onclick="copyIcon('zap')">
+                    <div class="icon-container piktogram"><i data-lucide="zap"></i></div>
+                    <div class="icon-name">Transformace</div>
+                    <div class="icon-id">zap</div>
+                </div>
+                <div class="icon-card" onclick="copyIcon('user-check')">
+                    <div class="icon-container piktogram"><i data-lucide="user-check"></i></div>
+                    <div class="icon-name">Client</div>
+                    <div class="icon-id">user-check</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DOKUMENTY & DATA -->
+        <div class="category">
+            <h2 class="category-title">Dokumenty & Data</h2>
+            <div class="icon-grid">
+                <div class="icon-card" onclick="copyIcon('file-text')">
+                    <div class="icon-container piktogram"><i data-lucide="file-text"></i></div>
+                    <div class="icon-name">Dokumenty</div>
+                    <div class="icon-id">file-text</div>
+                </div>
+                <div class="icon-card" onclick="copyIcon('folder')">
+                    <div class="icon-container piktogram"><i data-lucide="folder"></i></div>
+                    <div class="icon-name">Projekty</div>
+                    <div class="icon-id">folder</div>
+                </div>
+                <div class="icon-card" onclick="copyIcon('database')">
+                    <div class="icon-container piktogram"><i data-lucide="database"></i></div>
+                    <div class="icon-name">Data</div>
+                    <div class="icon-id">database</div>
+                </div>
+                <div class="icon-card" onclick="copyIcon('bar-chart-3')">
+                    <div class="icon-container piktogram"><i data-lucide="bar-chart-3"></i></div>
+                    <div class="icon-name">Grafy</div>
+                    <div class="icon-id">bar-chart-3</div>
+                </div>
+                <div class="icon-card" onclick="copyIcon('search')">
+                    <div class="icon-container piktogram"><i data-lucide="search"></i></div>
+                    <div class="icon-name">Research</div>
+                    <div class="icon-id">search</div>
+                </div>
+                <div class="icon-card" onclick="copyIcon('file-spreadsheet')">
+                    <div class="icon-container piktogram"><i data-lucide="file-spreadsheet"></i></div>
+                    <div class="icon-name">Excel</div>
+                    <div class="icon-id">file-spreadsheet</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PROCESY & TOOLS -->
+        <div class="category">
+            <h2 class="category-title">Procesy & Tools</h2>
+            <div class="icon-grid">
+                <div class="icon-card" onclick="copyIcon('settings')">
+                    <div class="icon-container piktogram"><i data-lucide="settings"></i></div>
+                    <div class="icon-name">Nastavení</div>
+                    <div class="icon-id">settings</div>
+                </div>
+                <div class="icon-card" onclick="copyIcon('refresh-cw')">
+                    <div class="icon-container piktogram"><i data-lucide="refresh-cw"></i></div>
+                    <div class="icon-name">Update</div>
+                    <div class="icon-id">refresh-cw</div>
+                </div>
+                <div class="icon-card" onclick="copyIcon('link')">
+                    <div class="icon-container piktogram"><i data-lucide="link"></i></div>
+                    <div class="icon-name">Integrace</div>
+                    <div class="icon-id">link</div>
+                </div>
+                <div class="icon-card" onclick="copyIcon('check-circle')">
+                    <div class="icon-container piktogram"><i data-lucide="check-circle"></i></div>
+                    <div class="icon-name">Hotovo</div>
+                    <div class="icon-id">check-circle</div>
+                </div>
+                <div class="icon-card" onclick="copyIcon('arrow-right')">
+                    <div class="icon-container piktogram"><i data-lucide="arrow-right"></i></div>
+                    <div class="icon-name">Akce</div>
+                    <div class="icon-id">arrow-right</div>
+                </div>
+                <div class="icon-card" onclick="copyIcon('calendar')">
+                    <div class="icon-container piktogram"><i data-lucide="calendar"></i></div>
+                    <div class="icon-name">Planning</div>
+                    <div class="icon-id">calendar</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- AI & TECHNOLOGIE -->
+        <div class="category">
+            <h2 class="category-title">AI & Technologie</h2>
+            <div class="icon-grid">
+                <div class="icon-card" onclick="copyIcon('cpu')">
+                    <div class="icon-container piktogram"><i data-lucide="cpu"></i></div>
+                    <div class="icon-name">AI / Processing</div>
+                    <div class="icon-id">cpu</div>
+                </div>
+                <div class="icon-card" onclick="copyIcon('code')">
+                    <div class="icon-container piktogram"><i data-lucide="code"></i></div>
+                    <div class="icon-name">Development</div>
+                    <div class="icon-id">code</div>
+                </div>
+                <div class="icon-card" onclick="copyIcon('wifi')">
+                    <div class="icon-container piktogram"><i data-lucide="wifi"></i></div>
+                    <div class="icon-name">Konektivita</div>
+                    <div class="icon-id">wifi</div>
+                </div>
+                <div class="icon-card" onclick="copyIcon('cloud')">
+                    <div class="icon-container piktogram"><i data-lucide="cloud"></i></div>
+                    <div class="icon-name">Cloud</div>
+                    <div class="icon-id">cloud</div>
+                </div>
+                <div class="icon-card" onclick="copyIcon('smartphone')">
+                    <div class="icon-container piktogram"><i data-lucide="smartphone"></i></div>
+                    <div class="icon-name">Mobile</div>
+                    <div class="icon-id">smartphone</div>
+                </div>
+                <div class="icon-card" onclick="copyIcon('globe')">
+                    <div class="icon-container piktogram"><i data-lucide="globe"></i></div>
+                    <div class="icon-name">Global</div>
+                    <div class="icon-id">globe</div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p><strong>Jiří Koukal, MSc. MBA</strong></p>
+            <p>Strategic Management | AI Transformation | Fractional COO</p>
+            <p class="motto">Nasvítíme, co potřebujete vidět</p>
+        </footer>
+    </div>
+    
+    <div class="copy-notification" id="copy-notification">✓ Ikona zkopírována!</div>
+    
+    <script>
+        let currentStyle = 'piktogram';
+        let currentBrand = 'jirikoukal';
+        
+        document.addEventListener('DOMContentLoaded', () => lucide.createIcons());
+        
+        function setStyle(style) {
+            currentStyle = style;
+            document.querySelectorAll('.controls .btn').forEach(btn => {
+                if (btn.textContent.toLowerCase().includes(style.replace('-', ' '))) {
+                    btn.classList.add('active');
+                } else if (btn.textContent.toLowerCase().includes('piktogram') || btn.textContent.toLowerCase().includes('rounded')) {
+                    btn.classList.remove('active');
+                }
+            });
+            document.querySelectorAll('.icon-container').forEach(container => {
+                container.className = 'icon-container ' + style;
+            });
+        }
+        
+        function setBrand(brand) {
+            currentBrand = brand;
+            const container = document.getElementById('main-container');
+            document.querySelectorAll('.controls .btn').forEach(btn => {
+                if ((brand === 'jirikoukal' && btn.textContent.includes('Jiří')) || 
+                    (brand === 'viva' && btn.textContent.includes('VIVA'))) {
+                    btn.classList.add('active');
+                } else if (btn.textContent.includes('Jiří') || btn.textContent.includes('VIVA')) {
+                    btn.classList.remove('active');
+                }
+            });
+            if (brand === 'viva') {
+                container.classList.add('brand-viva');
+            } else {
+                container.classList.remove('brand-viva');
+            }
+        }
+        
+        function copyIcon(iconName) {
+            const text = `Icon: ${iconName} | Style: ${currentStyle} | Brand: ${currentBrand}`;
+            navigator.clipboard.writeText(text).then(() => {
+                const notification = document.getElementById('copy-notification');
+                notification.classList.add('show');
+                setTimeout(() => notification.classList.remove('show'), 2000);
+            });
+        }
+    </script>
+</body>
+</html>
