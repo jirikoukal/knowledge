@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategický report</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #FFFFFF;
+            color: #1D1D1F;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+        
+        /* Header */
+        header {
+            border-bottom: 3px solid #00B8A9;
+            padding-bottom: 30px;
+            margin-bottom: 50px;
+        }
+        
+        h1 {
+            font-size: 42px;
+            font-weight: 700;
+            color: #1D1D1F;
+            margin-bottom: 10px;
+        }
+        
+        .company-name {
+            font-size: 24px;
+            color: #00B8A9;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .meta {
+            display: flex;
+            gap: 30px;
+            font-size: 14px;
+            color: #6E6E73;
+        }
+        
+        /* Typography */
+        h2 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #00B8A9;
+            margin: 50px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #E8E8ED;
+        }
+        
+        h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1D1D1F;
+            margin: 30px 0 15px 0;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            color: #1D1D1F;
+            font-size: 16px;
+        }
+        
+        /* Executive Summary Box */
+        .executive-summary {
+            background: linear-gradient(135deg, #00B8A9 0%, #008F82 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+        
+        .executive-summary h3 {
+            color: white;
+            margin-top: 0;
+            font-size: 24px;
+        }
+        
+        .executive-summary p {
+            color: rgba(255,255,255,0.95);
+            font-size: 16px;
+        }
+        
+        /* SWOT Grid */
+        .swot-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .swot-card {
+            padding: 30px;
+            border-radius: 12px;
+            min-height: 250px;
+        }
+        
+        .swot-card h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+        
+        .swot-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .swot-card li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        
+        .swot-strengths {
+            background: #E8F5F3;
+            border-left: 4px solid #34C759;
+        }
+        
+        .swot-strengths h3 {
+            color: #34C759;
+        }
+        
+        .swot-strengths li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #34C759;
+            font-weight: 700;
+        }
+        
+        .swot-weaknesses {
+            background: #FFF3E6;
+            border-left: 4px solid #FF9500;
+        }
+        
+        .swot-weaknesses h3 {
+            color: #FF9500;
+        }
+        
+        .swot-weaknesses li:before {
+            content: "!";
+            position: absolute;
+            left: 0;
+            color: #FF9500;
+            font-weight: 700;
+        }
+        
+        .swot-opportunities {
+            background: #E6F7FF;
+            border-left: 4px solid #00B8A9;
+        }
+        
+        .swot-opportunities h3 {
+            color: #00B8A9;
+        }
+        
+        .swot-opportunities li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #00B8A9;
+            font-weight: 700;
+        }
+        
+        .swot-threats {
+            background: #FFE6E6;
+            border-left: 4px solid #FF3B30;
+        }
+        
+        .swot-threats h3 {
+            color: #FF3B30;
+        }
+        
+        .swot-threats li:before {
+            content: "⚠";
+            position: absolute;
+            left: 0;
+            color: #FF3B30;
+            font-weight: 700;
+        }
+        
+        /* Competitive Analysis */
+        .competitor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .competitor-card {
+            background: #F5F5F7;
+            padding: 25px;
+            border-radius: 12px;
+        }
+        
+        .competitor-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: #00B8A9;
+            margin-bottom: 15px;
+        }
+        
+        .competitor-detail {
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: #1D1D1F;
+        }
+        
+        .competitor-detail strong {
+            color: #6E6E73;
+            font-weight: 600;
+        }
+        
+        .competitive-position {
+            margin: 30px 0;
+            background: #F5F5F7;
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid #00B8A9;
+        }
+        
+        .competitive-position h3 {
+            color: #00B8A9;
+            margin-top: 0;
+        }
+        
+        /* Strategic Priorities */
+        .priority-list {
+            margin: 30px 0;
+        }
+        
+        .priority-item {
+            background: #F5F5F7;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border-left: 4px solid #00B8A9;
+        }
+        
+        .priority-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .priority-badge {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .priority-high {
+            background: #FF3B30;
+            color: white;
+        }
+        
+        .priority-medium {
+            background: #FF9500;
+            color: white;
+        }
+        
+        .priority-low {
+            background: #34C759;
+            color: white;
+        }
+        
+        .priority-item h4 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1D1D1F;
+            margin: 0;
+        }
+        
+        .priority-item p {
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .priority-metrics {
+            display: flex;
+            gap: 30px;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #6E6E73;
+        }
+        
+        .priority-metrics strong {
+            color: #00B8A9;
+        }
+        
+        /* Action Plan Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+        
+        th {
+            background: #2C3E50;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #E8E8ED;
+            font-size: 14px;
+        }
+        
+        tr:hover {
+            background: #FAFAFA;
+        }
+        
+        .action-owner {
+            font-weight: 600;
+            color: #00B8A9;
+        }
+        
+        /* KPI Cards */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .kpi-card {
+            background: #F5F5F7;
+            padding: 25px;
+            border-radius: 12px;
+        }
+        
+        .kpi-label {
+            font-size: 14px;
+            color: #6E6E73;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .kpi-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #00B8A9;
+            margin-bottom: 5px;
+        }
+        
+        .kpi-target {
+            font-size: 13px;
+            color: #6E6E73;
+        }
+        
+        /* Recommendation Box */
+        .recommendation-box {
+            background: #F5F5F7;
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid #00B8A9;
+            margin: 30px 0;
+        }
+        
+        .recommendation-box h3 {
+            color: #00B8A9;
+            margin-top: 0;
+        }
+        
+        /* Timeline */
+        .timeline {
+            margin: 30px 0;
+        }
+        
+        .timeline-item {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #E8E8ED;
+        }
+        
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+        
+        .timeline-quarter {
+            min-width: 80px;
+            font-weight: 600;
+            color: #00B8A9;
+            font-size: 14px;
+        }
+        
+        .timeline-content h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .timeline-content p {
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+        
+        /* Footer */
+        footer {
+            margin-top: 80px;
+            padding-top: 30px;
+            border-top: 1px solid #E8E8ED;
+            text-align: center;
+            color: #6E6E73;
+            font-size: 14px;
+        }
+        
+        footer a {
+            color: #00B8A9;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        footer .motto {
+            margin-top: 20px;
+            font-style: italic;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Strategický report</h1>
+            <div class="company-name">DEMO s.r.o.</div>
+            <div class="meta">
+                <span>Období: 2026</span>
+                <span>Datum zpracování: Únor 2026</span>
+                <span>Zpracoval: Jiří Koukal, MSc., MBA</span>
+            </div>
+        </header>
+
+        <!-- Executive Summary -->
+        <section>
+            <div class="executive-summary">
+                <h3>Executive Summary</h3>
+                <p>Strategický report pro společnost DEMO identifikuje klíčové příležitosti pro růst v segmentu B2B, doporučuje posílení digitální přítomnosti a optimalizaci produktového portfolia. Prioritní iniciativy zahrnují expanzi do nových regionů, implementaci CRM systému a rozvoj partnerské sítě. Očekávaný dopad: 25% nárůst tržeb a 15% zlepšení marží během 18 měsíců.</p>
+            </div>
+        </section>
+
+        <!-- Současný stav -->
+        <section>
+            <h2>Analýza současného stavu</h2>
+            <p>Společnost DEMO působí na trhu 8 let a dosáhla stabilní pozice v segmentu střední velikosti. Tržby rostou průměrným tempem 12% ročně, ale zpomalují kvůli saturaci hlavního trhu. Marže jsou zdravé (18%), ale pod potenciálem díky neoptimalizovanému produktovému mixu.</p>
+            
+            <h3>Klíčová zjištění</h3>
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-label">Roční tržby</div>
+                    <div class="kpi-value">45 mil. Kč</div>
+                    <div class="kpi-target">+12% YoY</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">EBITDA marže</div>
+                    <div class="kpi-value">18%</div>
+                    <div class="kpi-target">Nad průměrem odvětví</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Tržní podíl</div>
+                    <div class="kpi-value">8,5%</div>
+                    <div class="kpi-target">#3 na trhu</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Customer retention</div>
+                    <div class="kpi-value">82%</div>
+                    <div class="kpi-target">Dobrá úroveň</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SWOT Analysis -->
+        <section>
+            <h2>SWOT analýza</h2>
+            <div class="swot-grid">
+                <div class="swot-card swot-strengths">
+                    <h3>Strengths (Silné stránky)</h3>
+                    <ul>
+                        <li>Etablovaná značka s dobrou pověstí v regionu</li>
+                        <li>Kvalitní produktové portfolio s USP v techu</li>
+                        <li>Zkušený management tým s 15+ lety praxe</li>
+                        <li>Silné cash flow a zdravé finance</li>
+                        <li>Loajální zákaznická báze (82% retention)</li>
+                    </ul>
+                </div>
+                
+                <div class="swot-card swot-weaknesses">
+                    <h3>Weaknesses (Slabé stránky)</h3>
+                    <ul>
+                        <li>Omezená geografická diverzifikace (95% ČR)</li>
+                        <li>Zastaralý CRM a IT infrastruktura</li>
+                        <li>Slabá digitální marketingová přítomnost</li>
+                        <li>Závislost na 3 klíčových zákaznících (40% tržeb)</li>
+                        <li>Nízká efektivita sales procesu</li>
+                    </ul>
+                </div>
+                
+                <div class="swot-card swot-opportunities">
+                    <h3>Opportunities (Příležitosti)</h3>
+                    <ul>
+                        <li>Rostoucí poptávka v sousedních trzích (SK, PL)</li>
+                        <li>Trend k digitalizaci v cílových segmentech</li>
+                        <li>Konsolidace trhu - potenciál M&A</li>
+                        <li>Nové produktové kategorie s vyšší marží</li>
+                        <li>Partnerství s technologickými leadery</li>
+                    </ul>
+                </div>
+                
+                <div class="swot-card swot-threats">
+                    <h3>Threats (Hrozby)</h3>
+                    <ul>
+                        <li>Vstup globálních hráčů na český trh</li>
+                        <li>Cenová konkurence z Asie</li>
+                        <li>Regulatorní změny v EU</li>
+                        <li>Rostoucí náklady na energii a materiál</li>
+                        <li>Talent shortage v klíčových pozicích</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Competitive Analysis -->
+        <section>
+            <h2>Konkurenční analýza</h2>
+            <div class="competitor-grid">
+                <div class="competitor-card">
+                    <div class="competitor-name">Competitor A</div>
+                    <div class="competitor-detail"><strong>Pozice:</strong> Market leader (#1)</div>
+                    <div class="competitor-detail"><strong>Tržní podíl:</strong> 22%</div>
+                    <div class="competitor-detail"><strong>Strategie:</strong> Premium segment, široké portfolio</div>
+                    <div class="competitor-detail"><strong>Silné stránky:</strong> Brand, distribuční síť</div>
+                    <div class="competitor-detail"><strong>Slabé stránky:</strong> Vysoké ceny, pomalá inovace</div>
+                </div>
+                
+                <div class="competitor-card">
+                    <div class="competitor-name">Competitor B</div>
+                    <div class="competitor-detail"><strong>Pozice:</strong> Challenger (#2)</div>
+                    <div class="competitor-detail"><strong>Tržní podíl:</strong> 15%</div>
+                    <div class="competitor-detail"><strong>Strategie:</strong> Value for money, agresivní růst</div>
+                    <div class="competitor-detail"><strong>Silné stránky:</strong> Cena, flexibilita</div>
+                    <div class="competitor-detail"><strong>Slabé stránky:</strong> Nižší kvalita, nová značka</div>
+                </div>
+                
+                <div class="competitor-card">
+                    <div class="competitor-name">Competitor C</div>
+                    <div class="competitor-detail"><strong>Pozice:</strong> Niche player</div>
+                    <div class="competitor-detail"><strong>Tržní podíl:</strong> 6%</div>
+                    <div class="competitor-detail"><strong>Strategie:</strong> Specializace na B2B segment</div>
+                    <div class="competitor-detail"><strong>Silné stránky:</strong> Expertiza, custom řešení</div>
+                    <div class="competitor-detail"><strong>Slabé stránky:</strong> Malá kapacita, omezený reach</div>
+                </div>
+            </div>
+            
+            <div class="competitive-position">
+                <h3>Naše konkurenční pozice</h3>
+                <p>DEMO zaujímá pozici "quality follower" s potenciálem k upgrade na challenger. Máme lepší poměr cena/kvalita než leader A, ale nižší brand awareness. Hlavní diferenciátor: technologická inovace a rychlost dodávky. Opportunity: Posílit brand a expandovat geograficky dříve než B nebo C.</p>
+            </div>
+        </section>
+
+        <!-- Strategic Priorities -->
+        <section>
+            <h2>Strategické priority</h2>
+            <div class="priority-list">
+                <div class="priority-item">
+                    <div class="priority-header">
+                        <span class="priority-badge priority-high">Vysoká priorita</span>
+                        <h4>1. Geografická expanze do Slovenska</h4>
+                    </div>
+                    <p>Vstup na slovenský trh s klíčovými produkty. Využít kulturní blízkost a existující distribuce know-how. Target: 15% tržeb ze SK do 18 měsíců.</p>
+                    <div class="priority-metrics">
+                        <span><strong>Investice:</strong> 3,5 mil. Kč</span>
+                        <span><strong>Timeline:</strong> Q2-Q4 2026</span>
+                        <span><strong>Očekávaný ROI:</strong> 200% za 24 měsíců</span>
+                    </div>
+                </div>
+                
+                <div class="priority-item">
+                    <div class="priority-header">
+                        <span class="priority-badge priority-high">Vysoká priorita</span>
+                        <h4>2. Implementace moderního CRM a automatizace sales</h4>
+                    </div>
+                    <p>Nahradit zastaralé systémy moderním CRM (Salesforce/HubSpot). Automatizovat lead management a reporting. Očekávané zlepšení konverzního poměru o 25%.</p>
+                    <div class="priority-metrics">
+                        <span><strong>Investice:</strong> 1,2 mil. Kč</span>
+                        <span><strong>Timeline:</strong> Q1-Q2 2026</span>
+                        <span><strong>Očekávaný ROI:</strong> 300% za 18 měsíců</span>
+                    </div>
+                </div>
+                
+                <div class="priority-item">
+                    <div class="priority-header">
+                        <span class="priority-badge priority-medium">Střední priorita</span>
+                        <h4>3. Optimalizace produktového portfolia</h4>
+                    </div>
+                    <p>Eliminovat low-margin produkty (20% portfolia), posílit high-margin kategorie. Zavést tiering: Basic, Pro, Enterprise s jasnějším value prop.</p>
+                    <div class="priority-metrics">
+                        <span><strong>Investice:</strong> 800 tis. Kč</span>
+                        <span><strong>Timeline:</strong> Q2-Q3 2026</span>
+                        <span><strong>Očekávaný dopad:</strong> +3 p.p. marže</span>
+                    </div>
+                </div>
+                
+                <div class="priority-item">
+                    <div class="priority-header">
+                        <span class="priority-badge priority-medium">Střední priorita</span>
+                        <h4>4. Rozvoj digitálního marketingu a brand awareness</h4>
+                    </div>
+                    <p>Posílit online přítomnost (LinkedIn, content marketing, SEO). Investovat do thought leadership a case studies. Target: 40% leadů z digitálu do konce roku.</p>
+                    <div class="priority-metrics">
+                        <span><strong>Investice:</strong> 600 tis. Kč/rok</span>
+                        <span><strong>Timeline:</strong> Q1 2026 start</span>
+                        <span><strong>Očekávaný dopad:</strong> +50% inbound leadů</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Action Plan -->
+        <section>
+            <h2>Akční plán 2026</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Iniciativa</th>
+                        <th>Vlastník</th>
+                        <th>Q1</th>
+                        <th>Q2</th>
+                        <th>Q3</th>
+                        <th>Q4</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>SK expanze - market research</td>
+                        <td class="action-owner">COO</td>
+                        <td>✓</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>SK expanze - setup entity</td>
+                        <td class="action-owner">CFO</td>
+                        <td></td>
+                        <td>✓</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>SK expanze - první obchody</td>
+                        <td class="action-owner">Sales Dir.</td>
+                        <td></td>
+                        <td></td>
+                        <td>✓</td>
+                        <td>✓</td>
+                    </tr>
+                    <tr>
+                        <td>CRM implementace</td>
+                        <td class="action-owner">IT Manager</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Portfolio optimalizace</td>
+                        <td class="action-owner">CMO</td>
+                        <td></td>
+                        <td>✓</td>
+                        <td>✓</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Digitální marketing</td>
+                        <td class="action-owner">Marketing</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- KPIs and Tracking -->
+        <section>
+            <h2>Metriky úspěchu</h2>
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-label">Tržby 2026</div>
+                    <div class="kpi-value">56 mil. Kč</div>
+                    <div class="kpi-target">Target: +25% YoY</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">EBITDA marže</div>
+                    <div class="kpi-value">21%</div>
+                    <div class="kpi-target">Target: +3 p.p.</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Tržby ze SK</div>
+                    <div class="kpi-value">8,5 mil. Kč</div>
+                    <div class="kpi-target">Target: 15% tržeb</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Digitální lead rate</div>
+                    <div class="kpi-value">40%</div>
+                    <div class="kpi-target">Target: 40% z digitálu</div>
+                </div>
+            </div>
+            
+            <h3>Tracking a reporting</h3>
+            <p>Měsíční review dashboardy s klíčovými metrikami. Quarterly business review s celým leadership týmem. Adjust strategie na základě real-time dat.</p>
+        </section>
+
+        <!-- Conclusion -->
+        <section>
+            <h2>Závěry a doporučení</h2>
+            <div class="recommendation-box">
+                <h3>Klíčová doporučení</h3>
+                <p>1. <strong>Prioritizovat geografickou expanzi</strong> - SK trh představuje největší příležitost s nejnižším rizikem<br>
+                2. <strong>Investovat do technologie a procesů</strong> - CRM a automatizace jsou foundation pro škálování<br>
+                3. <strong>Zjednodušit portfolio</strong> - focus na high-margin produkty, eliminovat komplexitu<br>
+                4. <strong>Posílit brand</strong> - digitální marketing a thought leadership pro competitive edge</p>
+                <p style="margin-top: 20px;"><strong>Očekávaný dopad:</strong> 25% růst tržeb, 15% zlepšení marží, etablování v nových trzích během 18 měsíců. Celková investice: 6,1 mil. Kč s očekávaným ROI 250% za 24 měsíců.</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p><strong>Strategic management | AI Transformation | Fractional COO</strong></p>
+            <p>Jiří Koukal, MSc. MBA | <a href="mailto:jiri.koukal@gmail.com">jiri.koukal@gmail.com</a> | <a href="https://www.linkedin.com/in/jirikoukal/">LinkedIn</a></p>
+            <p class="motto">"Vše je jen otázka úhlu pohledu"</p>
+        </footer>
+    </div>
+</body>
+</html>
