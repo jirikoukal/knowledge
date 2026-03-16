@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Školení - Strategické myšlení v praxi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #FAFAFA;
+            color: #1D1D1F;
+            line-height: 1.6;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: white;
+            border-right: 1px solid #E8E8ED;
+            overflow-y: auto;
+            z-index: 100;
+        }
+        
+        .sidebar-header {
+            padding: 30px 20px;
+            border-bottom: 1px solid #E8E8ED;
+        }
+        
+        .logo {
+            font-size: 18px;
+            font-weight: 800;
+            color: #00B8A9;
+            margin-bottom: 5px;
+        }
+        
+        .subtitle {
+            font-size: 12px;
+            color: #6E6E73;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .nav-section {
+            padding: 20px 0;
+            border-bottom: 1px solid #F5F5F7;
+        }
+        
+        .nav-title {
+            padding: 0 20px 10px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #86868B;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .nav-item {
+            display: block;
+            padding: 10px 20px;
+            color: #1D1D1F;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.2s;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+        }
+        
+        .nav-item:hover {
+            background: rgba(0, 184, 169, 0.05);
+            color: #00B8A9;
+            border-left-color: #00B8A9;
+        }
+        
+        .nav-item.active {
+            background: rgba(0, 184, 169, 0.08);
+            color: #00B8A9;
+            border-left-color: #00B8A9;
+            font-weight: 600;
+        }
+        
+        .nav-item.sub-item {
+            padding-left: 40px;
+            font-size: 13px;
+            color: #6E6E73;
+        }
+        
+        .nav-item.sub-item:hover {
+            color: #00B8A9;
+        }
+        
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            padding: 60px 80px 100px;
+            max-width: 1200px;
+        }
+        
+        /* Typography */
+        h1 {
+            font-size: 42px;
+            font-weight: 800;
+            color: #1D1D1F;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #00B8A9;
+            margin: 60px 0 25px 0;
+            padding-top: 20px;
+            scroll-margin-top: 20px;
+        }
+        
+        h3 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #1D1D1F;
+            margin: 35px 0 15px 0;
+            scroll-margin-top: 20px;
+        }
+        
+        h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #00B8A9;
+            margin: 25px 0 12px 0;
+        }
+        
+        p {
+            margin-bottom: 18px;
+            font-size: 16px;
+            line-height: 1.7;
+            color: #1D1D1F;
+        }
+        
+        .lead {
+            font-size: 20px;
+            color: #6E6E73;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        
+        /* Content Boxes */
+        .tip-box {
+            background: linear-gradient(135deg, rgba(0, 184, 169, 0.05) 0%, rgba(128, 220, 212, 0.05) 100%);
+            border-left: 4px solid #00B8A9;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .tip-box .tip-icon {
+            display: inline-block;
+            width: 22px;
+            height: 22px;
+            background: #00B8A9;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 22px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-right: 10px;
+        }
+        
+        .tip-box .tip-title {
+            font-weight: 700;
+            color: #00B8A9;
+            margin-bottom: 8px;
+        }
+        
+        .tip-box p {
+            margin-bottom: 0;
+            color: #1D1D1F;
+        }
+        
+        .warning-box {
+            background: rgba(255, 149, 0, 0.06);
+            border-left: 4px solid #FF9500;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .warning-box .tip-title {
+            color: #FF9500;
+        }
+        
+        .info-box {
+            background: rgba(0, 122, 255, 0.05);
+            border-left: 4px solid #007AFF;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .info-box .tip-title {
+            color: #007AFF;
+        }
+        
+        /* Code/Example Boxes */
+        .example-box {
+            background: #2D2D2D;
+            color: #F8F8F8;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.8;
+            overflow-x: auto;
+        }
+        
+        .example-title {
+            color: #00B8A9;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        /* Lists */
+        ul, ol {
+            margin: 20px 0 20px 25px;
+        }
+        
+        li {
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+        
+        li strong {
+            color: #00B8A9;
+            font-weight: 600;
+        }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        th {
+            background: #00B8A9;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #F5F5F7;
+            font-size: 15px;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        tr:nth-child(even) {
+            background: #FAFAFA;
+        }
+        
+        /* Highlight */
+        mark {
+            background: rgba(0, 184, 169, 0.15);
+            color: #1D1D1F;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        
+        code {
+            background: #F5F5F7;
+            color: #00B8A9;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Monaco', monospace;
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 240px;
+            }
+            
+            .main-content {
+                margin-left: 240px;
+                padding: 40px 40px 80px;
+            }
+        }
+        
+        @media print {
+            .sidebar {
+                display: none;
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+            }
+            
+            h2 {
+                page-break-after: avoid;
+                margin-top: 30px;
+            }
+            
+            .tip-box, .warning-box, .info-box {
+                page-break-inside: avoid;
+            }
+        }
+        
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Section divider */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, #00B8A9 0%, transparent 100%);
+            margin: 60px 0 40px;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid #E8E8ED;
+            text-align: center;
+            color: #6E6E73;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #00B8A9;
+            text-decoration: none;
+        }
+
+        footer .motto {
+            margin-top: 15px;
+            font-style: italic;
+            color: #00B8A9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">JIŘÍ KOUKAL</div>
+            <div class="subtitle">Strategické myšlení</div>
+        </div>
+        
+        <nav>
+            <div class="nav-section">
+                <div class="nav-title">OBSAH</div>
+                <a href="#uvod" class="nav-item">1. Úvod do strategického myšlení</a>
+                <a href="#zaklady" class="nav-item">2. Základní koncepty</a>
+                <a href="#zaklady-swot" class="nav-item sub-item">SWOT analýza</a>
+                <a href="#zaklady-porter" class="nav-item sub-item">Porterův model</a>
+                <a href="#zaklady-vrio" class="nav-item sub-item">VRIO framework</a>
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-title">PROCES</div>
+                <a href="#strategicky-proces" class="nav-item">3. Strategický proces</a>
+                <a href="#proces-analyza" class="nav-item sub-item">Analýza</a>
+                <a href="#proces-formulace" class="nav-item sub-item">Formulace</a>
+                <a href="#proces-implementace" class="nav-item sub-item">Implementace</a>
+                <a href="#proces-kontrola" class="nav-item sub-item">Kontrola</a>
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-title">BEST PRACTICES</div>
+                <a href="#metody" class="nav-item">4. Analytické metody</a>
+                <a href="#kpi" class="nav-item">5. KPI a měření</a>
+                <a href="#case-studies" class="nav-item">6. Případové studie</a>
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-title">DODATKY</div>
+                <a href="#caste-otazky" class="nav-item">7. Časté otázky</a>
+                <a href="#zdroje" class="nav-item">8. Další zdroje</a>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Section 1: Úvod -->
+        <section id="uvod">
+            <h1>Strategické myšlení v praxi</h1>
+            <p class="lead">
+                Komplexní průvodce strategickým přístupem k businessu - od analýzy přes formulaci až po implementaci a kontrolu výsledků.
+            </p>
+            
+            <p>
+                Strategické myšlení není jen o vytváření dlouhodobých plánů. Je to <mark>způsob uvažování</mark>, který vám umožní vidět celý obraz, anticipovat změny a dělat informovaná rozhodnutí založená na datech a faktech, ne na domněnkách.
+            </p>
+            
+            <div class="tip-box">
+                <div class="tip-title">
+                    <span class="tip-icon">💡</span>
+                    Klíčový princip
+                </div>
+                <p>Dobrá strategie není o tom, co chcete dělat. Je o tom, <strong>co dělat nebudete</strong> - tzn. kde alokujete své omezené zdroje pro maximální dopad.</p>
+            </div>
+            
+            <h3>Proč strategické myšlení?</h3>
+            <ul>
+                <li><strong>Jasný směr</strong> - Víte kam jdete a proč tam jdete</li>
+                <li><strong>Alokace zdrojů</strong> - Efektivní využití času, peněz a lidí</li>
+                <li><strong>Konkurenční výhoda</strong> - Umíte se odlišit od konkurence</li>
+                <li><strong>Měřitelné výsledky</strong> - Data-driven rozhodování místo guesswork</li>
+            </ul>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Section 2: Základní koncepty -->
+        <section id="zaklady">
+            <h2>2. Základní koncepty</h2>
+            <p>
+                Před tím, než se pustíte do strategické práce, musíte ovládat základní nástroje. Tyto frameworky jsou osvědčené dekády praxe.
+            </p>
+
+            <h3 id="zaklady-swot">SWOT analýza</h3>
+            <p>
+                Nejpoužívanější nástroj pro strategickou analýzu. Mapuje interní i externí faktory, které ovlivňují váš business.
+            </p>
+            
+            <table>
+                <tr>
+                    <th>Kategorie</th>
+                    <th>Popis</th>
+                    <th>Otázky</th>
+                </tr>
+                <tr>
+                    <td><strong>Strengths</strong> (Silné stránky)</td>
+                    <td>Interní pozitiva</td>
+                    <td>V čem jsme dobří? Co máme unikátního?</td>
+                </tr>
+                <tr>
+                    <td><strong>Weaknesses</strong> (Slabé stránky)</td>
+                    <td>Interní negativa</td>
+                    <td>Co nám nejde? Kde máme mezery?</td>
+                </tr>
+                <tr>
+                    <td><strong>Opportunities</strong> (Příležitosti)</td>
+                    <td>Externí pozitiva</td>
+                    <td>Jaké trendy můžeme využít? Kde je růst?</td>
+                </tr>
+                <tr>
+                    <td><strong>Threats</strong> (Hrozby)</td>
+                    <td>Externí negativa</td>
+                    <td>Co nás může ohrozit? Jaká rizika vidíme?</td>
+                </tr>
+            </table>
+
+            <div class="example-box">
+                <div class="example-title">Příklad: SWOT pro startup v AI konzultacích</div>
+                <strong>Strengths:</strong><br>
+                • Expertise v AI/ML (5+ let praxe)<br>
+                • Rychlá implementace (2-3 týdny vs. 2-3 měsíce)<br>
+                • Flexible pricing (hodinová sazba i projekty)<br><br>
+                
+                <strong>Weaknesses:</strong><br>
+                • Malý tým (2 lidé)<br>
+                • Žádné reference v ČR (jen zahraničí)<br>
+                • Omezená kapacita (max 2 projekty paralelně)<br><br>
+                
+                <strong>Opportunities:</strong><br>
+                • Růst AI adoption v ČR (+300% YoY poptávka)<br>
+                • Státní dotace na digitalizaci<br>
+                • Nedostatek AI expertů (prázdný trh)<br><br>
+                
+                <strong>Threats:</strong><br>
+                • Velké konzultační firmy vstupují do AI (Deloitte, PwC)<br>
+                • AI tools jsou čím dál user-friendly (méně potřeba konzultantů)<br>
+                • Regulace AI (GDPR-like omezení)
+            </div>
+
+            <div class="warning-box">
+                <div class="tip-title">Pozor na</div>
+                <p>
+                    <strong>SWOT není strategický plán</strong> - Je to jen diagnostický nástroj. Musíte z něj vyvodit konkrétní akce (např. SO strategie = využít Strengths k uchopení Opportunities).
+                </p>
+            </div>
+
+            <h3 id="zaklady-porter">Porterův model pěti sil</h3>
+            <p>
+                Framework pro analýzu konkurenčního prostředí. Identifikuje 5 sil, které určují atraktivitu odvětví.
+            </p>
+
+            <h4>Pět sil:</h4>
+            <ol>
+                <li><strong>Rivalita mezi konkurenty</strong> - Kolik je hráčů? Jak intenzivní je konkurence?</li>
+                <li><strong>Hrozba nových vstupujících</strong> - Jak snadné je vstoupit do odvětví?</li>
+                <li><strong>Vyjednávací síla dodavatelů</strong> - Kolik dodavatelů máte? Můžete je vyměnit?</li>
+                <li><strong>Vyjednávací síla odběratelů</strong> - Kolik zákazníků máte? Jak jsou velcí?</li>
+                <li><strong>Hrozba substitutů</strong> - Existují alternativní řešení vašeho produktu/služby?</li>
+            </ol>
+
+            <div class="info-box">
+                <div class="tip-title">Kdy použít Porter</div>
+                <p>
+                    Ideální při: <strong>vstupu do nového trhu</strong>, <strong>M&A due diligence</strong>, <strong>strategickém plánování</strong> (long-term 3-5 let).
+                </p>
+            </div>
+
+            <h3 id="zaklady-vrio">VRIO Framework</h3>
+            <p>
+                Nástroj pro identifikaci <strong>udržitelné konkurenční výhody</strong>. Ptá se 4 otázek o každém vašem zdroji/schopnosti.
+            </p>
+
+            <table>
+                <tr>
+                    <th>Otázka</th>
+                    <th>Ano → Výsledek</th>
+                    <th>Ne → Výsledek</th>
+                </tr>
+                <tr>
+                    <td><strong>V</strong>aluable - Je to cenné?</td>
+                    <td>Competitive parity</td>
+                    <td>Competitive disadvantage</td>
+                </tr>
+                <tr>
+                    <td><strong>R</strong>are - Je to vzácné?</td>
+                    <td>Temporary advantage</td>
+                    <td>Parity</td>
+                </tr>
+                <tr>
+                    <td><strong>I</strong>mitable - Je to těžko napodobitelné?</td>
+                    <td>Sustained advantage</td>
+                    <td>Temporary advantage</td>
+                </tr>
+                <tr>
+                    <td><strong>O</strong>rganized - Jste organizováni to využít?</td>
+                    <td>Realized advantage</td>
+                    <td>Unrealized potential</td>
+                </tr>
+            </table>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Section 3: Strategický proces -->
+        <section id="strategicky-proces">
+            <h2>3. Strategický proces</h2>
+            <p>
+                Strategie není jednorázová aktivita. Je to <strong>kontinuální proces</strong> ve 4 fázích, který se opakuje.
+            </p>
+
+            <h3 id="proces-analyza">Fáze 1: Analýza</h3>
+            <p>
+                Pochopte, kde jste teď. Bez správné diagnózy nemůžete předepsat léčbu.
+            </p>
+
+            <h4>Co analyzujete:</h4>
+            <ul>
+                <li><strong>Externí prostředí</strong> - PESTLE (Political, Economic, Social, Technological, Legal, Environmental)</li>
+                <li><strong>Odvětví</strong> - Porterovy síly, trendwatching, competitive landscape</li>
+                <li><strong>Interní schopnosti</strong> - VRIO, value chain analysis, core competencies</li>
+                <li><strong>Stakeholders</strong> - Kdo ovlivňuje váš business? Co chtějí?</li>
+            </ul>
+
+            <div class="tip-box">
+                <div class="tip-title">
+                    <span class="tip-icon">✓</span>
+                    Best practice
+                </div>
+                <p>
+                    Nezačínejte "co budeme dělat", začněte "kde jsme, jak jsme se sem dostali, a proč". Data > Opinions.
+                </p>
+            </div>
+
+            <h3 id="proces-formulace">Fáze 2: Formulace</h3>
+            <p>
+                Na základě analýzy formulujte strategii - kam chcete jít a jak se tam dostanete.
+            </p>
+
+            <h4>Klíčové komponenty:</h4>
+            <ol>
+                <li><strong>Vize</strong> - Kde chcete být za 5-10 let? (inspirativní, aspirační)</li>
+                <li><strong>Mise</strong> - Proč existujete? Co děláte pro koho? (konkrétní, akční)</li>
+                <li><strong>Hodnoty</strong> - Jak se chováte? Co je pro vás důležité? (guiding principles)</li>
+                <li><strong>Strategické cíle</strong> - SMART goals (Specific, Measurable, Achievable, Relevant, Time-bound)</li>
+                <li><strong>Iniciativy/projekty</strong> - Konkrétní akce k dosažení cílů</li>
+            </ol>
+
+            <div class="example-box">
+                <div class="example-title">Příklad: Strategické cíle (SMART)</div>
+                ❌ <strong>Špatně:</strong> "Chceme být lídr v AI"<br>
+                (Není měřitelné, není časově ohraničené, není specific)<br><br>
+                
+                ✅ <strong>Dobře:</strong> "Do konce Q4 2026 získat 15 platících B2B klientů v ČR s průměrnou roční hodnotou 500k Kč+ a NPS 8+, čímž dosáhneme roční revenue 7.5M Kč a staneme se top 3 AI konzultační firmou v ČR měřeno počtem projektů."<br>
+                (Specific, Measurable, Achievable, Relevant, Time-bound)
+            </div>
+
+            <h3 id="proces-implementace">Fáze 3: Implementace</h3>
+            <p>
+                Strategie bez exekuce je jen PowerPoint. Implementace je 80% práce.
+            </p>
+
+            <h4>Klíčové faktory úspěchu:</h4>
+            <ul>
+                <li><strong>Ownership</strong> - Každá iniciativa má DRI (Directly Responsible Individual)</li>
+                <li><strong>Resources</strong> - Alokujte budget, lidi, čas. Bez zdrojů = fail.</li>
+                <li><strong>Timeline</strong> - Gantt chart, milestones, deadlines</li>
+                <li><strong>Communication</strong> - Všichni vědí co, proč, kdy, jak</li>
+                <li><strong>Change management</strong> - Lidé resistují změnám, prepare for it</li>
+            </ul>
+
+            <div class="warning-box">
+                <div class="tip-title">Biggest failure point</div>
+                <p>
+                    70% strategií failuje v implementaci, ne ve formulaci. Důvod: <strong>Lack of accountability</strong> a <strong>no clear ownership</strong>.
+                </p>
+            </div>
+
+            <h3 id="proces-kontrola">Fáze 4: Kontrola a adaptace</h3>
+            <p>
+                Měřte progress, učte se z dat, adaptujte strategii. Žádná strategie není set in stone.
+            </p>
+
+            <h4>Co měřit:</h4>
+            <table>
+                <tr>
+                    <th>Kategorie</th>
+                    <th>Příklady metrik</th>
+                    <th>Frekvence</th>
+                </tr>
+                <tr>
+                    <td>Finanční</td>
+                    <td>Revenue, EBITDA, cash flow, ROI</td>
+                    <td>Měsíčně/Quarterly</td>
+                </tr>
+                <tr>
+                    <td>Zákaznické</td>
+                    <td>NPS, retention rate, LTV, CAC</td>
+                    <td>Quarterly</td>
+                </tr>
+                <tr>
+                    <td>Procesní</td>
+                    <td>Cycle time, throughput, error rate</td>
+                    <td>Týdně/Měsíčně</td>
+                </tr>
+                <tr>
+                    <td>Učení/růst</td>
+                    <td>Employee satisfaction, skill development</td>
+                    <td>Ročně</td>
+                </tr>
+            </table>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Section 4: Analytické metody -->
+        <section id="metody">
+            <h2>4. Analytické metody</h2>
+            <p>
+                Základní toolkit pro strategickou analýzu - kdy použít kterou metodu.
+            </p>
+
+            <h3>Balanced Scorecard (BSC)</h3>
+            <p>
+                Framework pro překlad strategie do měřitelných KPI napříč 4 perspektivami.
+            </p>
+
+            <ol>
+                <li><strong>Finanční perspektiva</strong> - Jak nás vidí shareholdeři? (Revenue, profit, ROI)</li>
+                <li><strong>Zákaznická perspektiva</strong> - Jak nás vidí zákazníci? (NPS, retention, market share)</li>
+                <li><strong>Procesní perspektiva</strong> - V čem musíme excelovat? (Quality, speed, cost)</li>
+                <li><strong>Perspektiva učení a růstu</strong> - Jak udržíme schopnost měnit se? (Skills, culture, tech)</li>
+            </ol>
+
+            <h3>Blue Ocean Strategy</h3>
+            <p>
+                Místo boje v "red ocean" (krvavě konkurenční trh), vytvořte "blue ocean" (nový nekonkurenční prostor).
+            </p>
+
+            <div class="tip-box">
+                <div class="tip-title">
+                    <span class="tip-icon">✓</span>
+                    Příklad Blue Ocean
+                </div>
+                <p>
+                    <strong>Cirque du Soleil</strong> - Nevstoupili do tradiční cirkusové konkurence (klauni, zvířata, low price). Vytvořili novou kategorii "artistic circus" s high ticket price, bez zvířat, s divadelní produkcí → blue ocean.
+                </p>
+            </div>
+
+            <h3>Ansoff Matrix</h3>
+            <p>
+                Framework pro růstové strategie. 2×2 matice: Produkt (existující/nový) × Trh (existující/nový)
+            </p>
+
+            <table>
+                <tr>
+                    <th></th>
+                    <th>Existující produkt</th>
+                    <th>Nový produkt</th>
+                </tr>
+                <tr>
+                    <td><strong>Existující trh</strong></td>
+                    <td>Market Penetration<br>(více prodeje současným)</td>
+                    <td>Product Development<br>(nové produkty pro současné)</td>
+                </tr>
+                <tr>
+                    <td><strong>Nový trh</strong></td>
+                    <td>Market Development<br>(současné produkty novým)</td>
+                    <td>Diversification<br>(nové produkty novým - HIGH RISK)</td>
+                </tr>
+            </table>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Section 5: KPI a měření -->
+        <section id="kpi">
+            <h2>5. KPI a měření</h2>
+            <p>
+                You can't manage what you don't measure. Ale měřte <strong>správné věci</strong>, ne všechny věci.
+            </p>
+
+            <h3>Rozdíl: Metrika vs. KPI</h3>
+            <ul>
+                <li><strong>Metrika</strong> = Jakákoliv číselná hodnota (např. počet návštěvníků webu)</li>
+                <li><strong>KPI</strong> = Key Performance Indicator = Metrika, která je <mark>kritická pro dosažení cíle</mark></li>
+            </ul>
+
+            <div class="example-box">
+                <div class="example-title">Příklad: E-shop</div>
+                <strong>Metriky:</strong> Visitors, page views, bounce rate, cart adds, newsletter signups...<br><br>
+                <strong>KPI:</strong> Conversion rate, Average Order Value (AOV), Customer Lifetime Value (LTV)<br><br>
+                Proč? → Tyto 3 KPI přímo ovlivňují revenue (hlavní cíl e-shopu)
+            </div>
+
+            <h3>Jak vybrat správné KPI</h3>
+            <ol>
+                <li>Začněte s <strong>cílem</strong> (např. "zvýšit revenue o 30% YoY")</li>
+                <li>Identifikujte <strong>leading indicators</strong> (co ovlivňuje revenue?) → conversion rate, AOV, traffic</li>
+                <li>Vyberte <strong>2-3 klíčové</strong> (ne 20) - focus matters</li>
+                <li>Ujistěte se, že jsou <strong>actionable</strong> (můžete je ovlivnit)</li>
+            </ol>
+
+            <div class="warning-box">
+                <div class="tip-title">Vanity Metrics</div>
+                <p>
+                    Pozor na "vanity metrics" - čísla, která vypadají dobře, ale nic neříkají o business health. Např. <strong>followers na Instagramu</strong> = vanity metric. <strong>Engagement rate</strong> = lepší, ale stále ne KPI pokud neprodáváte přes Instagram.
+                </p>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Section 6: Case studies -->
+        <section id="case-studies">
+            <h2>6. Případové studie</h2>
+            <p>
+                Učte se z reálných příkladů - co fungovalo, co ne, a proč.
+            </p>
+
+            <h3>Case Study 1: Netflix - Pivot od DVD k streamingu</h3>
+            <p>
+                <strong>Situace:</strong> 2007, Netflix je #1 v DVD rental by mail. Zisk roste, akcionáři spokojení.<br>
+                <strong>Problém:</strong> Management vidí trend - streaming je budoucnost. DVD půjde dolů.<br>
+                <strong>Rozhodnutí:</strong> Kanibalizovat vlastní business. Investovat miliardy do streamingu i když ještě není profitable.<br>
+                <strong>Výsledek:</strong> 2026 - Netflix 260M subscribers, DVD business uzavřený. Kdyby nepivotovali včas → bankrot.
+            </p>
+
+            <div class="tip-box">
+                <div class="tip-title">
+                    <span class="tip-icon">💡</span>
+                    Lesson learned
+                </div>
+                <p>
+                    <strong>Disrupt yourself před tím, než to udělá někdo jiný.</strong> I když jste na top, ptejte se "Co když náš business model přestane fungovat?"
+                </p>
+            </div>
+
+            <h3>Case Study 2: Nokia - Missed smartphone revolution</h3>
+            <p>
+                <strong>Situace:</strong> 2007, Nokia má 50%+ podíl na globálním trhu mobilů.<br>
+                <strong>Problém:</strong> Apple launches iPhone. Nokia management: "Není to hrozba, phone je primárně na volání."<br>
+                <strong>Chyba:</strong> Podcenili disruptivní inovaci. Pokračovali v Symbian OS místo investice do moderního OS.<br>
+                <strong>Výsledek:</strong> 2013 - Nokia prodána Microsoftu za zlomek value. Market share < 3%.
+            </p>
+
+            <div class="warning-box">
+                <div class="tip-title">Lesson learned</div>
+                <p>
+                    <strong>Past success ≠ future success.</strong> When the game changes, you have to change the playbook. Nokia měla resources i talent, ale ne strategic vision.
+                </p>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Section 7: FAQ -->
+        <section id="caste-otazky">
+            <h2>7. Časté otázky</h2>
+
+            <h3>Jak často aktualizovat strategii?</h3>
+            <p>
+                <strong>Formální review:</strong> Minimálně 1× ročně (ideálně quarterly)<br>
+                <strong>Ad-hoc review:</strong> Kdykoliv se změní fundamental assumptions (nový konkurent, legislativa, tech breakthrough)<br>
+                <strong>Taktický adjustment:</strong> Měsíčně na základě dat
+            </p>
+
+            <h3>Co když nemám data pro analýzu?</h3>
+            <p>
+                Start small. Začněte s tím, co máte (třeba jen Excel s sales). Postupně budujte data infrastructure. Better imperfect data than no strategy.
+            </p>
+
+            <h3>Strategie vs. Taktika - rozdíl?</h3>
+            <ul>
+                <li><strong>Strategie</strong> = "What" & "Why" - Kam jdeme a proč (long-term, high-level)</li>
+                <li><strong>Taktika</strong> = "How" - Jak se tam dostaneme (short-term, specific actions)</li>
+            </ul>
+
+            <p>Příklad: <em>Strategie</em> = "Budeme #1 AI konzultanti v ČR". <em>Taktika</em> = "Publikujeme 2 case studies měsíčně na LinkedIn"</p>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Section 8: Zdroje -->
+        <section id="zdroje">
+            <h2>8. Další zdroje</h2>
+
+            <h3>Doporučené knihy</h3>
+            <ul>
+                <li><strong>Good Strategy Bad Strategy</strong> - Richard Rumelt (bible strategického myšlení)</li>
+                <li><strong>Playing to Win</strong> - A.G. Lafley & Roger Martin (P&G case study)</li>
+                <li><strong>Blue Ocean Strategy</strong> - W. Chan Kim & Renée Mauborgne</li>
+                <li><strong>The Lean Startup</strong> - Eric Ries (startup strategie)</li>
+            </ul>
+
+            <h3>Online nástroje</h3>
+            <ul>
+                <li><strong>Miro / Mural</strong> - Collaborative strategy workshops</li>
+                <li><strong>Cascade</strong> - Strategy execution platform</li>
+                <li><strong>Tableau / Power BI</strong> - Data visualization pro KPI dashboards</li>
+            </ul>
+
+            <h3>Kontakt pro konzultaci</h3>
+            <div class="info-box">
+                <p>
+                    Potřebujete pomoc s vaší strategií? Nabízím:<br>
+                    • Strategické workshopy<br>
+                    • Business model canvas sessions<br>
+                    • Fractional COO služby<br><br>
+                    Kontakt: <strong><a href="mailto:jiri@nasvitime.online">jiri@nasvitime.online</a></strong>
+                </p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p><strong>Jiří Koukal, MSc. MBA</strong></p>
+            <p>Strategic management | AI Transformation | Fractional COO</p>
+            <p><a href="mailto:jiri@nasvitime.online">jiri@nasvitime.online</a> | <a href="https://nasvitime.online">nasvitime.online</a></p>
+            <p class="motto">Nasvítíme, co potřebujete vidět</p>
+        </footer>
+    </main>
+
+    <script>
+        // Active menu item on scroll
+        const navItems = document.querySelectorAll('.nav-item[href^="#"]');
+        const sections = document.querySelectorAll('section[id], h3[id]');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === `#${current}`) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
