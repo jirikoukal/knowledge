@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nabídka - Název projektu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #FFFFFF;
+            color: #1D1D1F;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+        
+        /* Header */
+        header {
+            border-bottom: 3px solid #00B8A9;
+            padding-bottom: 30px;
+            margin-bottom: 50px;
+        }
+        
+        h1 {
+            font-size: 42px;
+            font-weight: 700;
+            color: #1D1D1F;
+            margin-bottom: 15px;
+        }
+        
+        .project-subtitle {
+            font-size: 20px;
+            color: #00B8A9;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .meta {
+            display: flex;
+            gap: 30px;
+            font-size: 14px;
+            color: #6E6E73;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .meta-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 3px;
+        }
+        
+        .meta-value {
+            font-weight: 600;
+            color: #1D1D1F;
+        }
+        
+        /* Typography */
+        h2 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #00B8A9;
+            margin: 50px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #E8E8ED;
+        }
+        
+        h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1D1D1F;
+            margin: 30px 0 15px 0;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            color: #1D1D1F;
+            font-size: 16px;
+        }
+        
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #00B8A9 0%, #008F82 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+        
+        .summary-box h3 {
+            color: white;
+            margin-top: 0;
+            font-size: 24px;
+        }
+        
+        .summary-box p {
+            color: rgba(255,255,255,0.95);
+            font-size: 16px;
+        }
+        
+        /* Info Cards Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .info-card {
+            background: #F5F5F7;
+            padding: 25px;
+            border-radius: 12px;
+        }
+        
+        .info-card-label {
+            font-size: 14px;
+            color: #6E6E73;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .info-card-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #00B8A9;
+        }
+        
+        .info-card-detail {
+            font-size: 13px;
+            color: #6E6E73;
+            margin-top: 5px;
+        }
+        
+        /* Lists */
+        ul {
+            margin: 20px 0;
+            padding-left: 0;
+            list-style: none;
+        }
+        
+        li {
+            margin-bottom: 12px;
+            padding-left: 30px;
+            position: relative;
+            font-size: 16px;
+        }
+        
+        li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #00B8A9;
+            font-weight: 700;
+        }
+        
+        /* Service Cards */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .service-card {
+            background: #F5F5F7;
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid #00B8A9;
+        }
+        
+        .service-card h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1D1D1F;
+            margin-bottom: 12px;
+        }
+        
+        .service-card p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #1D1D1F;
+            margin-bottom: 0;
+        }
+        
+        .service-card ul {
+            margin-top: 15px;
+        }
+        
+        .service-card li {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        
+        /* Timeline */
+        .timeline {
+            margin: 30px 0;
+        }
+        
+        .timeline-item {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #E8E8ED;
+        }
+        
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+        
+        .timeline-phase {
+            min-width: 100px;
+            font-weight: 600;
+            color: #00B8A9;
+            font-size: 14px;
+        }
+        
+        .timeline-content h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1D1D1F;
+        }
+        
+        .timeline-content p {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        
+        .timeline-duration {
+            font-size: 13px;
+            color: #6E6E73;
+            font-style: italic;
+        }
+        
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .team-card {
+            background: #F5F5F7;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .team-role {
+            font-size: 14px;
+            color: #00B8A9;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .team-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1D1D1F;
+            margin-bottom: 8px;
+        }
+        
+        .team-detail {
+            font-size: 13px;
+            color: #6E6E73;
+        }
+        
+        /* Budget Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+        
+        th {
+            background: #2C3E50;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #E8E8ED;
+            font-size: 15px;
+        }
+        
+        tr:hover {
+            background: #FAFAFA;
+        }
+        
+        .budget-category {
+            font-weight: 600;
+            color: #1D1D1F;
+        }
+        
+        .budget-subcategory {
+            padding-left: 25px;
+            color: #6E6E73;
+        }
+        
+        .budget-amount {
+            text-align: right;
+            font-weight: 600;
+            color: #1D1D1F;
+        }
+        
+        .budget-total {
+            background: #F5F5F7;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        
+        .budget-total td {
+            color: #00B8A9;
+            border-top: 2px solid #00B8A9;
+        }
+        
+        /* Highlight Box */
+        .highlight-box {
+            background: #F5F5F7;
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid #00B8A9;
+            margin: 30px 0;
+        }
+        
+        .highlight-box h3 {
+            color: #00B8A9;
+            margin-top: 0;
+        }
+        
+        /* Why Us Section */
+        .why-list {
+            margin: 30px 0;
+        }
+        
+        .why-item {
+            background: #F5F5F7;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .why-item h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #00B8A9;
+            margin-bottom: 10px;
+        }
+        
+        .why-item p {
+            font-size: 15px;
+            margin-bottom: 0;
+        }
+        
+        /* Next Steps */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .step-card {
+            text-align: center;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #00B8A9;
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+        }
+        
+        .step-card h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .step-card p {
+            font-size: 14px;
+            color: #6E6E73;
+            margin-bottom: 0;
+        }
+        
+        /* Footer */
+        footer {
+            margin-top: 80px;
+            padding-top: 30px;
+            border-top: 1px solid #E8E8ED;
+            text-align: center;
+            color: #6E6E73;
+            font-size: 14px;
+        }
+        
+        footer .contact-line {
+            margin-bottom: 8px;
+        }
+        
+        footer a {
+            color: #00B8A9;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        footer .motto {
+            margin-top: 20px;
+            font-style: italic;
+            font-size: 13px;
+        }
+        
+        /* Print styles */
+        @media print {
+            .container {
+                padding: 20px;
+            }
+            
+            h2 {
+                page-break-after: avoid;
+            }
+            
+            .service-card, .why-item, .timeline-item {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Název projektu</h1>
+            <div class="project-subtitle">Podtitul nebo typ projektu</div>
+            <div class="meta">
+                <div class="meta-item">
+                    <span class="meta-label">Klient</span>
+                    <span class="meta-value">Název klienta</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Datum</span>
+                    <span class="meta-value">Únor 2026</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Zpracoval</span>
+                    <span class="meta-value">Jiří Koukal, MSc., MBA</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Platnost nabídky</span>
+                    <span class="meta-value">30 dnů</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Executive Summary -->
+        <section>
+            <div class="summary-box">
+                <h3>Executive Summary</h3>
+                <p>Stručné shrnutí nabídky v 2-3 větách. Co nabízíme, jaký je klíčový benefit pro klienta a jaký je očekávaný výsledek. Tato sekce by měla být čitelná i samostatně a dát rychlý přehled busy decision-makerovi.</p>
+            </div>
+        </section>
+
+        <!-- Základní údaje -->
+        <section>
+            <h2>Základní údaje projektu</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-card-label">Typ projektu</div>
+                    <div class="info-card-value">Strategic</div>
+                    <div class="info-card-detail">AI Transformation</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-label">Doba realizace</div>
+                    <div class="info-card-value">3 měsíce</div>
+                    <div class="info-card-detail">Březen - Květen 2026</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-label">Investice</div>
+                    <div class="info-card-value">450 tis. Kč</div>
+                    <div class="info-card-detail">Bez DPH</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-label">Očekávaný ROI</div>
+                    <div class="info-card-value">250%</div>
+                    <div class="info-card-detail">Za 12 měsíců</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Situace / Výzva -->
+        <section>
+            <h2>Situace a výzva</h2>
+            <p>Popis současné situace klienta a klíčových výzev, které řešíme. Co je problém, proč je důležitý a jaké má dopady na business. Mělo by být jasné proč je potřeba jednat teď.</p>
+            
+            <h3>Identifikované výzvy</h3>
+            <ul>
+                <li><strong>Výzva 1:</strong> Konkrétní popis problému a jeho dopadu na business</li>
+                <li><strong>Výzva 2:</strong> Další klíčová oblast vyžadující pozornost</li>
+                <li><strong>Výzva 3:</strong> Třetí kritický bod který adresujeme</li>
+            </ul>
+        </section>
+
+        <!-- Navrhované řešení -->
+        <section>
+            <h2>Navrhované řešení</h2>
+            <p>Celkový přístup k řešení identifikovaných výzev. Jak budeme postupovat, jakou metodiku použijeme a proč je tento přístup ten správný pro danou situaci.</p>
+            
+            <div class="service-grid">
+                <div class="service-card">
+                    <h4>Komponenta 1</h4>
+                    <p>Popis první komponenty řešení a jakou hodnotu přináší.</p>
+                    <ul>
+                        <li>Klíčový element A</li>
+                        <li>Klíčový element B</li>
+                        <li>Klíčový element C</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h4>Komponenta 2</h4>
+                    <p>Popis druhé komponenty řešení a jakou hodnotu přináší.</p>
+                    <ul>
+                        <li>Klíčový element A</li>
+                        <li>Klíčový element B</li>
+                        <li>Klíčový element C</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h4>Komponenta 3</h4>
+                    <p>Popis třetí komponenty řešení a jakou hodnotu přináší.</p>
+                    <ul>
+                        <li>Klíčový element A</li>
+                        <li>Klíčový element B</li>
+                        <li>Klíčový element C</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rozsah služeb -->
+        <section>
+            <h2>Rozsah služeb</h2>
+            <p>Detailní popis co je součástí projektu a co není (scope). Jasné vymezení hranic aby nedošlo k nedorozumění.</p>
+            
+            <h3>V ceně zahrnuto</h3>
+            <ul>
+                <li>Discovery workshop (2-3 hodiny) s klíčovými stakeholdery</li>
+                <li>Analýza současného stavu a identifikace příležitostí</li>
+                <li>Strategický dokument s akčním plánem a prioritami</li>
+                <li>Implementační podpora - pravidelné konzultace (X hodin měsíčně)</li>
+                <li>Reporting a průběžné vyhodnocování pokroku</li>
+                <li>Transfer know-how - training vašeho týmu</li>
+            </ul>
+            
+            <h3>Není součástí nabídky</h3>
+            <ul>
+                <li>Grafické zpracování výstupů (můžeme zajistit za příplatek)</li>
+                <li>Licence na software třetích stran</li>
+                <li>Další komponenty které nejsou explicitně uvedeny výše</li>
+            </ul>
+        </section>
+
+        <!-- Harmonogram -->
+        <section>
+            <h2>Harmonogram a milestones</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-phase">Fáze 1</div>
+                    <div class="timeline-content">
+                        <h4>Discovery a analýza</h4>
+                        <p>Porozumění byznysu, cílům a výzvám. Workshop, analýza dat, identifikace příležitostí.</p>
+                        <p><strong>Výstup:</strong> Discovery report s klíčovými findings</p>
+                        <span class="timeline-duration">Týdny 1-2</span>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-phase">Fáze 2</div>
+                    <div class="timeline-content">
+                        <h4>Strategie a plánování</h4>
+                        <p>Vytvoření strategického plánu, prioritizace iniciativ, nastavení KPI a časové osy.</p>
+                        <p><strong>Výstup:</strong> Strategický dokument + akční plán</p>
+                        <span class="timeline-duration">Týdny 3-4</span>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-phase">Fáze 3</div>
+                    <div class="timeline-content">
+                        <h4>Implementace</h4>
+                        <p>Hands-on spolupráce při realizaci prioritních iniciativ. Pravidelné sprinty a review.</p>
+                        <p><strong>Výstup:</strong> Implementované řešení + průběžné reporty</p>
+                        <span class="timeline-duration">Týdny 5-10</span>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-phase">Fáze 4</div>
+                    <div class="timeline-content">
+                        <h4>Vyhodnocení a optimalizace</h4>
+                        <p>Měření výsledků, iterativní vylepšování, dokumentace lessons learned, handover.</p>
+                        <p><strong>Výstup:</strong> Závěrečný report + doporučení pro další kroky</p>
+                        <span class="timeline-duration">Týdny 11-12</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tým -->
+        <section>
+            <h2>Tým a personální zajištění</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-role">Projektový manažer</div>
+                    <div class="team-name">Jiří Koukal</div>
+                    <div class="team-detail">Koordinace, strategie, reporting</div>
+                </div>
+                <div class="team-card">
+                    <div class="team-role">Senior konzultant</div>
+                    <div class="team-name">Jméno</div>
+                    <div class="team-detail">Implementace, analýza</div>
+                </div>
+                <div class="team-card">
+                    <div class="team-role">Specialist</div>
+                    <div class="team-name">Jméno</div>
+                    <div class="team-detail">Specifická expertiza</div>
+                </div>
+                <div class="team-card">
+                    <div class="team-role">Podpora</div>
+                    <div class="team-name">Tým</div>
+                    <div class="team-detail">Backoffice, dokumentace</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rozpočet -->
+        <section>
+            <h2>Rozpočet</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Položka</th>
+                        <th style="text-align: right;">Částka (bez DPH)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="budget-category">KONZULTAČNÍ SLUŽBY</td>
+                        <td class="budget-amount">250 000 Kč</td>
+                    </tr>
+                    <tr>
+                        <td class="budget-subcategory">Discovery a analýza</td>
+                        <td class="budget-amount">60 000 Kč</td>
+                    </tr>
+                    <tr>
+                        <td class="budget-subcategory">Strategické plánování</td>
+                        <td class="budget-amount">80 000 Kč</td>
+                    </tr>
+                    <tr>
+                        <td class="budget-subcategory">Implementační podpora</td>
+                        <td class="budget-amount">90 000 Kč</td>
+                    </tr>
+                    <tr>
+                        <td class="budget-subcategory">Reporting a vyhodnocení</td>
+                        <td class="budget-amount">20 000 Kč</td>
+                    </tr>
+                    <tr>
+                        <td class="budget-category">PRODUKCE A MATERIÁLY</td>
+                        <td class="budget-amount">120 000 Kč</td>
+                    </tr>
+                    <tr>
+                        <td class="budget-subcategory">Výzkum a data</td>
+                        <td class="budget-amount">40 000 Kč</td>
+                    </tr>
+                    <tr>
+                        <td class="budget-subcategory">Dokumentace a výstupy</td>
+                        <td class="budget-amount">50 000 Kč</td>
+                    </tr>
+                    <tr>
+                        <td class="budget-subcategory">Nástroje a licence</td>
+                        <td class="budget-amount">30 000 Kč</td>
+                    </tr>
+                    <tr>
+                        <td class="budget-category">PROJEKTOVÉ ŘÍZENÍ</td>
+                        <td class="budget-amount">80 000 Kč</td>
+                    </tr>
+                    <tr>
+                        <td class="budget-subcategory">Koordinace a řízení</td>
+                        <td class="budget-amount">55 000 Kč</td>
+                    </tr>
+                    <tr>
+                        <td class="budget-subcategory">Rezerva 10%</td>
+                        <td class="budget-amount">25 000 Kč</td>
+                    </tr>
+                    <tr class="budget-total">
+                        <td><strong>CELKEM</strong></td>
+                        <td style="text-align: right;"><strong>450 000 Kč</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="highlight-box">
+                <h3>Platební podmínky</h3>
+                <p><strong>Fakturace:</strong> 30% při podpisu smlouvy, 40% po Fázi 2, 30% po dokončení projektu<br>
+                <strong>Splatnost:</strong> 14 dnů<br>
+                <strong>Poznámka:</strong> Rozpočet nezahrnuje náklady na externí dodavatele nebo licence třetích stran, které budou fakturovány samostatně po předchozím odsouhlasení.</p>
+            </div>
+        </section>
+
+        <!-- Proč s námi -->
+        <section>
+            <h2>Proč s námi spolupracovat</h2>
+            <div class="why-list">
+                <div class="why-item">
+                    <h4>Strategické myšlení + operativní exekuce</h4>
+                    <p>Neplánujeme jen co dělat, ale děláme to s vámi. Kombinace strategie a hands-on implementace = reálné výsledky, ne jen PowerPointy.</p>
+                </div>
+                <div class="why-item">
+                    <h4>Zkušenost s českým trhem</h4>
+                    <p>Rozumíme specifikům českých firem, regulacím a kultuře. Řešení která fungují v Praze, ne v Silicon Valley.</p>
+                </div>
+                <div class="why-item">
+                    <h4>Měřitelné výsledky</h4>
+                    <p>Každý projekt má jasné KPI a reporting. Víte přesně co dostáváte za své peníze a jak postupujeme k cílům.</p>
+                </div>
+                <div class="why-item">
+                    <h4>Transfer know-how</h4>
+                    <p>Váš tým se učí průběžně. Nejen že problém vyřešíme, ale vaši lidé budou schopní podobné věci řešit sami v budoucnu.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Další kroky -->
+        <section>
+            <h2>Další kroky</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h4>Review nabídky</h4>
+                    <p>Prostudování nabídky a případné dotazy</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h4>Kick-off call</h4>
+                    <p>60min call pro alignment a upřesnění detailů</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h4>Schválení</h4>
+                    <p>Finalizace scope a podpis smlouvy</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h4>Start projektu</h4>
+                    <p>Discovery workshop a začátek spolupráce</p>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <h3>Máte dotazy?</h3>
+                <p>Rád nabídku prodiskutuji a upřesním jakékoliv detaily. Kontaktujte mě na <strong>jiri.koukal@gmail.com</strong> nebo volejte přímo.<br><br>
+                Těším se na spolupráci!</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p class="contact-line"><strong>Strategic management | AI Transformation | Fractional COO</strong></p>
+            <p class="contact-line">Jiří Koukal, MSc. MBA | <a href="mailto:jiri.koukal@gmail.com">jiri.koukal@gmail.com</a> | <a href="https://www.linkedin.com/in/jirikoukal/">LinkedIn</a></p>
+            <p class="motto">"Vše je jen otázka úhlu pohledu"</p>
+        </footer>
+    </div>
+</body>
+</html>
