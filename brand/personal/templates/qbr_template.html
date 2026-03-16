@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quarterly Business Review</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #FFFFFF;
+            color: #1D1D1F;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #2C3E50 0%, #1a252f 100%);
+            color: white;
+            padding: 50px;
+            border-radius: 12px;
+            margin-bottom: 50px;
+        }
+        
+        header h1 {
+            font-size: 42px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .company-name {
+            font-size: 24px;
+            color: #00B8A9;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .period {
+            font-size: 18px;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 20px;
+        }
+        
+        .header-meta {
+            display: flex;
+            gap: 30px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+        }
+        
+        /* Executive Summary */
+        .exec-summary {
+            background: #F5F5F7;
+            padding: 40px;
+            border-radius: 12px;
+            border-left: 6px solid #00B8A9;
+            margin: 40px 0;
+        }
+        
+        .exec-summary h2 {
+            color: #00B8A9;
+            margin-top: 0;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        
+        .exec-summary p {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        
+        .summary-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .highlight-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .highlight-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #6E6E73;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .highlight-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #00B8A9;
+        }
+        
+        /* Typography */
+        h2 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #2C3E50;
+            margin: 50px 0 25px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #E8E8ED;
+        }
+        
+        h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1D1D1F;
+            margin: 30px 0 15px 0;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            color: #1D1D1F;
+            font-size: 16px;
+        }
+        
+        /* KPI Dashboard */
+        .kpi-dashboard {
+            margin: 40px 0;
+        }
+        
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .kpi-card {
+            background: #F5F5F7;
+            padding: 25px;
+            border-radius: 12px;
+            position: relative;
+        }
+        
+        .kpi-trend {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+        }
+        
+        .kpi-trend.up {
+            color: #34C759;
+        }
+        
+        .kpi-trend.down {
+            color: #FF3B30;
+        }
+        
+        .kpi-trend.flat {
+            color: #FF9500;
+        }
+        
+        .kpi-label {
+            font-size: 14px;
+            color: #6E6E73;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .kpi-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1D1D1F;
+            margin-bottom: 8px;
+            line-height: 1;
+        }
+        
+        .kpi-target {
+            font-size: 13px;
+            color: #6E6E73;
+            margin-bottom: 5px;
+        }
+        
+        .kpi-change {
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .kpi-change.positive {
+            color: #34C759;
+        }
+        
+        .kpi-change.negative {
+            color: #FF3B30;
+        }
+        
+        .kpi-change.neutral {
+            color: #FF9500;
+        }
+        
+        /* Progress Tracker */
+        .initiatives-list {
+            margin: 30px 0;
+        }
+        
+        .initiative-item {
+            background: white;
+            border: 2px solid #E8E8ED;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+        
+        .initiative-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            gap: 20px;
+        }
+        
+        .initiative-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1D1D1F;
+        }
+        
+        .status-badge {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        
+        .status-on-track {
+            background: #E8F5E9;
+            color: #34C759;
+        }
+        
+        .status-at-risk {
+            background: #FFF3E0;
+            color: #FF9500;
+        }
+        
+        .status-delayed {
+            background: #FFEBEE;
+            color: #FF3B30;
+        }
+        
+        .status-completed {
+            background: #E3F2FD;
+            color: #00B8A9;
+        }
+        
+        .initiative-description {
+            font-size: 14px;
+            color: #6E6E73;
+            margin-bottom: 15px;
+        }
+        
+        .progress-bar-container {
+            background: #E8E8ED;
+            height: 8px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00B8A9 0%, #008F82 100%);
+            transition: width 0.3s;
+        }
+        
+        .initiative-meta {
+            display: flex;
+            gap: 30px;
+            font-size: 13px;
+            color: #6E6E73;
+            margin-top: 10px;
+        }
+        
+        .initiative-meta strong {
+            color: #1D1D1F;
+        }
+        
+        /* Wins & Challenges */
+        .wins-challenges {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .wins-section, .challenges-section {
+            background: #F5F5F7;
+            padding: 30px;
+            border-radius: 12px;
+        }
+        
+        .wins-section {
+            border-left: 6px solid #34C759;
+        }
+        
+        .challenges-section {
+            border-left: 6px solid #FF9500;
+        }
+        
+        .wins-section h3 {
+            color: #34C759;
+            margin-top: 0;
+        }
+        
+        .challenges-section h3 {
+            color: #FF9500;
+            margin-top: 0;
+        }
+        
+        .wins-section ul, .challenges-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 0 0;
+        }
+        
+        .wins-section li {
+            padding-left: 30px;
+            position: relative;
+            margin-bottom: 15px;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        
+        .wins-section li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #34C759;
+            font-weight: 700;
+            font-size: 18px;
+        }
+        
+        .challenges-section li {
+            padding-left: 30px;
+            position: relative;
+            margin-bottom: 15px;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        
+        .challenges-section li:before {
+            content: "!";
+            position: absolute;
+            left: 0;
+            color: #FF9500;
+            font-weight: 700;
+            font-size: 18px;
+        }
+        
+        /* Financial Summary */
+        .financial-table {
+            margin: 30px 0;
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background: #2C3E50;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #E8E8ED;
+            font-size: 14px;
+        }
+        
+        tr:hover {
+            background: #FAFAFA;
+        }
+        
+        .table-metric {
+            font-weight: 600;
+        }
+        
+        .table-positive {
+            color: #34C759;
+            font-weight: 600;
+        }
+        
+        .table-negative {
+            color: #FF3B30;
+            font-weight: 600;
+        }
+        
+        /* Action Items */
+        .action-items {
+            margin: 40px 0;
+        }
+        
+        .action-item {
+            background: white;
+            border: 2px solid #E8E8ED;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        
+        .action-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #00B8A9;
+            border-radius: 4px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .action-content {
+            flex: 1;
+        }
+        
+        .action-text {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        
+        .action-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 13px;
+            color: #6E6E73;
+        }
+        
+        .action-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .action-meta strong {
+            color: #00B8A9;
+        }
+        
+        /* Next Period Outlook */
+        .outlook-section {
+            background: linear-gradient(135deg, #00B8A9 0%, #008F82 100%);
+            color: white;
+            padding: 50px;
+            border-radius: 12px;
+            margin: 50px 0;
+        }
+        
+        .outlook-section h2 {
+            color: white;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            margin-top: 0;
+        }
+        
+        .outlook-section p {
+            color: rgba(255,255,255,0.95);
+            font-size: 16px;
+        }
+        
+        .outlook-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .outlook-card {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 8px;
+        }
+        
+        .outlook-card h4 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .outlook-card p {
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+        
+        /* Metrics Comparison Chart */
+        .metrics-comparison {
+            margin: 40px 0;
+            background: #F5F5F7;
+            padding: 30px;
+            border-radius: 12px;
+        }
+        
+        .comparison-row {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .comparison-label {
+            min-width: 150px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .comparison-bar {
+            flex: 1;
+            height: 40px;
+            background: #E8E8ED;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .comparison-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00B8A9 0%, #008F82 100%);
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .comparison-value {
+            min-width: 80px;
+            text-align: right;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        /* Footer */
+        footer {
+            margin-top: 80px;
+            padding-top: 30px;
+            border-top: 1px solid #E8E8ED;
+            text-align: center;
+            color: #6E6E73;
+            font-size: 14px;
+        }
+        
+        footer a {
+            color: #00B8A9;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        footer .motto {
+            margin-top: 20px;
+            font-style: italic;
+            font-size: 13px;
+        }
+        
+        @media print {
+            .container {
+                padding: 20px;
+            }
+            
+            header, .outlook-section {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Quarterly Business Review</h1>
+            <div class="company-name">DEMO s.r.o.</div>
+            <div class="period">Q1 2026 | Leden - Březen 2026</div>
+            <div class="header-meta">
+                <span>Zpracoval: Jiří Koukal, MSc., MBA</span>
+                <span>Datum: 5. dubna 2026</span>
+            </div>
+        </header>
+
+        <!-- Executive Summary -->
+        <section class="exec-summary">
+            <h2>Executive Summary</h2>
+            <p>Q1 2026 byl silný kvartál s tržbami 15,2 mil. Kč (+18% YoY, +5% vs Q4). Všechny klíčové iniciativy jsou on track, AI pilot překonal očekávání s 25% time savings. Hlavní challenge: hiring delays v tech týmu zpomalují expansion plány. Pro Q2 prioritizujeme talent acquisition a geografickou expanzi do SK.</p>
+            
+            <div class="summary-highlights">
+                <div class="highlight-box">
+                    <div class="highlight-label">Tržby Q1</div>
+                    <div class="highlight-value">15,2M</div>
+                </div>
+                <div class="highlight-box">
+                    <div class="highlight-label">YoY růst</div>
+                    <div class="highlight-value">+18%</div>
+                </div>
+                <div class="highlight-box">
+                    <div class="highlight-label">EBITDA marže</div>
+                    <div class="highlight-value">19,5%</div>
+                </div>
+                <div class="highlight-box">
+                    <div class="highlight-label">NPS</div>
+                    <div class="highlight-value">62</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KPI Dashboard -->
+        <section class="kpi-dashboard">
+            <h2>Klíčové metriky</h2>
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-trend up">↗</div>
+                    <div class="kpi-label">Tržby</div>
+                    <div class="kpi-value">15,2M</div>
+                    <div class="kpi-target">Target: 14,5M</div>
+                    <div class="kpi-change positive">+18% YoY | +5% QoQ</div>
+                </div>
+                
+                <div class="kpi-card">
+                    <div class="kpi-trend up">↗</div>
+                    <div class="kpi-label">EBITDA marže</div>
+                    <div class="kpi-value">19,5%</div>
+                    <div class="kpi-target">Target: 18%</div>
+                    <div class="kpi-change positive">+1,5 p.p. vs Q4</div>
+                </div>
+                
+                <div class="kpi-card">
+                    <div class="kpi-trend up">↗</div>
+                    <div class="kpi-label">New customers</div>
+                    <div class="kpi-value">28</div>
+                    <div class="kpi-target">Target: 25</div>
+                    <div class="kpi-change positive">+12% vs target</div>
+                </div>
+                
+                <div class="kpi-card">
+                    <div class="kpi-trend flat">→</div>
+                    <div class="kpi-label">Retention rate</div>
+                    <div class="kpi-value">89%</div>
+                    <div class="kpi-target">Target: 90%</div>
+                    <div class="kpi-change neutral">-1% vs target</div>
+                </div>
+                
+                <div class="kpi-card">
+                    <div class="kpi-trend down">↘</div>
+                    <div class="kpi-label">Time to close</div>
+                    <div class="kpi-value">42 dní</div>
+                    <div class="kpi-target">Target: 35 dní</div>
+                    <div class="kpi-change negative">+7 dní vs target</div>
+                </div>
+                
+                <div class="kpi-card">
+                    <div class="kpi-trend up">↗</div>
+                    <div class="kpi-label">Employee NPS</div>
+                    <div class="kpi-value">58</div>
+                    <div class="kpi-target">Target: 50</div>
+                    <div class="kpi-change positive">+8 vs target</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Financial Summary -->
+        <section>
+            <h2>Finanční přehled</h2>
+            <div class="financial-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metrika</th>
+                            <th style="text-align: right;">Q1 2026</th>
+                            <th style="text-align: right;">Q4 2025</th>
+                            <th style="text-align: right;">Q1 2025</th>
+                            <th style="text-align: right;">Změna YoY</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="table-metric">Tržby</td>
+                            <td style="text-align: right;">15 200 tis. Kč</td>
+                            <td style="text-align: right;">14 500 tis. Kč</td>
+                            <td style="text-align: right;">12 900 tis. Kč</td>
+                            <td style="text-align: right;" class="table-positive">+18%</td>
+                        </tr>
+                        <tr>
+                            <td class="table-metric">EBITDA</td>
+                            <td style="text-align: right;">2 964 tis. Kč</td>
+                            <td style="text-align: right;">2 610 tis. Kč</td>
+                            <td style="text-align: right;">2 193 tis. Kč</td>
+                            <td style="text-align: right;" class="table-positive">+35%</td>
+                        </tr>
+                        <tr>
+                            <td class="table-metric">Operating expenses</td>
+                            <td style="text-align: right;">12 236 tis. Kč</td>
+                            <td style="text-align: right;">11 890 tis. Kč</td>
+                            <td style="text-align: right;">10 707 tis. Kč</td>
+                            <td style="text-align: right;" class="table-negative">+14%</td>
+                        </tr>
+                        <tr>
+                            <td class="table-metric">Cash position</td>
+                            <td style="text-align: right;">8 500 tis. Kč</td>
+                            <td style="text-align: right;">7 200 tis. Kč</td>
+                            <td style="text-align: right;">6 100 tis. Kč</td>
+                            <td style="text-align: right;" class="table-positive">+39%</td>
+                        </tr>
+                        <tr>
+                            <td class="table-metric">Average deal size</td>
+                            <td style="text-align: right;">185 tis. Kč</td>
+                            <td style="text-align: right;">172 tis. Kč</td>
+                            <td style="text-align: right;">158 tis. Kč</td>
+                            <td style="text-align: right;" class="table-positive">+17%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Progress on Initiatives -->
+        <section>
+            <h2>Pokrok na klíčových iniciativách</h2>
+            <div class="initiatives-list">
+                <div class="initiative-item">
+                    <div class="initiative-header">
+                        <div class="initiative-title">AI Customer Support Automation</div>
+                        <div class="status-badge status-completed">Dokončeno</div>
+                    </div>
+                    <p class="initiative-description">Implementace AI chatbota pro Tier 1 customer support. Automatizace 60% dotazů, snížení response time z 4 hodin na 15 minut.</p>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" style="width: 100%;"></div>
+                    </div>
+                    <div class="initiative-meta">
+                        <span><strong>Vlastník:</strong> IT Manager</span>
+                        <span><strong>Deadline:</strong> 31.3.2026</span>
+                        <span><strong>Investice:</strong> 420 tis. Kč</span>
+                        <span><strong>ROI:</strong> 280% za 18 měsíců</span>
+                    </div>
+                </div>
+
+                <div class="initiative-item">
+                    <div class="initiative-header">
+                        <div class="initiative-title">Geografická expanze - Slovensko</div>
+                        <div class="status-badge status-on-track">On track</div>
+                    </div>
+                    <p class="initiative-description">Setup SK entity, recruiting local sales rep, first pilots s 3 zákazníky. Launch plánován na Q2.</p>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" style="width: 65%;"></div>
+                    </div>
+                    <div class="initiative-meta">
+                        <span><strong>Vlastník:</strong> COO</span>
+                        <span><strong>Deadline:</strong> 30.6.2026</span>
+                        <span><strong>Progress:</strong> 65%</span>
+                    </div>
+                </div>
+
+                <div class="initiative-item">
+                    <div class="initiative-header">
+                        <div class="initiative-title">Tech Team Expansion</div>
+                        <div class="status-badge status-at-risk">At risk</div>
+                    </div>
+                    <p class="initiative-description">Najímání 2 senior developers a 1 data scientist. Delays kvůli competitive talent market. Adjustujeme compensation package.</p>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" style="width: 35%;"></div>
+                    </div>
+                    <div class="initiative-meta">
+                        <span><strong>Vlastník:</strong> HR Manager</span>
+                        <span><strong>Deadline:</strong> 31.5.2026</span>
+                        <span><strong>Progress:</strong> 35%</span>
+                    </div>
+                </div>
+
+                <div class="initiative-item">
+                    <div class="initiative-header">
+                        <div class="initiative-title">Product Portfolio Optimization</div>
+                        <div class="status-badge status-on-track">On track</div>
+                    </div>
+                    <p class="initiative-description">Eliminace low-margin produktů (15% portfolia), launch 2 nových premium offerings. Early feedback pozitivní.</p>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" style="width: 55%;"></div>
+                    </div>
+                    <div class="initiative-meta">
+                        <span><strong>Vlastník:</strong> Product Manager</span>
+                        <span><strong>Deadline:</strong> 30.4.2026</span>
+                        <span><strong>Progress:</strong> 55%</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wins & Challenges -->
+        <section>
+            <h2>Highlights & Výzvy</h2>
+            <div class="wins-challenges">
+                <div class="wins-section">
+                    <h3>Klíčové úspěchy Q1</h3>
+                    <ul>
+                        <li><strong>AI pilot překonal očekávání:</strong> 25% time savings místo plánovaných 15%, customer satisfaction +12 points</li>
+                        <li><strong>Největší deal v historii:</strong> Podpis kontraktu s Enterprise klientem, 2,8M Kč/rok, 3-year commitment</li>
+                        <li><strong>Team culture win:</strong> Employee NPS vzrostl na 58 (z 42 v Q4), nejlepší skóre za poslední 2 roky</li>
+                        <li><strong>Process efficiency:</strong> Optimalizace order-to-delivery snížila čas z 8 na 5 dní (-38%)</li>
+                        <li><strong>Marketing ROI:</strong> LinkedIn strategy přinesla 40% nových leadů, CAC dolů o 22%</li>
+                    </ul>
+                </div>
+                
+                <div class="challenges-section">
+                    <h3>Hlavní výzvy & rizika</h3>
+                    <ul>
+                        <li><strong>Talent acquisition delays:</strong> Hiring trvá 2x déle než plánováno, blokuje growth initiatives. Mitigation: Zvýšit budget, použít headhuntery</li>
+                        <li><strong>Supply chain issues:</strong> 2 klíčoví dodavatelé mají delays, risk pro Q2 delivery. Mitigation: Hledat alternativy, zvýšit inventory</li>
+                        <li><strong>Sales cycle se prodlužuje:</strong> 42 dní průměr vs 35 target. Root cause: Větší deals = více stakeholders. Action: Improve sales enablement</li>
+                        <li><strong>Competition pressure:</strong> Nový competitor vstoupil na trh s agresivním pricing. Watch closely, zdůraznit quality/service differentiation</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Action Items for Next Quarter -->
+        <section class="action-items">
+            <h2>Prioritní action items pro Q2</h2>
+            
+            <div class="action-item">
+                <div class="action-checkbox"></div>
+                <div class="action-content">
+                    <div class="action-text">Dokončit hiring 2 senior developers + 1 data scientist</div>
+                    <div class="action-meta">
+                        <span><strong>Vlastník:</strong> HR Manager</span>
+                        <span><strong>Deadline:</strong> 31.5.2026</span>
+                        <span><strong>Priorita:</strong> Kritická</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-item">
+                <div class="action-checkbox"></div>
+                <div class="action-content">
+                    <div class="action-text">Launch SK operations - first 5 customers onboarded</div>
+                    <div class="action-meta">
+                        <span><strong>Vlastník:</strong> COO</span>
+                        <span><strong>Deadline:</strong> 15.6.2026</span>
+                        <span><strong>Priorita:</strong> Vysoká</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-item">
+                <div class="action-checkbox"></div>
+                <div class="action-content">
+                    <div class="action-text">Redesign sales process pro zkrácení sales cycle na 35 dní</div>
+                    <div class="action-meta">
+                        <span><strong>Vlastník:</strong> Sales Director</span>
+                        <span><strong>Deadline:</strong> 30.4.2026</span>
+                        <span><strong>Priorita:</strong> Vysoká</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-item">
+                <div class="action-checkbox"></div>
+                <div class="action-content">
+                    <div class="action-text">Diversifikovat supply chain - onboard 2 backup dodavatele</div>
+                    <div class="action-meta">
+                        <span><strong>Vlastník:</strong> Operations Manager</span>
+                        <span><strong>Deadline:</strong> 15.5.2026</span>
+                        <span><strong>Priorita:</strong> Střední</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-item">
+                <div class="action-checkbox"></div>
+                <div class="action-content">
+                    <div class="action-text">Launch 2 nové premium produkty podle portfolio optimization plánu</div>
+                    <div class="action-meta">
+                        <span><strong>Vlastník:</strong> Product Manager</span>
+                        <span><strong>Deadline:</strong> 30.4.2026</span>
+                        <span><strong>Priorita:</strong> Střední</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Next Quarter Outlook -->
+        <section class="outlook-section">
+            <h2>Outlook Q2 2026</h2>
+            <p>Q2 bude pivotální kvartál pro geografickou expanzi a talent acquisition. Očekáváme tržby 16,5M (+9% QoQ, +20% YoY) s mírným poklesem marže kvůli investicím do SK a nového týmu. Klíčové milníky: SK launch, completion tech hiring, 2 premium produkty na trhu.</p>
+            
+            <div class="outlook-grid">
+                <div class="outlook-card">
+                    <h4>Revenue target</h4>
+                    <p>16,5M Kč (+9% QoQ)<br>First SK revenue: 800 tis. Kč</p>
+                </div>
+                
+                <div class="outlook-card">
+                    <h4>Strategic focus</h4>
+                    <p>Geografická expanze<br>Talent acquisition<br>Product innovation</p>
+                </div>
+                
+                <div class="outlook-card">
+                    <h4>Key risks</h4>
+                    <p>Hiring delays<br>SK market entry complexity<br>Competitive pressure</p>
+                </div>
+                
+                <div class="outlook-card">
+                    <h4>Investments</h4>
+                    <p>Tech team: 2,5M<br>SK setup: 1,2M<br>Marketing: 800 tis.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p><strong>Strategic management | AI Transformation | Fractional COO</strong></p>
+            <p>Jiří Koukal, MSc. MBA | <a href="mailto:jiri.koukal@gmail.com">jiri.koukal@gmail.com</a> | <a href="https://www.linkedin.com/in/jirikoukal/">LinkedIn</a></p>
+            <p class="motto">"Vše je jen otázka úhlu pohledu"</p>
+        </footer>
+    </div>
+</body>
+</html>
