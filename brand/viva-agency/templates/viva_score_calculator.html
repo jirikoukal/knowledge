@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIVA Score – Interaktivní hodnocení akce</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+    <style>
+        :root {
+            --pink: #E91E8C;
+            --pink-dark: #C91E7A;
+            --pink-light: rgba(233,30,140,0.08);
+            --pink-mid: rgba(233,30,140,0.15);
+            --dark: #1D1D1F;
+            --grey: #6E6E73;
+            --light: #F5F5F7;
+            --border: #E8E8ED;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #F0F0F2;
+            color: var(--dark);
+            min-height: 100vh;
+        }
+
+        /* TOP BAR */
+        .topbar {
+            background: linear-gradient(135deg, var(--pink) 0%, var(--pink-dark) 100%);
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(233,30,140,0.3);
+        }
+
+        .topbar-brand { font-size: 18px; font-weight: 900; color: white; letter-spacing: 2px; }
+        .topbar-sub { font-size: 10px; color: rgba(255,255,255,0.65); font-weight: 500; margin-top: 1px; }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .topbar-tag {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: rgba(255,255,255,0.75);
+            background: rgba(255,255,255,0.15);
+            padding: 5px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+
+        /* LAYOUT */
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px 24px 60px;
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 24px;
+            align-items: start;
+        }
+
+        /* SCORE PANEL (sticky right) */
+        .score-panel {
+            position: sticky;
+            top: 84px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .score-card {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.07);
+        }
+
+        .score-card-header {
+            background: linear-gradient(135deg, var(--pink) 0%, var(--pink-dark) 100%);
+            padding: 24px 26px 20px;
+        }
+
+        .score-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.7);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .score-number {
+            font-size: 80px;
+            font-weight: 900;
+            color: white;
+            line-height: 1;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .score-max { font-size: 24px; color: rgba(255,255,255,0.4); font-weight: 500; }
+
+        .score-rating {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 5px 14px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .score-card-body { padding: 20px 24px; }
+
+        /* CATEGORY MINI BARS */
+        .cat-bars { display: flex; flex-direction: column; gap: 10px; }
+
+        .cat-bar-row { display: flex; flex-direction: column; gap: 4px; }
+
+        .cat-bar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cat-bar-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .cat-letter {
+            width: 20px;
+            height: 20px;
+            background: var(--pink);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 900;
+            color: white;
+        }
+
+        .cat-bar-score {
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--pink);
+        }
+
+        .cat-bar-track {
+            height: 6px;
+            background: var(--border);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .cat-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--pink), #FF87C3);
+            border-radius: 3px;
+            transition: width 0.4s ease;
+        }
+
+        .cat-weight {
+            font-size: 9px;
+            color: var(--grey);
+            font-weight: 600;
+        }
+
+        /* RADAR */
+        .radar-wrap {
+            padding: 16px 20px 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .radar-title {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--grey);
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        /* BENCHMARK */
+        .benchmark-card {
+            background: white;
+            border-radius: 14px;
+            padding: 18px 20px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.07);
+        }
+
+        .bench-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+
+        .bench-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--grey);
+            font-weight: 700;
+        }
+
+        .bench-type-select {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--pink);
+            background: var(--pink-light);
+            border: 1px solid rgba(233,30,140,0.2);
+            border-radius: 6px;
+            padding: 4px 8px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .bench-rows { display: flex; flex-direction: column; gap: 8px; }
+
+        .bench-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+        }
+
+        .bench-row-label { flex: 1; color: var(--grey); font-weight: 500; }
+
+        .bench-value {
+            font-weight: 800;
+            font-size: 13px;
+            min-width: 36px;
+            text-align: right;
+        }
+
+        .bench-diff {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 10px;
+            min-width: 48px;
+            text-align: center;
+        }
+
+        .bench-diff.up { background: rgba(52,199,89,0.1); color: #1A8A37; }
+        .bench-diff.down { background: rgba(233,30,140,0.1); color: var(--pink-dark); }
+        .bench-diff.same { background: var(--light); color: var(--grey); }
+
+        /* COMMENT */
+        .comment-card {
+            background: white;
+            border-radius: 14px;
+            padding: 18px 20px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.07);
+        }
+
+        .comment-title {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--grey);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .comment-text {
+            font-size: 13px;
+            color: var(--dark);
+            line-height: 1.65;
+        }
+
+        /* LEFT SIDE - FORM */
+        .form-area { display: flex; flex-direction: column; gap: 20px; }
+
+        /* EVENT META */
+        .meta-card {
+            background: white;
+            border-radius: 14px;
+            padding: 24px 28px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.07);
+        }
+
+        .meta-card-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--pink);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 14px;
+        }
+
+        .meta-field label {
+            display: block;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--grey);
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .meta-field input, .meta-field select {
+            width: 100%;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--dark);
+            background: var(--light);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 9px 12px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .meta-field input:focus, .meta-field select:focus {
+            border-color: var(--pink);
+            background: white;
+        }
+
+        /* CATEGORY SECTION */
+        .cat-section {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.07);
+        }
+
+        .cat-section-header {
+            padding: 20px 28px 18px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .cat-big-letter {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, var(--pink), var(--pink-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 900;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .cat-section-info {}
+
+        .cat-section-name {
+            font-size: 18px;
+            font-weight: 900;
+            color: var(--dark);
+            line-height: 1.1;
+        }
+
+        .cat-section-desc {
+            font-size: 12px;
+            color: var(--grey);
+            margin-top: 3px;
+        }
+
+        .cat-section-meta {
+            margin-left: auto;
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .cat-section-weight {
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--pink);
+            line-height: 1;
+        }
+
+        .cat-section-weight-label {
+            font-size: 10px;
+            color: var(--grey);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cat-section-score {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--grey);
+            margin-top: 2px;
+        }
+
+        .cat-section-score span {
+            color: var(--pink);
+            font-size: 16px;
+            font-weight: 900;
+        }
+
+        /* CRITERIA */
+        .criteria-list { padding: 8px 28px 20px; }
+
+        .criterion {
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .criterion:last-child { border-bottom: none; }
+
+        .criterion-left { flex: 1; }
+
+        .criterion-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 2px;
+        }
+
+        .criterion-hint {
+            font-size: 11px;
+            color: var(--grey);
+            line-height: 1.4;
+        }
+
+        .criterion-source {
+            display: inline-block;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 10px;
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .source-ic { background: rgba(0,113,227,0.1); color: #0058B0; }
+        .source-viva { background: var(--pink-light); color: var(--pink-dark); }
+        .source-both { background: rgba(52,199,89,0.1); color: #1A8A37; }
+
+        /* SCORE BUTTONS */
+        .score-buttons {
+            display: flex;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .score-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            border: 2px solid var(--border);
+            background: white;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--grey);
+            cursor: pointer;
+            transition: all 0.15s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .score-btn:hover {
+            border-color: var(--pink);
+            color: var(--pink);
+            background: var(--pink-light);
+        }
+
+        .score-btn.active {
+            background: var(--pink);
+            border-color: var(--pink);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .score-btn[data-val="0"].active { background: #C0C0C8; border-color: #C0C0C8; }
+        .score-btn[data-val="1"].active { background: #FF9500; border-color: #FF9500; }
+        .score-btn[data-val="2"].active { background: #FFD60A; border-color: #FFD60A; color: var(--dark); }
+        .score-btn[data-val="3"].active { background: #34C759; border-color: #34C759; }
+        .score-btn[data-val="4"].active { background: var(--pink); border-color: var(--pink); }
+
+        /* ACTION BUTTONS */
+        .actions-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 4px;
+        }
+
+        .btn-primary {
+            flex: 1;
+            padding: 14px 20px;
+            background: linear-gradient(135deg, var(--pink), var(--pink-dark));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: all 0.2s;
+            box-shadow: 0 4px 14px rgba(233,30,140,0.35);
+        }
+
+        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(233,30,140,0.45); }
+
+        .btn-secondary {
+            padding: 14px 20px;
+            background: var(--light);
+            color: var(--dark);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover { background: var(--border); }
+
+        /* PRINT HEADER */
+        .print-header {
+            display: none;
+            background: linear-gradient(135deg, var(--pink), var(--pink-dark));
+            padding: 24px 40px;
+            color: white;
+            margin-bottom: 24px;
+        }
+
+        /* LEGEND */
+        .legend-row {
+            display: flex;
+            gap: 8px;
+            padding: 12px 28px;
+            background: var(--light);
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--grey);
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+        }
+
+        @media print {
+            body { background: white; }
+            .topbar { display: none; }
+            .wrapper { grid-template-columns: 1fr; padding: 0; gap: 16px; }
+            .score-panel { position: static; }
+            .print-header { display: block; }
+            .actions-row { display: none; }
+            .score-btn { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="topbar">
+    <div>
+        <div class="topbar-brand">VIVA AGENCY</div>
+        <div class="topbar-sub">Pomáháme spojovat</div>
+    </div>
+    <div class="topbar-right">
+        <div class="topbar-tag">VIVA Score - Hodnocení akce</div>
+    </div>
+</div>
+
+<div class="wrapper">
+
+    <!-- LEFT: FORM -->
+    <div class="form-area">
+
+        <!-- META INFO -->
+        <div class="meta-card">
+            <div class="meta-card-title">Informace o akci</div>
+            <div class="meta-grid">
+                <div class="meta-field" style="grid-column: span 2;">
+                    <label>Název akce / klienta</label>
+                    <input type="text" id="eventName" placeholder="např. Coca-Cola sampling - Palladium" />
+                </div>
+                <div class="meta-field">
+                    <label>Datum</label>
+                    <input type="date" id="eventDate" />
+                </div>
+                <div class="meta-field">
+                    <label>Typ akce</label>
+                    <select id="eventType" onchange="updateBenchmark()">
+                        <option value="sampling">Sampling / ochutnávka</option>
+                        <option value="promo">Promo stánek</option>
+                        <option value="exhibition">Výstava / veletrh</option>
+                        <option value="event">Firemní event</option>
+                        <option value="popup">Pop-up prodejna</option>
+                    </select>
+                </div>
+                <div class="meta-field">
+                    <label>Lokalita / OC</label>
+                    <input type="text" id="eventLocation" placeholder="např. OC Palladium Praha" />
+                </div>
+            </div>
+        </div>
+
+        <!-- V: VISITORS -->
+        <div class="cat-section" id="section-V1">
+            <div class="cat-section-header">
+                <div class="cat-big-letter">V</div>
+                <div class="cat-section-info">
+                    <div class="cat-section-name">Visitors</div>
+                    <div class="cat-section-desc">Objem, timing a kvalita dosahu návštěvníků</div>
+                </div>
+                <div class="cat-section-meta">
+                    <div class="cat-section-weight">20 %</div>
+                    <div class="cat-section-weight-label">váha</div>
+                    <div class="cat-section-score">Skóre: <span id="score-V1">0</span>/24</div>
+                </div>
+            </div>
+            <div class="criteria-list">
+                <div class="criterion" data-cat="V1" data-id="0" data-max="4">
+                    <div class="criterion-left">
+                        <div class="criterion-name">Celkový reach vs. benchmark zóny</div>
+                        <div class="criterion-hint">Kolik lidí prošlo zónou akce oproti průměru stejného místa a dne?</div>
+                        <span class="criterion-source source-ic">iC data</span>
+                    </div>
+                    <div class="score-buttons"></div>
+                </div>
+                <div class="criterion" data-cat="V1" data-id="1" data-max="4">
+                    <div class="criterion-left">
+                        <div class="criterion-name">Peak coverage</div>
+                        <div class="criterion-hint">Byl tým přítomen a plně funkční v nejsilnějších hodinách dne?</div>
+                        <span class="criterion-source source-both">iC + VIVA</span>
+                    </div>
+                    <div class="score-buttons"></div>
+                </div>
+                <div class="criterion" data-cat="V1" data-id="2" data-max="4">
+                    <div class="criterion-left">
+                        <div class="criterion-name">Timing efficiency</div>
+                        <div class="criterion-hint">Odpovídal začátek a konec akce průběhu traffic křivky v OC?</div>
+                        <span class="criterion-source source-ic">iC data</span>
+                    </div>
+                    <div class="score-buttons"></div>
+                </div>
+                <div class="criterion" data-cat="V1" data-id="3" data-max="4">
+                    <div class="criterion-left">
+                        <div class="criterion-name">Traffic trend vs. předchozí kolo</div>
+                        <div class="criterion-hint">Jak se vyvíjí footfall v porovnání s minulou srovnatelnou akcí nebo datem?</div>
+                        <span class="criterion-source source-ic">iC data</span>
+                    </div>
+                    <div class="score-buttons"></div>
+                </div>
+                <div class="criterion" data-cat="V1" data-id="4" data-max="4">
+                    <div class="criterion-left">
+                        <div class="criterion-name">Reach rate OC</div>
+                        <div class="criterion-hint">Jaké % z celkové denní návštěvnosti OC prošlo zónou akce?</div>
+                        <span class="criterion-source source-ic">iC data</span>
+                    </div>
+                    <div class="score-buttons"></div>
+                </div>
+                <div class="criterion" data-cat="V1" data-id="5" data-max="4">
+                    <div class="criterion-left">
+                        <div class="criterion-name">Traffic density v klíčové hodině</div>
+                        <div class="criterion-hint">Byl traffic dostatečně hustý v klíčové hodině pro efektivní oslovení?</div>
+                        <span class="criterion-source source-ic">iC data</span>
+                    </div>
+                    <div class="score-buttons"></div>
+                </div>
+            </div>
+            <div class="legend-row">
+                <div class="legend-item"><div class="legend-dot" style="background:#C0C0C8;"></div> 0 = Nedosaženo</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#FF9500;"></div> 1 = Podprůměr</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#FFD60A;"></div> 2 = Průměr</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#34C759;"></div> 3 = Nadprůměr</div>
+                <div class="legend-item"><div class="legend-dot" style="background:var(--pink);"></div> 4 = Excelentní</div>
+            </div>
+        </div>
+
+        <!-- I: IDENTITY -->
+        <div class="cat-section" id="section-I">
+            <div class="cat-section-header">
+                <div class="cat-big-letter">I</div>
+                <div class="cat-section-info">
+                    <div class="cat-section-name">Identity</div>
+                    <div class="cat-section-desc">Shoda publika s cílovou skupinou a briefingem</div>
+                </div>
+                <div class="cat-section-meta">
+                    <div class="cat-section-weight">25 %</div>
+                    <div class="cat-section-weight-label">váha</div>
+                    <div class="cat-section-score">Skóre: <span id="score-I">0</span>/24</div>
+                </div>
+            </div>
+            <div class="criteria-list">
+                <div class="criterion" data-cat="I" data-id="0" data-max="4">
+                    <div class="criterion-left">
+                        <div class="criterion-name">Gender match s briefingem</div>
+                        <div class="criterion-hint">Odpovídal podíl mužů/žen v zóně cílové skupině definované v briefu?</div>
+                        <span class="criterion-source source-ic">iC data</span>
+                    </div>
+                    <div class="score-buttons"></div>
+                </div>
+                <div class="criterion" data-cat="I" data-id="1" data-max="4">
+                    <div class="criterion-left">
+                        <div class="criterion-name">Age match</div>
+                        <div class="criterion-hint">Odpovídalo věkové složení publika definované cílové skupině?</div>
+                        <span class="criterion-source source-ic">iC data</span>
+                    </div>
+                    <div class="score-buttons"></div>
+                </div>
+                <div class="criterion" data-cat="I" data-id="2" data-max="4">
+                    <div class="criterion-left">
+                        <div class="criterion-name">Group composition fit</div>
+                        <div class="criterion-hint">Sedí poměr singles/páry/rodiny/skupiny s ideálním zákazníkem produktu?</div>
+                        <span class="criterion-source source-ic">iC data</span>
+                    </div>
+                    <div class="score-buttons"></div>
+                </div>
+                <div class="criterion" data-cat="I" data-id="3" data-max="4">
+                    <div class="criterion-left">
+                        <div class="criterion-name">Segment koncentrace</div>
+                        <div class="criterion-hint">Jak homogenní bylo publikum - čím homogennější, tím efektivnější komunikace?</div>
+                        <span class="criterion-source source-ic">iC data</span>
+                    </div>
+                    <div class="score-buttons"></div>
+                </div>
+                <div class="criterion" data-cat="I" data-id="4" data-max="4">
+                    <div class="criterion-left">
+                        <div class="criterion-name">Primetime identity match</div>
+                        <div class="criterion-hint">Byla cílová skupina nejsilněji zastoupena právě v peak hodinách akce?</div>
+                        <span class="criterion-source source-ic">iC data</span>
+                    </div>
+                    <div class="score-buttons"></div>
+                </div>
+                <div class="criterion" data-cat="I" data-id="5" data-max="4">
+                    <div class="criterion-left">
+                        <div class="criterion-name">Sezónní relevance publika</div>
+                        <div class="criterion-hint">Byl termín akce správný z hlediska nákupního chování cílové skupiny?</div>
+                        <span class="criterion-source source-both">iC + VIVA</span>
+                    </div>
+                    <div class="score-buttons"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- V2: VARIABLES -->
+        <div class="cat-section" id="section-V2">
+            <div class="cat-section-header">
+                <div class="cat-big-letter" style="background:linear-gradient(135deg,#C91E7A,#9C1560);">V</div>
+                <div class="cat-section-info">
+                    <div class="cat-section-name">Variables</div>
+                    <div class="cat-section-desc">Exekuční faktory ovlivňující výsledek - VIVA know-how</div>
+                </div>
+                <div class="cat-section-meta">
+                    <div class="cat-section-weight" style="color:#C91E7A;">30 %</div>
+                    <div class="cat-section-weight-label">váha</div>
+                    <div class="cat-section-score">Skóre: <span id="score-V2">0</span>/32</div>
+                </div>
+            </div>
+            <div class="criteria-list">
+                <div class="criterion" data-cat="V2" data-id="0" data-max="4">
+                    <div class="criterion-left">
+                        <div class="criterion-name">Personální pokrytí v peak hodinách</div>
+                        <div class="criterion-hint">Byl tým plně obsazen a funkční v hodinách s nejvyšším trafficem?</div>
+                        <span class="criterion-source source-viva">VIVA hodnocení</span>
+                    </div>
+                    <div class="score-buttons"></div>
+                </div>
+                <div class="criterion" data-cat="V2" data-id="1" data-max="4">
+                    <div class="criterion-left">
+                        <div class="criterion-name">Zásobování bez výpadků</div>
+                        <div class="criterion-hint">Byl produkt nebo materiál k dispozici po celou dobu akce bez přerušení?</div>
+                        <span class="criterion-source source-viva">VIVA hodnocení</span>
+                    </div>
+                    <div class="score-buttons"></div>
+                </div>
+                <div class="criterion" data-cat="V2" data-id="2" data-max="4">
+                    <div class="criterion-left">
+                        <div class="criterion-name">Umístění v zóně - viditelnost</div>
+                        <div class="criterion-hint">Byl stánek nebo prezentace viditelná z hlavní průchozí trasy?</div>
+                        <span class="criterion-source source-viva">VIVA hodnocení</span>
+                    </div>
+                    <div class="score-buttons"></div>
+                </div>
+                <div class="criterion" data-cat="V2" data-id="3" data-max="4">
+                    <div class="criterion-left">
+                        <div class="criterion-name">Počasí a okolní podmínky</div>
+                        <div class="criterion-hint">Jaký vliv měly počasí, teplota nebo jiné vnější podmínky na průběh akce?</div>
+                        <span class="criterion-source source-both">iC + VIVA</span>
+                    </div>
+                    <div class="score-buttons"></div>
+                </div>
+                <div class="criterion" data-cat="V2" data-id="4" data-max="4">
+                    <div class="criterion-left">
+                        <div class="criterion-name">Konkurenční interference</div>
+                        <div class="criterion-hint">Probíhala v OC jiná akce nebo promo, která odčerpávala pozornost nebo traffic?</div>
+                        <span class="criterion-source source-viva">VIVA hodnocení</span>
+                    </div>
+                    <div class="score-buttons"></div>
+                </div>
+                <div class="criterion" data-cat="V2" data-id="5" data-max="4">
+                    <div class="criterion-left">
+                        <div class="criterion-name">Briefing compliance týmu</div>
+                        <div class="criterion-hint">Postupoval tým v terénu v souladu s briefingem a dohodnutým konceptem?</div>
+                        <span class="criterion-source source-viva">VIVA hodnocení</span>
+                    </div>
+                    <div class="score-buttons"></div>
+                </div>
+                <div class="criterion" data-cat="V2" data-id="6" data-max="4">
+                    <div class="criterion-left">
+                        <div class="criterion-name">Setup a teardown timing</div>
+                        <div class="criterion-hint">Byl stánek připraven před nárůstem trafficu a deinstalován až po jeho poklesu?</div>
+                        <span class="criterion-source source-viva">VIVA hodnocení</span>
+                    </div>
+                    <div class="score-buttons"></div>
+                </div>
+                <div class="criterion" data-cat="V2" data-id="7" data-max="4">
+                    <div class="criterion-left">
+                        <div class="criterion-name">Technické a logistické problémy</div>
+                        <div class="criterion-hint">Vyskytly se technické závady nebo logistické komplikace? 4 = bez problémů</div>
+                        <span class="criterion-source source-viva">VIVA hodnocení</span>
+                    </div>
+                    <div class="score-buttons"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- A: ACTION -->
+        <div class="cat-section" id="section-A">
+            <div class="cat-section-header">
+                <div class="cat-big-letter">A</div>
+                <div class="cat-section-info">
+                    <div class="cat-section-name">Action</div>
+                    <div class="cat-section-desc">Výsledky interakce a predikce zlepšení</div>
+                </div>
+                <div class="cat-section-meta">
+                    <div class="cat-section-weight">25 %</div>
+                    <div class="cat-section-weight-label">váha</div>
+                    <div class="cat-section-score">Skóre: <span id="score-A">0</span>/20</div>
+                </div>
+            </div>
+            <div class="criteria-list">
+                <div class="criterion" data-cat="A" data-id="0" data-max="4">
+                    <div class="criterion-left">
+                        <div class="criterion-name">Stop rate</div>
+                        <div class="criterion-hint">Kolik procent průchodů u stánku zastavilo? 0-5 % = 0, 6-10 % = 1, 11-20 % = 2, 21-35 % = 3, 35+ % = 4</div>
+                        <span class="criterion-source source-both">iC + VIVA</span>
+                    </div>
+                    <div class="score-buttons"></div>
+                </div>
+                <div class="criterion" data-cat="A" data-id="1" data-max="4">
+                    <div class="criterion-left">
+                        <div class="criterion-name">Conversion rate</div>
+                        <div class="criterion-hint">Kolik zastavených se aktivně zapojilo (vzalo vzorek, promluvilo, koupilo)?</div>
+                        <span class="criterion-source source-both">iC + VIVA</span>
+                    </div>
+                    <div class="score-buttons"></div>
+                </div>
+                <div class="criterion" data-cat="A" data-id="2" data-max="4">
+                    <div class="criterion-left">
+                        <div class="criterion-name">Dwell time vs. benchmark</div>
+                        <div class="criterion-hint">Jak dlouho průměrně lidé u stánku strávili v porovnání s benchmarkem kategorie?</div>
+                        <span class="criterion-source source-ic">iC data</span>
+                    </div>
+                    <div class="score-buttons"></div>
+                </div>
+                <div class="criterion" data-cat="A" data-id="3" data-max="4">
+                    <div class="criterion-left">
+                        <div class="criterion-name">Cost per contact</div>
+                        <div class="criterion-hint">Jak efektivní byl náklad na jeden reálný kontakt oproti plánu a benchmarku?</div>
+                        <span class="criterion-source source-both">iC + VIVA</span>
+                    </div>
+                    <div class="score-buttons"></div>
+                </div>
+                <div class="criterion" data-cat="A" data-id="4" data-max="4">
+                    <div class="criterion-left">
+                        <div class="criterion-name">Improvement delta</div>
+                        <div class="criterion-hint">Existuje jasný akční plán, který zvýší VIVA Score na příštím kole?</div>
+                        <span class="criterion-source source-viva">VIVA hodnocení</span>
+                    </div>
+                    <div class="score-buttons"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions-row">
+            <button class="btn-primary" onclick="window.print()">Tisk / Export PDF</button>
+            <button class="btn-secondary" onclick="resetAll()">Resetovat</button>
+        </div>
+
+    </div><!-- end form-area -->
+
+    <!-- RIGHT: SCORE PANEL -->
+    <div class="score-panel">
+
+        <div class="score-card">
+            <div class="score-card-header">
+                <div class="score-label">VIVA Score</div>
+                <div>
+                    <span class="score-number" id="mainScore">0</span>
+                    <span class="score-max">/100</span>
+                </div>
+                <div class="score-rating" id="scoreRating">Zadejte hodnocení</div>
+            </div>
+            <div class="score-card-body">
+                <div class="cat-bars">
+                    <div class="cat-bar-row">
+                        <div class="cat-bar-header">
+                            <div class="cat-bar-label">
+                                <div class="cat-letter">V</div>
+                                Visitors
+                                <span class="cat-weight">(20 %)</span>
+                            </div>
+                            <div class="cat-bar-score" id="bar-V1">0 %</div>
+                        </div>
+                        <div class="cat-bar-track">
+                            <div class="cat-bar-fill" id="fill-V1" style="width:0%"></div>
+                        </div>
+                    </div>
+                    <div class="cat-bar-row">
+                        <div class="cat-bar-header">
+                            <div class="cat-bar-label">
+                                <div class="cat-letter">I</div>
+                                Identity
+                                <span class="cat-weight">(25 %)</span>
+                            </div>
+                            <div class="cat-bar-score" id="bar-I">0 %</div>
+                        </div>
+                        <div class="cat-bar-track">
+                            <div class="cat-bar-fill" id="fill-I" style="width:0%"></div>
+                        </div>
+                    </div>
+                    <div class="cat-bar-row">
+                        <div class="cat-bar-header">
+                            <div class="cat-bar-label">
+                                <div class="cat-letter" style="background:#C91E7A;">V</div>
+                                Variables
+                                <span class="cat-weight">(30 %)</span>
+                            </div>
+                            <div class="cat-bar-score" id="bar-V2">0 %</div>
+                        </div>
+                        <div class="cat-bar-track">
+                            <div class="cat-bar-fill" id="fill-V2" style="width:0%"></div>
+                        </div>
+                    </div>
+                    <div class="cat-bar-row">
+                        <div class="cat-bar-header">
+                            <div class="cat-bar-label">
+                                <div class="cat-letter">A</div>
+                                Action
+                                <span class="cat-weight">(25 %)</span>
+                            </div>
+                            <div class="cat-bar-score" id="bar-A">0 %</div>
+                        </div>
+                        <div class="cat-bar-track">
+                            <div class="cat-bar-fill" id="fill-A" style="width:0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="radar-wrap">
+                <div class="radar-title">Radar - profil akce</div>
+                <canvas id="radarChart" height="220"></canvas>
+            </div>
+        </div>
+
+        <!-- BENCHMARK -->
+        <div class="benchmark-card">
+            <div class="bench-header">
+                <div class="bench-title">Benchmark</div>
+                <select class="bench-type-select" id="benchSelect" onchange="updateBenchmark()">
+                    <option value="sampling">Sampling</option>
+                    <option value="promo">Promo stánek</option>
+                    <option value="exhibition">Výstava</option>
+                    <option value="event">Event</option>
+                    <option value="popup">Pop-up</option>
+                </select>
+            </div>
+            <div class="bench-rows" id="benchRows"></div>
+        </div>
+
+        <!-- COMMENT -->
+        <div class="comment-card">
+            <div class="comment-title">Automatický komentár</div>
+            <div class="comment-text" id="autoComment">Po vyplnení hodnocení se zde zobrazí automaticky generovaný komentár k výsledku akce.</div>
+        </div>
+
+    </div><!-- end score-panel -->
+
+</div><!-- end wrapper -->
+
+<script>
+// ============================================================
+// DATA STORE
+// ============================================================
+const scores = { V1: {}, I: {}, V2: {}, A: {} };
+const catConfig = {
+    V1: { max: 24, weight: 0.20, label: 'Visitors' },
+    I:  { max: 24, weight: 0.25, label: 'Identity' },
+    V2: { max: 32, weight: 0.30, label: 'Variables' },
+    A:  { max: 20, weight: 0.25, label: 'Action' }
+};
+
+const benchmarks = {
+    sampling:   { V1: 62, I: 58, V2: 55, A: 48, total: 56 },
+    promo:      { V1: 65, I: 62, V2: 58, A: 54, total: 60 },
+    exhibition: { V1: 70, I: 68, V2: 65, A: 60, total: 66 },
+    event:      { V1: 72, I: 70, V2: 68, A: 65, total: 69 },
+    popup:      { V1: 68, I: 65, V2: 62, A: 58, total: 63 }
+};
+
+// ============================================================
+// INIT BUTTONS
+// ============================================================
+document.querySelectorAll('.score-buttons').forEach(container => {
+    const crit = container.closest('.criterion');
+    const cat = crit.dataset.cat;
+    const id = crit.dataset.id;
+    scores[cat][id] = null;
+    for (let v = 0; v <= 4; v++) {
+        const btn = document.createElement('button');
+        btn.className = 'score-btn';
+        btn.dataset.val = v;
+        btn.textContent = v;
+        btn.addEventListener('click', () => setScore(cat, id, v, btn));
+        container.appendChild(btn);
+    }
+});
+
+// ============================================================
+// SCORING
+// ============================================================
+function setScore(cat, id, val, clickedBtn) {
+    scores[cat][id] = val;
+    const crit = document.querySelector(`.criterion[data-cat="${cat}"][data-id="${id}"]`);
+    crit.querySelectorAll('.score-btn').forEach(b => b.classList.remove('active'));
+    clickedBtn.classList.add('active');
+    recalculate();
+}
+
+function getCatScore(cat) {
+    const vals = Object.values(scores[cat]).filter(v => v !== null);
+    if (vals.length === 0) return { raw: 0, pct: 0, filled: 0 };
+    const sum = vals.reduce((a, b) => a + b, 0);
+    const maxPossible = catConfig[cat].max;
+    return {
+        raw: sum,
+        pct: Math.round((sum / maxPossible) * 100),
+        filled: vals.length
+    };
+}
+
+function recalculate() {
+    const cats = ['V1', 'I', 'V2', 'A'];
+    let totalWeighted = 0;
+    let totalWeight = 0;
+
+    cats.forEach(cat => {
+        const { raw, pct, filled } = getCatScore(cat);
+
+        document.getElementById(`score-${cat}`).textContent = raw;
+        document.getElementById(`bar-${cat}`).textContent = pct + ' %';
+        document.getElementById(`fill-${cat}`).style.width = pct + '%';
+
+        if (filled > 0) {
+            totalWeighted += pct * catConfig[cat].weight;
+            totalWeight += catConfig[cat].weight;
+        }
+    });
+
+    const finalScore = totalWeight > 0 ? Math.round(totalWeighted / totalWeight) : 0;
+
+    // Animate number
+    animateNumber('mainScore', finalScore);
+
+    // Rating
+    const ratingEl = document.getElementById('scoreRating');
+    const { label, color } = getRating(finalScore, totalWeight);
+    ratingEl.textContent = label;
+    ratingEl.style.background = totalWeight > 0 ? 'rgba(255,255,255,0.25)' : 'rgba(255,255,255,0.1)';
+
+    // Radar
+    updateRadar(cats.map(cat => getCatScore(cat).pct));
+
+    // Benchmark
+    updateBenchmark();
+
+    // Comment
+    updateComment(finalScore, totalWeight, cats);
+}
+
+function animateNumber(id, target) {
+    const el = document.getElementById(id);
+    const current = parseInt(el.textContent) || 0;
+    const diff = target - current;
+    if (diff === 0) return;
+    const steps = 20;
+    let step = 0;
+    const timer = setInterval(() => {
+        step++;
+        el.textContent = Math.round(current + (diff * step / steps));
+        if (step >= steps) clearInterval(timer);
+    }, 16);
+}
+
+function getRating(score, weight) {
+    if (weight < 0.5) return { label: 'Zadejte hodnocení', color: '#9E9EA3' };
+    if (score >= 85) return { label: 'Excelentní', color: '#34C759' };
+    if (score >= 70) return { label: 'Nadprumerné', color: '#34C759' };
+    if (score >= 55) return { label: 'Prumerné', color: '#FF9500' };
+    if (score >= 40) return { label: 'Podprumerné', color: '#FF3B30' };
+    return { label: 'Kritické', color: '#FF3B30' };
+}
+
+// ============================================================
+// RADAR CHART
+// ============================================================
+const radarCtx = document.getElementById('radarChart').getContext('2d');
+const radarChart = new Chart(radarCtx, {
+    type: 'radar',
+    data: {
+        labels: ['Visitors', 'Identity', 'Variables', 'Action'],
+        datasets: [
+            {
+                label: 'Tato akce',
+                data: [0, 0, 0, 0],
+                backgroundColor: 'rgba(233,30,140,0.15)',
+                borderColor: '#E91E8C',
+                borderWidth: 2,
+                pointBackgroundColor: '#E91E8C',
+                pointRadius: 4
+            },
+            {
+                label: 'Benchmark',
+                data: [62, 58, 55, 48],
+                backgroundColor: 'rgba(0,0,0,0.04)',
+                borderColor: 'rgba(0,0,0,0.2)',
+                borderWidth: 1.5,
+                borderDash: [4, 4],
+                pointBackgroundColor: 'rgba(0,0,0,0.2)',
+                pointRadius: 3
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+            r: {
+                min: 0, max: 100,
+                ticks: {
+                    stepSize: 25,
+                    font: { family: 'Montserrat', size: 9 },
+                    color: '#9E9EA3'
+                },
+                pointLabels: {
+                    font: { family: 'Montserrat', size: 11, weight: '700' },
+                    color: '#1D1D1F'
+                },
+                grid: { color: 'rgba(0,0,0,0.07)' },
+                angleLines: { color: 'rgba(0,0,0,0.07)' }
+            }
+        }
+    }
+});
+
+function updateRadar(values) {
+    radarChart.data.datasets[0].data = values;
+    radarChart.update('active');
+}
+
+// ============================================================
+// BENCHMARK
+// ============================================================
+function updateBenchmark() {
+    const type = document.getElementById('eventType').value;
+    document.getElementById('benchSelect').value = type;
+    const bench = benchmarks[type];
+
+    const cats = ['V1', 'I', 'V2', 'A'];
+    const labels = ['Visitors', 'Identity', 'Variables', 'Action', 'Celkový'];
+    const benchVals = [bench.V1, bench.I, bench.V2, bench.A, bench.total];
+    const myVals = [...cats.map(c => getCatScore(c).pct)];
+
+    // Overall
+    const totalWeight = cats.reduce((sum, c) => {
+        const filled = Object.values(scores[c]).filter(v => v !== null).length;
+        return filled > 0 ? sum + catConfig[c].weight : sum;
+    }, 0);
+    const myTotal = totalWeight > 0
+        ? Math.round(cats.reduce((sum, c) => {
+            const { pct } = getCatScore(c);
+            const filled = Object.values(scores[c]).filter(v => v !== null).length;
+            return filled > 0 ? sum + pct * catConfig[c].weight : sum;
+        }, 0) / totalWeight)
+        : 0;
+    myVals.push(myTotal);
+
+    let html = '';
+    labels.forEach((label, i) => {
+        const my = myVals[i];
+        const b = benchVals[i];
+        const diff = my - b;
+        const diffClass = diff > 3 ? 'up' : diff < -3 ? 'down' : 'same';
+        const diffText = diff > 0 ? '+' + diff : diff === 0 ? '=' : '' + diff;
+        const displayMy = totalWeight > 0.01 || i < 4 ? my + ' %' : '-';
+        html += `
+            <div class="bench-row">
+                <div class="bench-row-label">${label}</div>
+                <div class="bench-value" style="color:var(--grey)">${b} %</div>
+                <div class="bench-value" style="color:var(--dark)">${displayMy}</div>
+                <div class="bench-diff ${diffClass}">${totalWeight > 0.01 ? diffText : '-'}</div>
+            </div>`;
+    });
+    document.getElementById('benchRows').innerHTML =
+        `<div class="bench-row" style="margin-bottom:4px;">
+            <div class="bench-row-label" style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#9E9EA3;">Oblast</div>
+            <div class="bench-value" style="font-size:10px;color:#9E9EA3;">Bench</div>
+            <div class="bench-value" style="font-size:10px;color:#9E9EA3;">Akce</div>
+            <div style="min-width:48px;font-size:10px;color:#9E9EA3;text-align:center;">Rozdíl</div>
+        </div>` + html;
+
+    // Update radar benchmark
+    radarChart.data.datasets[1].data = [bench.V1, bench.I, bench.V2, bench.A];
+    radarChart.update('none');
+}
+
+// ============================================================
+// AUTO COMMENT
+// ============================================================
+function updateComment(score, totalWeight, cats) {
+    const el = document.getElementById('autoComment');
+    if (totalWeight < 0.3) {
+        el.textContent = 'Po vyplnení hodnocení se zde zobrazí automaticky generovaný komentár k výsledku akce.';
+        return;
+    }
+
+    const { V1: sv, I: si, V2: sv2, A: sa } = {
+        V1: getCatScore('V1').pct,
+        I: getCatScore('I').pct,
+        V2: getCatScore('V2').pct,
+        A: getCatScore('A').pct
+    };
+
+    const weakest = ['V1','I','V2','A'].reduce((a, b) => getCatScore(a).pct < getCatScore(b).pct ? a : b);
+    const strongest = ['V1','I','V2','A'].reduce((a, b) => getCatScore(a).pct > getCatScore(b).pct ? a : b);
+    const weakLabel = catConfig[weakest].label;
+    const strongLabel = catConfig[strongest].label;
+
+    let comment = '';
+
+    if (score >= 85) {
+        comment = `Excelentní výsledek. Akce dosáhla VIVA Score ${score}/100, což ji řadí mezi nejlepší hodnocené projekty. Nejsilnejší oblast je ${strongLabel}. Doporučujeme tento formát replikovat a použít jako interní benchmark pro budoucí akce.`;
+    } else if (score >= 70) {
+        comment = `Nadprumerný výsledek s VIVA Score ${score}/100. Silnou stránkou je ${strongLabel}, kde akce překonala benchmark. Prostor pro zlepšení je v oblasti ${weakLabel} - cílené opatření zde může zvýšit celkové skóre o 8-12 bodů.`;
+    } else if (score >= 55) {
+        comment = `Prumerný výsledek s VIVA Score ${score}/100 odpovídá benchmarku kategorie. Nejslabší oblast ${weakLabel} táhne skóre dolů - zde je priorita. Doporučujeme se pred příštím kolem zaměrit na konktétní Variables faktory.`;
+    } else if (score >= 40) {
+        comment = `Podprumerný výsledek s VIVA Score ${score}/100. Oblast ${weakLabel} je kritická a vyžaduje okamžitou pozornost. Doporučujeme nereplikovat tento formát bez úprav - potenciál zlepšení je 20-30 bodů pri správné náprave Variables vrstvy.`;
+    } else {
+        comment = `Kritický výsledek s VIVA Score ${score}/100. Akce výrazne nedosáhla benchmarku ve všech oblastech. Doporučujeme komplexní revizi formátu pred dalším kolem - zejména Variables a Action vrstvy ukazují systémové problémy.`;
+    }
+
+    el.textContent = comment;
+}
+
+// ============================================================
+// RESET
+// ============================================================
+function resetAll() {
+    document.querySelectorAll('.score-btn').forEach(b => b.classList.remove('active'));
+    ['V1','I','V2','A'].forEach(cat => {
+        Object.keys(scores[cat]).forEach(id => scores[cat][id] = null);
+    });
+    recalculate();
+    document.getElementById('mainScore').textContent = '0';
+}
+
+// ============================================================
+// INIT
+// ============================================================
+// Set today's date
+document.getElementById('eventDate').valueAsDate = new Date();
+updateBenchmark();
+</script>
+
+</body>
+</html>
