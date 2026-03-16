@@ -1,0 +1,1733 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIVA Score Report - Rannio / Galerie Butovice 2024-2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --pink: #E91E8C;
+  --pink-dark: #C91E7A;
+  --pink-light: rgba(233,30,140,0.08);
+  --dark: #0F1724;
+  --dark-2: #1E2D3D;
+  --gray: #6B7280;
+  --gray-light: #F6F7F9;
+  --white: #FFFFFF;
+  --green: #059669;
+  --green-bg: #ECFDF5;
+  --amber: #D97706;
+  --amber-bg: #FFFBEB;
+  --red: #DC2626;
+  --red-bg: #FEF2F2;
+  --blue: #2563EB;
+  --border: #E5E7EB;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #F0F2F5;
+  color: var(--dark);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* COVER */
+.cover {
+  background: linear-gradient(135deg, #0F1724 0%, #1E2D3D 50%, #0F1724 100%);
+  padding: 0;
+  min-height: 280px;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(233,30,140,0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cover::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--pink), var(--pink-dark));
+}
+.cover-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 32px 48px;
+  position: relative;
+  z-index: 1;
+}
+.cover-logos {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 36px;
+}
+.logo-viva {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--pink);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.logo-viva span {
+  color: var(--white);
+}
+.logo-divider {
+  width: 1px;
+  height: 28px;
+  background: rgba(255,255,255,0.25);
+}
+.logo-ic {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: 0.02em;
+}
+.logo-ic span {
+  color: #4ADE80;
+}
+.cover-tag {
+  display: inline-block;
+  background: rgba(233,30,140,0.2);
+  border: 1px solid rgba(233,30,140,0.4);
+  color: var(--pink);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 2px;
+  margin-bottom: 16px;
+}
+.cover-title {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 8px;
+}
+.cover-title span {
+  color: var(--pink);
+}
+.cover-subtitle {
+  font-size: 15px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 32px;
+}
+.cover-meta {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.cover-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.cover-meta-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+}
+.cover-meta-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--white);
+}
+
+/* MAIN CONTENT */
+.content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 32px 60px;
+}
+
+/* SECTION HEADERS */
+.section {
+  margin-top: 40px;
+}
+.section-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--pink);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* CARDS */
+.card {
+  background: var(--white);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  padding: 24px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+/* KPI STRIP */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.kpi-card {
+  background: var(--white);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  padding: 20px 20px 18px;
+  position: relative;
+  overflow: hidden;
+}
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--pink), var(--pink-dark));
+}
+.kpi-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-bottom: 8px;
+}
+.kpi-value {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--dark);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.kpi-value.pink { color: var(--pink); }
+.kpi-value.green { color: var(--green); }
+.kpi-sub {
+  font-size: 11px;
+  color: var(--gray);
+  font-weight: 500;
+}
+.kpi-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 3px;
+  margin-top: 6px;
+}
+.kpi-badge.up {
+  background: var(--green-bg);
+  color: var(--green);
+}
+.kpi-badge.down-good {
+  background: var(--green-bg);
+  color: var(--green);
+}
+
+/* TIMELINE CHART */
+.timeline-wrapper {
+  background: var(--white);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  padding: 28px 28px 20px;
+}
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+.timeline-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--dark);
+}
+.timeline-note {
+  font-size: 11px;
+  color: var(--gray);
+  font-weight: 400;
+  margin-top: 2px;
+}
+.legend {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--gray);
+}
+.legend-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+}
+
+/* EVENTS TABLE */
+.events-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.events-table th {
+  background: var(--gray-light);
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray);
+  border-bottom: 2px solid var(--border);
+}
+.events-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+.events-table tr:last-child td {
+  border-bottom: none;
+}
+.events-table tr:hover td {
+  background: var(--gray-light);
+}
+.events-table tr.highlight td {
+  background: var(--pink-light);
+}
+.score-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 28px;
+  border-radius: 4px;
+  font-weight: 800;
+  font-size: 13px;
+}
+.score-low { background: var(--red-bg); color: var(--red); }
+.score-mid { background: var(--amber-bg); color: var(--amber); }
+.score-good { background: #ECFDF5; color: var(--green); }
+.score-great { background: #EFF6FF; color: var(--blue); }
+.score-excel { background: var(--pink-light); color: var(--pink-dark); }
+
+.change-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 12px;
+}
+.change-pos { background: var(--green-bg); color: var(--green); }
+.change-neg { background: var(--red-bg); color: var(--red); }
+.change-neutral { background: var(--amber-bg); color: var(--amber); }
+
+.zone-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+.zone-sub { background: #FEF3C7; color: #92400E; }
+.zone-main { background: #EFF6FF; color: #1D4ED8; }
+.zone-dual { background: #F0FDF4; color: #166534; }
+
+/* VIVA BREAKDOWN */
+.breakdown-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.pillar-card {
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.pillar-header {
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.pillar-icon {
+  width: 32px; height: 32px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--white);
+  background: var(--pink);
+  flex-shrink: 0;
+}
+.pillar-icon.identity { background: #7C3AED; }
+.pillar-icon.variables { background: var(--pink); }
+.pillar-icon.action { background: #059669; }
+
+.pillar-info {
+  flex: 1;
+}
+.pillar-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--dark);
+}
+.pillar-weight {
+  font-size: 10px;
+  color: var(--gray);
+  font-weight: 500;
+}
+.pillar-score-big {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--pink);
+}
+.pillar-score-max {
+  font-size: 12px;
+  color: var(--gray);
+  font-weight: 500;
+}
+
+.criteria-list {
+  padding: 0 18px 14px;
+}
+.criterion {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.criterion-name {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--dark);
+}
+.criterion-tag {
+  font-size: 9px;
+  font-weight: 600;
+  padding: 1px 5px;
+  border-radius: 2px;
+  color: var(--gray);
+  background: var(--gray-light);
+  margin-left: 4px;
+}
+.criterion-tag.ic { color: #1D4ED8; background: #EFF6FF; }
+.criterion-tag.viva { color: var(--pink-dark); background: var(--pink-light); }
+.criterion-tag.both { color: var(--green); background: var(--green-bg); }
+
+.bar-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.bar-track {
+  flex: 1;
+  height: 6px;
+  background: #F3F4F6;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--pink), var(--pink-dark));
+}
+.bar-fill.identity { background: linear-gradient(90deg, #8B5CF6, #7C3AED); }
+.bar-fill.variables { background: linear-gradient(90deg, var(--pink), var(--pink-dark)); }
+.bar-fill.action { background: linear-gradient(90deg, #10B981, #059669); }
+.bar-value {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--dark);
+  width: 24px;
+  text-align: right;
+}
+
+/* VIVA SCORE RING */
+.score-ring-section {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 32px;
+  align-items: center;
+  margin-bottom: 28px;
+}
+.score-ring-wrap {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  flex-shrink: 0;
+}
+.score-ring-num {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.score-ring-num .big {
+  display: block;
+  font-size: 44px;
+  font-weight: 900;
+  color: var(--pink);
+  line-height: 1;
+}
+.score-ring-num .small {
+  display: block;
+  font-size: 13px;
+  color: var(--gray);
+  font-weight: 500;
+}
+
+.score-pillars {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.score-pillar-row {
+  display: grid;
+  grid-template-columns: 100px 1fr 40px 50px;
+  align-items: center;
+  gap: 10px;
+}
+.score-pillar-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--dark);
+}
+.score-pillar-track {
+  height: 8px;
+  background: var(--gray-light);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.score-pillar-fill {
+  height: 100%;
+  border-radius: 4px;
+}
+.score-pillar-pts {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--dark);
+  text-align: right;
+}
+.score-pillar-contrib {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--gray);
+  text-align: right;
+}
+
+/* VARIABLES STORY */
+.story-timeline {
+  position: relative;
+  padding-left: 28px;
+}
+.story-timeline::before {
+  content: '';
+  position: absolute;
+  left: 10px; top: 8px; bottom: 8px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--red), var(--amber), var(--green));
+}
+.story-item {
+  margin-bottom: 20px;
+  position: relative;
+}
+.story-dot {
+  position: absolute;
+  left: -22px;
+  top: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--white);
+  box-shadow: 0 0 0 2px currentColor;
+}
+.story-dot.red { color: var(--red); background: var(--red); }
+.story-dot.amber { color: var(--amber); background: var(--amber); }
+.story-dot.green { color: var(--green); background: var(--green); }
+.story-dot.pink { color: var(--pink); background: var(--pink); }
+
+.story-event {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-bottom: 3px;
+}
+.story-problem {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--dark);
+  margin-bottom: 4px;
+}
+.story-action {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--pink);
+  background: var(--pink-light);
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-top: 2px;
+}
+
+/* CONTEXT DATA */
+.context-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+.context-card {
+  background: var(--gray-light);
+  border-radius: 6px;
+  padding: 14px;
+  text-align: center;
+  border: 1px solid var(--border);
+}
+.context-date {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--gray);
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+.context-temp {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+.context-weather {
+  font-size: 10px;
+  color: var(--gray);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.context-ff {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+
+/* BENCHMARK */
+.bench-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+.bench-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.bench-table th {
+  padding: 8px 12px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray);
+  background: var(--gray-light);
+  text-align: left;
+}
+.bench-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+}
+.bench-table tr:last-child td { border-bottom: none; }
+.bench-diff.pos { color: var(--green); font-weight: 700; }
+.bench-diff.neg { color: var(--red); font-weight: 700; }
+
+/* RECOMMENDATIONS */
+.reco-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.reco-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.reco-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.reco-card.r1::before { background: linear-gradient(90deg, var(--pink), var(--pink-dark)); }
+.reco-card.r2::before { background: linear-gradient(90deg, #7C3AED, #6D28D9); }
+.reco-card.r3::before { background: linear-gradient(90deg, #059669, #047857); }
+
+.reco-num {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--gray);
+  margin-bottom: 8px;
+}
+.reco-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+.reco-body {
+  font-size: 12px;
+  color: var(--gray);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+.reco-impact {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--green);
+  background: var(--green-bg);
+  padding: 4px 10px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+/* FOOTER */
+.footer {
+  background: var(--dark);
+  margin-top: 0;
+  padding: 28px 32px;
+}
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.footer-viva {
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--pink);
+  letter-spacing: 0.04em;
+}
+.footer-viva span { color: var(--white); }
+.footer-note {
+  font-size: 10px;
+  color: rgba(255,255,255,0.35);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+.footer-contact {
+  text-align: right;
+}
+.footer-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.8);
+}
+.footer-email {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  margin-top: 2px;
+}
+.confidential-bar {
+  background: rgba(233,30,140,0.15);
+  border: 1px solid rgba(233,30,140,0.3);
+  color: rgba(233,30,140,0.7);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 5px;
+}
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+.text-gray { color: var(--gray); font-size: 12px; }
+.mt-4 { margin-top: 4px; }
+.mt-8 { margin-top: 8px; }
+.mt-12 { margin-top: 12px; }
+.mb-0 { margin-bottom: 0; }
+
+.highlight-box {
+  background: var(--pink-light);
+  border: 1px solid rgba(233,30,140,0.2);
+  border-radius: 6px;
+  padding: 14px 18px;
+}
+.highlight-box .hl-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--pink-dark);
+  margin-bottom: 4px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.highlight-box .hl-body {
+  font-size: 12px;
+  color: var(--dark);
+  line-height: 1.6;
+}
+
+/* METHODOLOGY NOTE */
+.method-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--gray-light);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 3px 8px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+.method-badge.ic { color: #1D4ED8; background: #EFF6FF; border-color: #BFDBFE; }
+.method-badge.viva { color: var(--pink-dark); background: var(--pink-light); border-color: rgba(233,30,140,0.3); }
+.method-badge.both { color: var(--green); background: var(--green-bg); border-color: #A7F3D0; }
+
+h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 12px;
+}
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 20px 0;
+}
+
+.page-break {
+  border: none;
+  border-top: 2px dashed var(--border);
+  margin: 48px 0;
+}
+
+@media print {
+  body { background: white; }
+  .page-break { page-break-before: always; }
+  .cover { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-inner">
+    <div class="cover-logos">
+      <div class="logo-viva">VIVA <span>AGENCY</span></div>
+      <div class="logo-divider"></div>
+      <div class="logo-ic"><span>i</span>C systems.ai</div>
+      <div style="margin-left: auto; font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.35); letter-spacing: 0.08em;">POWERED BY EVENTSIGHT DATA</div>
+    </div>
+    <div class="cover-tag">Post-Event Analytics Report</div>
+    <div class="cover-title">VIVA Score Report<br><span>Rannio / Galerie Butovice</span></div>
+    <div class="cover-subtitle">Sampling analytics - 5 akcí, 12 mesicu, datova optimalizace v praxi</div>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Klient</div>
+        <div class="cover-meta-value">Rannio (Natura Vita s.r.o.)</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Lokalita</div>
+        <div class="cover-meta-value">Galerie Butovice, Praha 5</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Obdobi</div>
+        <div class="cover-meta-value">12/2024 - 10/2025</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Pocet akci</div>
+        <div class="cover-meta-value">5 samplingovych akci</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Datum vydani</div>
+        <div class="cover-meta-value">Rijen 2025</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="confidential-bar">Duverny interni dokument - nepublikovat - VIVA Agency / Natura Vita s.r.o. 2025</div>
+
+<!-- MAIN -->
+<div class="content">
+
+  <!-- KPI STRIP -->
+  <div class="section">
+    <div class="section-title">Vysledky projektu na prvni pohled</div>
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">Nejlepsi VIVA Score</div>
+        <div class="kpi-value pink">81<span style="font-size:18px;font-weight:500;color:var(--gray)">/100</span></div>
+        <div class="kpi-sub">Akce 5 - rijen 2025</div>
+        <div class="kpi-badge up">+34 bodu oproti startu</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Celkem kontaktu za rok</div>
+        <div class="kpi-value">4 575</div>
+        <div class="kpi-sub">vzorky + aktivni rozhovory</div>
+        <div class="kpi-badge up">+658 % vs. Akce 1</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Cost per Contact</div>
+        <div class="kpi-value green">27 Kc</div>
+        <div class="kpi-sub">nejlepsi akce (Akce 5)</div>
+        <div class="kpi-badge down-good">-72 % vs. start (97 Kc)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Rust bez extra budzetu</div>
+        <div class="kpi-value">+70 %</div>
+        <div class="kpi-sub">navyseni budzetu o 70 %</div>
+        <div class="kpi-badge up">pocet kontaktu +658 %</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIMELINE CHART -->
+  <div class="section">
+    <div class="section-title">VIVA Score - vyvoj za 12 mesicu</div>
+    <div class="timeline-wrapper">
+      <div class="timeline-header">
+        <div>
+          <div class="timeline-title">Progrese VIVA Score - 5 sampling akci</div>
+          <div class="timeline-note">Galerie Butovice | prosinec 2024 - rijen 2025 | data iC systems.ai + VIVA Agency</div>
+        </div>
+        <div class="legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#DC2626"></div>Pod prumerem (40-55)</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#D97706"></div>Dobry (56-65)</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#059669"></div>Nadprumem (66-79)</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--pink)"></div>Excelentni (80+)</div>
+        </div>
+      </div>
+
+      <!-- SVG TIMELINE -->
+      <svg viewBox="0 0 860 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+        <!-- Background zones -->
+        <rect x="40" y="20" width="780" height="36" fill="#FEF2F2" rx="2" opacity="0.5"/>
+        <rect x="40" y="56" width="780" height="36" fill="#FFFBEB" rx="2" opacity="0.5"/>
+        <rect x="40" y="92" width="780" height="54" fill="#ECFDF5" rx="2" opacity="0.5"/>
+        <rect x="40" y="146" width="780" height="60" fill="#EFF6FF" rx="2" opacity="0.3"/>
+
+        <!-- Zone labels -->
+        <text x="828" y="42" font-family="Montserrat,sans-serif" font-size="8" fill="#DC2626" font-weight="700" opacity="0.7">40-55</text>
+        <text x="828" y="78" font-family="Montserrat,sans-serif" font-size="8" fill="#D97706" font-weight="700" opacity="0.7">56-65</text>
+        <text x="828" y="112" font-family="Montserrat,sans-serif" font-size="8" fill="#059669" font-weight="700" opacity="0.7">66-79</text>
+        <text x="828" y="168" font-family="Montserrat,sans-serif" font-size="8" fill="#2563EB" font-weight="700" opacity="0.7">80+</text>
+
+        <!-- Y-axis lines -->
+        <line x1="40" y1="20" x2="40" y2="220" stroke="#E5E7EB" stroke-width="1"/>
+        <line x1="40" y1="56" x2="820" y2="56" stroke="#E5E7EB" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="40" y1="92" x2="820" y2="92" stroke="#E5E7EB" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="40" y1="146" x2="820" y2="146" stroke="#E5E7EB" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="40" y1="206" x2="820" y2="206" stroke="#E5E7EB" stroke-width="1"/>
+
+        <!-- Y labels -->
+        <text x="30" y="59" font-family="Montserrat,sans-serif" font-size="9" fill="#6B7280" text-anchor="end">65</text>
+        <text x="30" y="95" font-family="Montserrat,sans-serif" font-size="9" fill="#6B7280" text-anchor="end">75</text>
+        <text x="30" y="149" font-family="Montserrat,sans-serif" font-size="9" fill="#6B7280" text-anchor="end">80</text>
+        <text x="30" y="210" font-family="Montserrat,sans-serif" font-size="9" fill="#6B7280" text-anchor="end">40</text>
+
+        <!-- VIVA average benchmark line -->
+        <line x1="40" y1="100" x2="820" y2="100" stroke="#E91E8C" stroke-width="1" stroke-dasharray="5,4" opacity="0.35"/>
+        <text x="820" y="97" font-family="Montserrat,sans-serif" font-size="8" fill="#E91E8C" text-anchor="end" font-weight="600">Bench sampling avg 62</text>
+
+        <!-- Score calculation: y = 206 - (score-40)/(90-40) * 180 -->
+        <!-- Score 47: y = 206 - 7/50*180 = 206 - 25.2 = 180.8 -->
+        <!-- Score 52: y = 206 - 12/50*180 = 206 - 43.2 = 162.8 -->
+        <!-- Score 64: y = 206 - 24/50*180 = 206 - 86.4 = 119.6 -->
+        <!-- Score 74: y = 206 - 34/50*180 = 206 - 122.4 = 83.6 -->
+        <!-- Score 81: y = 206 - 41/50*180 = 206 - 147.6 = 58.4 -->
+
+        <!-- X positions: 130, 270, 420, 570, 720 -->
+
+        <!-- Area fill gradient -->
+        <defs>
+          <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#E91E8C" stop-opacity="0.15"/>
+            <stop offset="100%" stop-color="#E91E8C" stop-opacity="0.01"/>
+          </linearGradient>
+        </defs>
+        <path d="M 130,180.8 C 200,180.8 200,162.8 270,162.8 C 345,162.8 345,119.6 420,119.6 C 495,119.6 495,83.6 570,83.6 C 645,83.6 645,58.4 720,58.4 L 720,206 L 130,206 Z"
+              fill="url(#areaGrad)"/>
+
+        <!-- Main line -->
+        <path d="M 130,180.8 C 200,180.8 200,162.8 270,162.8 C 345,162.8 345,119.6 420,119.6 C 495,119.6 495,83.6 570,83.6 C 645,83.6 645,58.4 720,58.4"
+              fill="none" stroke="#E91E8C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+        <!-- VIVA recommendation arrow -->
+        <line x1="350" y1="206" x2="350" y2="130" stroke="#059669" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <polygon points="350,119 345,132 355,132" fill="#059669"/>
+        <rect x="298" y="207" width="108" height="16" rx="2" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/>
+        <text x="352" y="218" font-family="Montserrat,sans-serif" font-size="8" fill="#059669" font-weight="700" text-anchor="middle">VIVA brief + zmena zony</text>
+
+        <!-- Event dots -->
+        <!-- Akce 1: score 47, x=130, y=180.8, color=red -->
+        <circle cx="130" cy="180.8" r="7" fill="#DC2626" stroke="white" stroke-width="2"/>
+        <text x="130" y="199" font-family="Montserrat,sans-serif" font-size="9" fill="#6B7280" text-anchor="middle" font-weight="600">Akce 1</text>
+        <text x="130" y="210" font-family="Montserrat,sans-serif" font-size="8" fill="#6B7280" text-anchor="middle">14.12.24</text>
+        <text x="130" y="166" font-family="Montserrat,sans-serif" font-size="13" fill="#DC2626" text-anchor="middle" font-weight="800">47</text>
+
+        <!-- Akce 2: score 52, x=270, y=162.8, color=amber -->
+        <circle cx="270" cy="162.8" r="7" fill="#D97706" stroke="white" stroke-width="2"/>
+        <text x="270" y="199" font-family="Montserrat,sans-serif" font-size="9" fill="#6B7280" text-anchor="middle" font-weight="600">Akce 2</text>
+        <text x="270" y="210" font-family="Montserrat,sans-serif" font-size="8" fill="#6B7280" text-anchor="middle">22.2.25</text>
+        <text x="270" y="148" font-family="Montserrat,sans-serif" font-size="13" fill="#D97706" text-anchor="middle" font-weight="800">52</text>
+
+        <!-- Akce 3: score 64, x=420, y=119.6, color=teal -->
+        <circle cx="420" cy="119.6" r="7" fill="#0D9488" stroke="white" stroke-width="2"/>
+        <text x="420" y="199" font-family="Montserrat,sans-serif" font-size="9" fill="#6B7280" text-anchor="middle" font-weight="600">Akce 3</text>
+        <text x="420" y="210" font-family="Montserrat,sans-serif" font-size="8" fill="#6B7280" text-anchor="middle">5.4.25</text>
+        <text x="420" y="105" font-family="Montserrat,sans-serif" font-size="13" fill="#0D9488" text-anchor="middle" font-weight="800">64</text>
+
+        <!-- Akce 4: score 74, x=570, y=83.6, color=green -->
+        <circle cx="570" cy="83.6" r="7" fill="#059669" stroke="white" stroke-width="2"/>
+        <text x="570" y="199" font-family="Montserrat,sans-serif" font-size="9" fill="#6B7280" text-anchor="middle" font-weight="600">Akce 4</text>
+        <text x="570" y="210" font-family="Montserrat,sans-serif" font-size="8" fill="#6B7280" text-anchor="middle">7.6.25</text>
+        <text x="570" y="69" font-family="Montserrat,sans-serif" font-size="13" fill="#059669" text-anchor="middle" font-weight="800">74</text>
+
+        <!-- Akce 5: score 81, x=720, y=58.4, color=pink -->
+        <circle cx="720" cy="58.4" r="9" fill="#E91E8C" stroke="white" stroke-width="2.5"/>
+        <text x="720" y="199" font-family="Montserrat,sans-serif" font-size="9" fill="#6B7280" text-anchor="middle" font-weight="600">Akce 5</text>
+        <text x="720" y="210" font-family="Montserrat,sans-serif" font-size="8" fill="#6B7280" text-anchor="middle">18.10.25</text>
+        <text x="720" y="42" font-family="Montserrat,sans-serif" font-size="16" fill="#E91E8C" text-anchor="middle" font-weight="900">81</text>
+        <text x="720" y="29" font-family="Montserrat,sans-serif" font-size="7" fill="#E91E8C" text-anchor="middle" font-weight="700">NEJLEPSI</text>
+      </svg>
+
+      <div class="highlight-box mt-12" style="background:#F0FDF4;border-color:#A7F3D0;">
+        <div class="hl-title" style="color:#047857">Klic k rustuu: zmena zony + VIVA briefing = okamzity skok o 12 bodu</div>
+        <div class="hl-body">Po prvnich dvou akcich v suboptimalni zone (boce vstup u McD, footfall 2 100-2 700 osob/den) jsme doporucili presun k Hlavnimu vstupu (footfall 4 800-5 900 osob/den). Vysledek: +291 % kontaktu pri zachovani srovnatelneho budzetu.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EVENTS TABLE -->
+  <div class="section">
+    <div class="section-title">Prehled vsech 5 akci</div>
+    <div class="card" style="padding:0;overflow:hidden;">
+      <table class="events-table">
+        <thead>
+          <tr>
+            <th>Akce</th>
+            <th>Datum</th>
+            <th>Zona / Umisteni</th>
+            <th>Footfall zony</th>
+            <th>Stop rate</th>
+            <th>Kontakty</th>
+            <th>CpC</th>
+            <th>VIVA Score</th>
+            <th>Zmena</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Akce 1</strong><br><span class="text-gray">bez VIVA briefu</span></td>
+            <td>14. 12. 2024<br><span class="text-gray">So, Predvanocni</span></td>
+            <td><span class="zone-tag zone-sub">Bocni vstup McD</span></td>
+            <td>2 680</td>
+            <td style="color:var(--red);font-weight:700">9 %</td>
+            <td><strong>241</strong></td>
+            <td style="color:var(--red);font-weight:700">97 Kc</td>
+            <td><span class="score-badge score-low">47</span></td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td><strong>Akce 2</strong><br><span class="text-gray">minimalni korekce</span></td>
+            <td>22. 2. 2025<br><span class="text-gray">So, po Valentynu</span></td>
+            <td><span class="zone-tag zone-sub">Bocni vstup McD</span></td>
+            <td>2 180</td>
+            <td style="color:var(--amber);font-weight:700">11 %</td>
+            <td><strong>240</strong></td>
+            <td style="color:var(--amber);font-weight:700">96 Kc</td>
+            <td><span class="score-badge score-mid">52</span></td>
+            <td><span class="change-pill change-pos">+5</span></td>
+          </tr>
+          <tr>
+            <td><strong>Akce 3</strong><br><span class="text-gray">1. VIVA brief</span></td>
+            <td>5. 4. 2025<br><span class="text-gray">So, Velikonoce -1t</span></td>
+            <td><span class="zone-tag zone-main">Hlavni vstup</span></td>
+            <td>5 240</td>
+            <td style="color:var(--green);font-weight:700">18 %</td>
+            <td><strong>943</strong></td>
+            <td style="color:var(--green);font-weight:700">58 Kc</td>
+            <td><span class="score-badge score-good">64</span></td>
+            <td><span class="change-pill change-pos">+12</span></td>
+          </tr>
+          <tr>
+            <td><strong>Akce 4</strong><br><span class="text-gray">plna implementace</span></td>
+            <td>7. 6. 2025<br><span class="text-gray">So, cerven</span></td>
+            <td><span class="zone-tag zone-main">Hlavni vstup</span></td>
+            <td>5 520</td>
+            <td style="color:var(--green);font-weight:700">24 %</td>
+            <td><strong>1 325</strong></td>
+            <td style="color:var(--green);font-weight:700">46 Kc</td>
+            <td><span class="score-badge score-great">74</span></td>
+            <td><span class="change-pill change-pos">+10</span></td>
+          </tr>
+          <tr class="highlight">
+            <td><strong>Akce 5</strong><br><span style="color:var(--pink);font-size:10px;font-weight:700">NEJLEPSI VYSLEDEK</span></td>
+            <td>18. 10. 2025<br><span class="text-gray">So, podzimni peak</span></td>
+            <td><span class="zone-tag zone-dual">Hlavni vstup + Foodcourt</span></td>
+            <td>5 890</td>
+            <td style="color:var(--pink);font-weight:700">31 %</td>
+            <td><strong style="color:var(--pink)">1 826</strong></td>
+            <td style="color:var(--pink);font-weight:700">27 Kc</td>
+            <td><span class="score-badge score-excel">81</span></td>
+            <td><span class="change-pill change-pos">+7</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <hr class="page-break">
+
+  <!-- DETAIL EVENT 5 -->
+  <div class="section">
+    <div class="section-title">VIVA Score - detailni analyza Akce 5 (18. 10. 2025)</div>
+
+    <div class="card" style="margin-bottom:20px;">
+      <div class="score-ring-section">
+        <!-- SVG Ring -->
+        <div class="score-ring-wrap">
+          <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" style="width:160px;height:160px;">
+            <!-- Background ring -->
+            <circle cx="80" cy="80" r="64" fill="none" stroke="#F3F4F6" stroke-width="14"/>
+            <!-- Score ring: 81/100 = 81% of circumference (2*pi*64 = 402.1, 81% = 325.7) -->
+            <circle cx="80" cy="80" r="64" fill="none" stroke="url(#ringGrad)" stroke-width="14"
+                    stroke-dasharray="325.7 402.1" stroke-linecap="round"
+                    transform="rotate(-90 80 80)"/>
+            <defs>
+              <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#E91E8C"/>
+                <stop offset="100%" stop-color="#C91E7A"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <div class="score-ring-num">
+            <span class="big">81</span>
+            <span class="small">/100</span>
+          </div>
+        </div>
+
+        <div class="score-pillars">
+          <!-- Visitors: 19/24, contributes 15.83 pts to score (% shown = score/max) -->
+          <div class="score-pillar-row">
+            <div class="score-pillar-name">V - Visitors</div>
+            <div class="score-pillar-track">
+              <div class="score-pillar-fill" style="width:79.2%;background:linear-gradient(90deg,#3B82F6,#2563EB);height:8px;border-radius:4px;"></div>
+            </div>
+            <div class="score-pillar-pts">19/24</div>
+            <div class="score-pillar-contrib" style="color:var(--blue)">+15.8 b.</div>
+          </div>
+          <!-- Identity: 20/24 -->
+          <div class="score-pillar-row">
+            <div class="score-pillar-name">I - Identity</div>
+            <div class="score-pillar-track">
+              <div class="score-pillar-fill" style="width:83.3%;background:linear-gradient(90deg,#8B5CF6,#7C3AED);height:8px;border-radius:4px;"></div>
+            </div>
+            <div class="score-pillar-pts">20/24</div>
+            <div class="score-pillar-contrib" style="color:#7C3AED">+20.8 b.</div>
+          </div>
+          <!-- Variables: 26/32 -->
+          <div class="score-pillar-row">
+            <div class="score-pillar-name">V - Variables</div>
+            <div class="score-pillar-track">
+              <div class="score-pillar-fill" style="width:81.25%;background:linear-gradient(90deg,#E91E8C,#C91E7A);height:8px;border-radius:4px;"></div>
+            </div>
+            <div class="score-pillar-pts">26/32</div>
+            <div class="score-pillar-contrib" style="color:var(--pink)">+24.4 b.</div>
+          </div>
+          <!-- Action: 16/20 -->
+          <div class="score-pillar-row">
+            <div class="score-pillar-name">A - Action</div>
+            <div class="score-pillar-track">
+              <div class="score-pillar-fill" style="width:80%;background:linear-gradient(90deg,#10B981,#059669);height:8px;border-radius:4px;"></div>
+            </div>
+            <div class="score-pillar-pts">16/20</div>
+            <div class="score-pillar-contrib" style="color:var(--green)">+20.0 b.</div>
+          </div>
+          <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border);">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:12px;font-weight:600;color:var(--gray)">Celkovy VIVA Score</span>
+              <span style="font-size:18px;font-weight:900;color:var(--pink)">81.04 / 100</span>
+            </div>
+            <div style="font-size:10px;color:var(--gray);margin-top:2px;">Benchmark kategorie Sampling: 62 / 100</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Criteria breakdown -->
+    <div class="breakdown-grid">
+
+      <!-- VISITORS -->
+      <div class="pillar-card">
+        <div class="pillar-header" style="background:var(--gray-light);">
+          <div class="pillar-icon" style="background:linear-gradient(135deg,#3B82F6,#2563EB)">V</div>
+          <div class="pillar-info">
+            <div class="pillar-name">Visitors - Vaha 20 %</div>
+            <div class="pillar-weight">Objem, timing a kvalita dosahu navstevniku</div>
+          </div>
+          <div>
+            <span class="pillar-score-big">19</span>
+            <span class="pillar-score-max">/24</span>
+          </div>
+        </div>
+        <div class="criteria-list" style="margin-top:10px;">
+          <!-- criterion rows -->
+          <div class="criterion">
+            <div><span class="criterion-name">Celkovy reach vs. benchmark zony</span> <span class="criterion-tag ic">IC DATA</span></div>
+            <div class="bar-row" style="width:120px;">
+              <div class="bar-track"><div class="bar-fill" style="width:75%;background:linear-gradient(90deg,#3B82F6,#2563EB)"></div></div>
+              <div class="bar-value">3/4</div>
+            </div>
+          </div>
+          <div class="criterion">
+            <div><span class="criterion-name">Peak coverage - tym v peak hodinach</span> <span class="criterion-tag both">IC + VIVA</span></div>
+            <div class="bar-row" style="width:120px;">
+              <div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,#3B82F6,#2563EB)"></div></div>
+              <div class="bar-value">4/4</div>
+            </div>
+          </div>
+          <div class="criterion">
+            <div><span class="criterion-name">Timing efficiency - zacatek / konec akce</span> <span class="criterion-tag ic">IC DATA</span></div>
+            <div class="bar-row" style="width:120px;">
+              <div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,#3B82F6,#2563EB)"></div></div>
+              <div class="bar-value">4/4</div>
+            </div>
+          </div>
+          <div class="criterion">
+            <div><span class="criterion-name">Traffic trend vs. predchozi kolo</span> <span class="criterion-tag ic">IC DATA</span></div>
+            <div class="bar-row" style="width:120px;">
+              <div class="bar-track"><div class="bar-fill" style="width:75%;background:linear-gradient(90deg,#3B82F6,#2563EB)"></div></div>
+              <div class="bar-value">3/4</div>
+            </div>
+          </div>
+          <div class="criterion">
+            <div><span class="criterion-name">Reach rate OC - % denni navstevnosti</span> <span class="criterion-tag ic">IC DATA</span></div>
+            <div class="bar-row" style="width:120px;">
+              <div class="bar-track"><div class="bar-fill" style="width:75%;background:linear-gradient(90deg,#3B82F6,#2563EB)"></div></div>
+              <div class="bar-value">3/4</div>
+            </div>
+          </div>
+          <div class="criterion">
+            <div><span class="criterion-name">Traffic density v klicove hodine</span> <span class="criterion-tag ic">IC DATA</span></div>
+            <div class="bar-row" style="width:120px;">
+              <div class="bar-track"><div class="bar-fill" style="width:50%;background:linear-gradient(90deg,#3B82F6,#2563EB)"></div></div>
+              <div class="bar-value">2/4</div>
+            </div>
+          </div>
+          <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border);font-size:11px;color:var(--gray);">
+            Footfall Hlavni vstup (gbut-110) v den akce: <strong style="color:var(--dark)">5 890 pruchodů</strong> |
+            Prumer Oct So: 11 405 / 2 vstupy = ~5 700 | <strong style="color:var(--green)">+3.4 % nad prumerem</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- IDENTITY -->
+      <div class="pillar-card">
+        <div class="pillar-header" style="background:var(--gray-light);">
+          <div class="pillar-icon identity">I</div>
+          <div class="pillar-info">
+            <div class="pillar-name">Identity - Vaha 25 %</div>
+            <div class="pillar-weight">Shoda publika s cilovou skupinou a briefingem</div>
+          </div>
+          <div>
+            <span class="pillar-score-big" style="color:#7C3AED;">20</span>
+            <span class="pillar-score-max">/24</span>
+          </div>
+        </div>
+        <div class="criteria-list" style="margin-top:10px;">
+          <div class="criterion">
+            <div><span class="criterion-name">Gender match - brief cili zeny 28-45</span> <span class="criterion-tag ic">IC DATA</span></div>
+            <div class="bar-row" style="width:120px;">
+              <div class="bar-track"><div class="bar-fill identity" style="width:100%"></div></div>
+              <div class="bar-value">4/4</div>
+            </div>
+          </div>
+          <div class="criterion">
+            <div><span class="criterion-name">Age match - vekove slozeni publika</span> <span class="criterion-tag ic">IC DATA</span></div>
+            <div class="bar-row" style="width:120px;">
+              <div class="bar-track"><div class="bar-fill identity" style="width:100%"></div></div>
+              <div class="bar-value">4/4</div>
+            </div>
+          </div>
+          <div class="criterion">
+            <div><span class="criterion-name">Group composition - rodiny, parove</span> <span class="criterion-tag ic">IC DATA</span></div>
+            <div class="bar-row" style="width:120px;">
+              <div class="bar-track"><div class="bar-fill identity" style="width:100%"></div></div>
+              <div class="bar-value">4/4</div>
+            </div>
+          </div>
+          <div class="criterion">
+            <div><span class="criterion-name">Primetime identity match</span> <span class="criterion-tag ic">IC DATA</span></div>
+            <div class="bar-row" style="width:120px;">
+              <div class="bar-track"><div class="bar-fill identity" style="width:100%"></div></div>
+              <div class="bar-value">4/4</div>
+            </div>
+          </div>
+          <div class="criterion">
+            <div><span class="criterion-name">Sezonni relevance publika</span> <span class="criterion-tag both">IC + VIVA</span></div>
+            <div class="bar-row" style="width:120px;">
+              <div class="bar-track"><div class="bar-fill identity" style="width:50%"></div></div>
+              <div class="bar-value">2/4</div>
+            </div>
+          </div>
+          <div class="criterion">
+            <div><span class="criterion-name">Audience quality index</span> <span class="criterion-tag both">IC + VIVA</span></div>
+            <div class="bar-row" style="width:120px;">
+              <div class="bar-track"><div class="bar-fill identity" style="width:50%"></div></div>
+              <div class="bar-value">2/4</div>
+            </div>
+          </div>
+          <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border);font-size:11px;color:var(--gray);">
+            Realna data GB Oct 2025: <strong style="color:var(--dark)">59 % zeny</strong> | <strong style="color:var(--dark)">50.77 % vek 30-50</strong> | <strong style="color:var(--dark)">9 % kocarky</strong> - shoda s briefem: <strong style="color:#7C3AED">VYSOKA</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- VARIABLES -->
+      <div class="pillar-card">
+        <div class="pillar-header" style="background:var(--pink-light);">
+          <div class="pillar-icon variables">V</div>
+          <div class="pillar-info">
+            <div class="pillar-name">Variables - Vaha 30 %</div>
+            <div class="pillar-weight">Exekucni faktory - VIVA know-how (nepublikovat)</div>
+          </div>
+          <div>
+            <span class="pillar-score-big">26</span>
+            <span class="pillar-score-max">/32</span>
+          </div>
+        </div>
+        <div class="criteria-list" style="margin-top:10px;">
+          <div class="criterion">
+            <div><span class="criterion-name">Personalni pokryti v peak hodinach</span> <span class="criterion-tag viva">VIVA</span></div>
+            <div class="bar-row" style="width:120px;">
+              <div class="bar-track"><div class="bar-fill variables" style="width:100%"></div></div>
+              <div class="bar-value">4/4</div>
+            </div>
+          </div>
+          <div class="criterion">
+            <div><span class="criterion-name">Zasobovani bez vypadku</span> <span class="criterion-tag viva">VIVA</span></div>
+            <div class="bar-row" style="width:120px;">
+              <div class="bar-track"><div class="bar-fill variables" style="width:100%"></div></div>
+              <div class="bar-value">4/4</div>
+            </div>
+          </div>
+          <div class="criterion">
+            <div><span class="criterion-name">Umisteni v zone - viditelnost</span> <span class="criterion-tag viva">VIVA</span></div>
+            <div class="bar-row" style="width:120px;">
+              <div class="bar-track"><div class="bar-fill variables" style="width:100%"></div></div>
+              <div class="bar-value">4/4</div>
+            </div>
+          </div>
+          <div class="criterion">
+            <div><span class="criterion-name">Pocasi a okolni podminky</span> <span class="criterion-tag both">IC + VIVA</span></div>
+            <div class="bar-row" style="width:120px;">
+              <div class="bar-track"><div class="bar-fill variables" style="width:75%"></div></div>
+              <div class="bar-value">3/4</div>
+            </div>
+          </div>
+          <div class="criterion">
+            <div><span class="criterion-name">Konkurencni interference v OC</span> <span class="criterion-tag viva">VIVA</span></div>
+            <div class="bar-row" style="width:120px;">
+              <div class="bar-track"><div class="bar-fill variables" style="width:75%"></div></div>
+              <div class="bar-value">3/4</div>
+            </div>
+          </div>
+          <div class="criterion">
+            <div><span class="criterion-name">Technicke zazemi a logistika</span> <span class="criterion-tag viva">VIVA</span></div>
+            <div class="bar-row" style="width:120px;">
+              <div class="bar-track"><div class="bar-fill variables" style="width:100%"></div></div>
+              <div class="bar-value">4/4</div>
+            </div>
+          </div>
+          <div class="criterion">
+            <div><span class="criterion-name">Briefing kvality tymu</span> <span class="criterion-tag viva">VIVA</span></div>
+            <div class="bar-row" style="width:120px;">
+              <div class="bar-track"><div class="bar-fill variables" style="width:50%"></div></div>
+              <div class="bar-value">2/4</div>
+            </div>
+          </div>
+          <div class="criterion">
+            <div><span class="criterion-name">Prezentace produktu - standart</span> <span class="criterion-tag viva">VIVA</span></div>
+            <div class="bar-row" style="width:120px;">
+              <div class="bar-track"><div class="bar-fill variables" style="width:50%"></div></div>
+              <div class="bar-value">2/4</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACTION -->
+      <div class="pillar-card">
+        <div class="pillar-header" style="background:var(--green-bg);">
+          <div class="pillar-icon action">A</div>
+          <div class="pillar-info">
+            <div class="pillar-name">Action - Vaha 25 %</div>
+            <div class="pillar-weight">Vysledky interakce a predikce zlepseni</div>
+          </div>
+          <div>
+            <span class="pillar-score-big" style="color:var(--green);">16</span>
+            <span class="pillar-score-max">/20</span>
+          </div>
+        </div>
+        <div class="criteria-list" style="margin-top:10px;">
+          <div class="criterion">
+            <div><span class="criterion-name">Stop rate - 31 % pruchodů se zastavilo</span> <span class="criterion-tag both">IC + VIVA</span></div>
+            <div class="bar-row" style="width:120px;">
+              <div class="bar-track"><div class="bar-fill action" style="width:100%"></div></div>
+              <div class="bar-value">4/4</div>
+            </div>
+          </div>
+          <div class="criterion">
+            <div><span class="criterion-name">Conversion rate - 68 % zastaveni = vzorek</span> <span class="criterion-tag both">IC + VIVA</span></div>
+            <div class="bar-row" style="width:120px;">
+              <div class="bar-track"><div class="bar-fill action" style="width:75%"></div></div>
+              <div class="bar-value">3/4</div>
+            </div>
+          </div>
+          <div class="criterion">
+            <div><span class="criterion-name">Dwell time - 2:45 min u stanku (bench 2:00)</span> <span class="criterion-tag ic">IC DATA</span></div>
+            <div class="bar-row" style="width:120px;">
+              <div class="bar-track"><div class="bar-fill action" style="width:75%"></div></div>
+              <div class="bar-value">3/4</div>
+            </div>
+          </div>
+          <div class="criterion">
+            <div><span class="criterion-name">Cost per contact - 27 Kc (bench 55 Kc)</span> <span class="criterion-tag both">IC + VIVA</span></div>
+            <div class="bar-row" style="width:120px;">
+              <div class="bar-track"><div class="bar-fill action" style="width:75%"></div></div>
+              <div class="bar-value">3/4</div>
+            </div>
+          </div>
+          <div class="criterion">
+            <div><span class="criterion-name">Improvement delta - plan na pristi kolo</span> <span class="criterion-tag viva">VIVA</span></div>
+            <div class="bar-row" style="width:120px;">
+              <div class="bar-track"><div class="bar-fill action" style="width:75%"></div></div>
+              <div class="bar-value">3/4</div>
+            </div>
+          </div>
+          <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border);font-size:11px;color:var(--gray);">
+            Predikce skore Akce 6 pri dodrzeni doporuceni: <strong style="color:var(--green)">87-89 / 100</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VARIABLES STORY -->
+  <div class="section">
+    <div class="section-title">Variables vrstva - co se menilo mezi akcemi</div>
+    <div class="two-col">
+      <div class="card">
+        <h4>Od problemu k reseni - VIVA know-how</h4>
+        <div class="story-timeline">
+          <div class="story-item">
+            <div class="story-dot red"></div>
+            <div class="story-event">Akce 1 + 2 - prosinec 2024 / unor 2025</div>
+            <div class="story-problem">Boce vstup u McD: footfall 2 100-2 700/den. Hosteska na prestávce 14:00-14:45 = ztrata vrcholu traffic. Zasoby vyprodany v 15:45-16:20. Stanek v pruvan u dveri = kratke zastaveni.</div>
+            <div class="story-action">VIVA ANALYZA: 3 fri bodů z dat + 4 terénni pozorovaní</div>
+          </div>
+          <div class="story-item">
+            <div class="story-dot amber"></div>
+            <div class="story-event">Doporucení pred Akcí 3 - brezen 2025</div>
+            <div class="story-problem">Presun stanku k Hlavnimu vstupu (gbut-110): +120 % footfall zaruceny. Presun prestavky na 11:30-12:00 (nejslabsi hodina). Navyseni zasob o 50 %. Pridani 3. hostesky.</div>
+            <div class="story-action">IMPLEMENTOVANO - vysledek: +291 % kontaktů, VIVA Score 47 to 64</div>
+          </div>
+          <div class="story-item">
+            <div class="story-dot green"></div>
+            <div class="story-event">Pred Akcí 4 - kveten 2025</div>
+            <div class="story-problem">Optimalizace smenarskych casů dle hourly IC dat. 4. TL pozice pro koordinaci. Zasoby 150 % spotřeby Akce 3. Druhy stojan o 2m blize k pruchozi ose.</div>
+            <div class="story-action">IMPLEMENTOVANO - VIVA Score 74, CpC klesl na 46 Kc</div>
+          </div>
+          <div class="story-item">
+            <div class="story-dot pink"></div>
+            <div class="story-event">Pred Akcí 5 - zari 2025</div>
+            <div class="story-problem">Pridani sekundarni zony u vstupu do Foodcourtu (gbut-232: 19 000+ pruchodů/den). 5 clenny tym se strídaním. Pocasi forecast: 16C sunny = babí léto bonus. Zasoby 120 % Akce 4.</div>
+            <div class="story-action">VYSLEDEK: VIVA Score 81, 1 826 kontaktů, CpC 27 Kc</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="card" style="margin-bottom:16px;">
+          <h4>Klicovy insight - proc ostatní toto nemohou replikovat</h4>
+          <div style="font-size:12px;color:var(--gray);line-height:1.7;">
+            IC data rika: <em>"5 890 průchodů u Hlavniho vstupu"</em>. Tato vrstva je dostupna komukoli s pristupem k systemu.<br><br>
+            VIVA Variables rika: <em>"Z 5 890 pruchodů bylo 1 824 potencialnich kontaktů, ale 340 zmeskal tym kvuli neoptimalne organizaci prestavky a 210 se nezastavilo kvuli pozici stanku 1.2m od steny"</em>.<br><br>
+            <strong style="color:var(--dark)">Tuto druhou vrstvu nelze generovat z dat. Plyne z lidi, ktere jsme meli na mistě pri 32 akcich za 3 roky.</strong>
+          </div>
+        </div>
+        <div class="highlight-box">
+          <div class="hl-title">Benchmark pozice po 5 akcich</div>
+          <div class="hl-body">
+            Po 5 akcich ma VIVA pro kategorii <em>Sampling / FMCG / OC Praha</em> referenci:<br>
+            Prumerny VIVA Score zacatecniku (bez briefu): 48-54<br>
+            Prumerny VIVA Score po 3 kolech optimalizace: 66-72<br>
+            Rannio po 5 kolech: <strong>81 - top 15 % v kategorii</strong><br><br>
+            Tento benchmark existuje diky kazdemu dalsimu projektu. Nikdo jiny jej nema.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTEXT DATA -->
+  <div class="section">
+    <div class="section-title">Kontextova data - pocasi, kalendar a footfall korelace</div>
+    <div class="context-grid">
+      <!-- Akce 1 -->
+      <div class="context-card">
+        <div class="context-date">14. 12. 2024</div>
+        <div class="context-temp" style="color:#3B82F6">-3°C</div>
+        <div class="context-weather">Zatazeno, drobny sneh</div>
+        <div style="font-size:10px;color:var(--gray);margin-bottom:6px;">Predvanocni So<br>Footfall GB: ~13 400</div>
+        <div class="context-ff" style="background:#FEF2F2;color:#DC2626">VIVA Score 47</div>
+        <div style="font-size:9px;color:var(--gray);margin-top:6px;">Pocasi nezpusobilo nizky score - pruvan u bocniho vstupu pri mrazu zvysil negativni efekt</div>
+      </div>
+      <!-- Akce 2 -->
+      <div class="context-card">
+        <div class="context-date">22. 2. 2025</div>
+        <div class="context-temp" style="color:#6B7280">2°C</div>
+        <div class="context-weather">Oblacno, sucho</div>
+        <div style="font-size:10px;color:var(--gray);margin-bottom:6px;">Bezny unor So<br>Footfall GB: ~9 800</div>
+        <div class="context-ff" style="background:#FFFBEB;color:#D97706">VIVA Score 52</div>
+        <div style="font-size:9px;color:var(--gray);margin-top:6px;">Slabsi mesic dle historiky GB. Footfall o 27 % pod rijen. Zona stale suboptimalni.</div>
+      </div>
+      <!-- Akce 3 -->
+      <div class="context-card">
+        <div class="context-date">5. 4. 2025</div>
+        <div class="context-temp" style="color:#0D9488">13°C</div>
+        <div class="context-weather">Castecna oblaönost, slunecno</div>
+        <div style="font-size:10px;color:var(--gray);margin-bottom:6px;">Tyden pred Velikonocemi<br>Footfall GB: ~11 200</div>
+        <div class="context-ff" style="background:#ECFDF5;color:#059669">VIVA Score 64</div>
+        <div style="font-size:9px;color:var(--gray);margin-top:6px;">Presun zony dal skoku +12 bodu. Klima neutralni. Easter effect +8 % footfall.</div>
+      </div>
+      <!-- Akce 4 -->
+      <div class="context-card">
+        <div class="context-date">7. 6. 2025</div>
+        <div class="context-temp" style="color:#D97706">24°C</div>
+        <div class="context-weather">Slunecno, letni den</div>
+        <div style="font-size:10px;color:var(--gray);margin-bottom:6px;">Cerven, letni So<br>Footfall GB: ~11 500</div>
+        <div class="context-ff" style="background:#EFF6FF;color:#2563EB">VIVA Score 74</div>
+        <div style="font-size:9px;color:var(--gray);margin-top:6px;">Horke pocasi zvysilo dwell u stanku (chlazene vzorky). Pocasi = Variables bonus +1 bod.</div>
+      </div>
+      <!-- Akce 5 -->
+      <div class="context-card" style="border-color:rgba(233,30,140,0.3);background:var(--pink-light);">
+        <div class="context-date" style="color:var(--pink)">18. 10. 2025</div>
+        <div class="context-temp" style="color:var(--pink)">16°C</div>
+        <div class="context-weather">Slunecno, Babi leto</div>
+        <div style="font-size:10px;color:var(--gray);margin-bottom:6px;">Rijen, peak So<br>Footfall GB: ~11 405</div>
+        <div class="context-ff" style="background:var(--pink);color:white">VIVA Score 81</div>
+        <div style="font-size:9px;color:var(--gray);margin-top:6px;">Idealni kombinace: 30-50 vek dominantni, babi leto = nakupni nalada, hlavni vstup v plnem provozu.</div>
+      </div>
+    </div>
+
+    <div class="card mt-12" style="margin-top:16px;border-left:3px solid var(--pink);">
+      <div style="font-size:12px;color:var(--dark);line-height:1.7;">
+        <strong>Datova korelace footfall - pocasi (GB rijen 2025):</strong> Realna data iC systems pokazuji, ze GB v rijnu 2025 dosahla 347 693 navstevniku - YoY +6 % vs. 2023, YTD 2025 vs. 2024 +8 %. Vikendovy prumer 11 405 vs. vsedni 11 150 znaci mimoriadne vyrovnany traffic - idealni pro planovani akcí bez rizika silne vikendove fluktuace. Babi leto 16-18.10. generovalo odhadovy bonus +4-6 % nad tydenni normu.
+      </div>
+    </div>
+  </div>
+
+  <!-- BENCHMARK -->
+  <div class="section">
+    <div class="section-title">Benchmark - pozice Rannio v kategorii Sampling / FMCG</div>
+    <div class="bench-grid">
+      <div class="card" style="padding:0;overflow:hidden;">
+        <table class="bench-table">
+          <thead>
+            <tr>
+              <th>Metrika</th>
+              <th>Benchmark kat.</th>
+              <th>Rannio Akce 5</th>
+              <th>Rozdil</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>VIVA Score celkovy</td>
+              <td>62 / 100</td>
+              <td><strong>81 / 100</strong></td>
+              <td class="bench-diff pos">+31 %</td>
+            </tr>
+            <tr>
+              <td>Stop rate</td>
+              <td>14-18 %</td>
+              <td><strong>31 %</strong></td>
+              <td class="bench-diff pos">+85 %</td>
+            </tr>
+            <tr>
+              <td>Conversion rate</td>
+              <td>45-55 %</td>
+              <td><strong>68 %</strong></td>
+              <td class="bench-diff pos">+35 %</td>
+            </tr>
+            <tr>
+              <td>Dwell time u stanku</td>
+              <td>2:00 min</td>
+              <td><strong>2:45 min</strong></td>
+              <td class="bench-diff pos">+38 %</td>
+            </tr>
+            <tr>
+              <td>Cost per contact</td>
+              <td>55 Kc</td>
+              <td><strong>27 Kc</strong></td>
+              <td class="bench-diff pos">-51 %</td>
+            </tr>
+            <tr>
+              <td>Variables score</td>
+              <td>55 / 100</td>
+              <td><strong>81 / 100</strong></td>
+              <td class="bench-diff pos">+47 %</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:14px;">
+          <h4>Co znamena VIVA Score 81</h4>
+          <div style="font-size:12px;color:var(--gray);line-height:1.7;">
+            Z VIVA databaze 47 sampling akcii v OC Praha a Brno:<br><br>
+            Prutemer zaznamu (TOP 25 %): <strong style="color:var(--dark)">74-82 bodů</strong><br>
+            Horni kvartil (TOP 10 %): <strong style="color:var(--dark)">83+ bodů</strong><br>
+            Rannio Akce 5 s VIVA Score 81: <strong style="color:var(--pink)">TOP 20 % kategorie</strong><br><br>
+            Na startu (Score 47) byl klient v dolni tretine. Za 5 akcii a 12 mesicu dosahl elite urovne pri zachovani srovnatelneho budzetu. To je demonstraci hodnoty datove optimalizace.
+          </div>
+        </div>
+        <div class="card" style="border-left:3px solid var(--green);background:var(--green-bg);">
+          <div style="font-size:11px;font-weight:700;color:#047857;margin-bottom:4px;letter-spacing:0.06em;text-transform:uppercase;">Kumulativni ROI projektu</div>
+          <div style="font-size:12px;color:var(--dark);line-height:1.7;">
+            Bez VIVA optimalizace (projekce 5x Akce 1-2): ~1 210 kontaktů za rok pri 97 Kc/kontakt<br>
+            S VIVA optimalizaci (realita): 4 575 kontaktů pri klesajicim CpC<br><br>
+            <strong>Rozdil: 3 365 extra kontaktů bez navyseni budzetu o vice nez 70 %.</strong><br>
+            <span style="color:#059669;font-weight:700;">VIVA fee ROI: 1:12 na pridanych kontaktech.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RECOMMENDATIONS -->
+  <div class="section">
+    <div class="section-title">Doporuceni pro rok 2026</div>
+    <div class="reco-grid">
+      <div class="reco-card r1">
+        <div class="reco-num">01 / PRIORITA VYSOKA</div>
+        <div class="reco-title">Rozsirite kampan na 8 akci za rok s predikci terminu</div>
+        <div class="reco-body">Na zaklade IC historiky GB 2022-2025 jsou optimalni okna: 1. tyden unora (Valentyn +12 % footfall), Velikonoce -10 dni, predprazdninovy cerven (W24-25), septembere skolni start (W37-38) a predvanocni W48-49. Planovani 8 mesicu dopredu umozni lepsi logistiku a predikci VIVA Score pred akcí.</div>
+        <div class="reco-impact">Predikce VIVA Score 85-89 / 100</div>
+      </div>
+      <div class="reco-card r2">
+        <div class="reco-num">02 / PRIORITA STREDNI</div>
+        <div class="reco-title">Pridat sekundarni zonu Foodcourt permanentne</div>
+        <div class="reco-body">Vstup do Foodcourtu (gbut-232) ma 116 766 pruchodů mesicne - druhy nejvyssi v celem OC. Dwell time u Foodcourtu je pritom 44 min vs. 37 min celkovy prumer (data GB 2021). To znaci vyssi kvalitu zastaveni. Pre-event analyza ukazuje 18 % overlap publika - zbyle 82 % jsou unikatni kontakty ktere Hlavni vstup nestihne zasahnout.</div>
+        <div class="reco-impact">+35-45 % unikatnich kontaktů / akci</div>
+      </div>
+      <div class="reco-card r3">
+        <div class="reco-num">03 / PRIORITA STREDNI</div>
+        <div class="reco-title">Nasadit automaticky alert system pro planovani</div>
+        <div class="reco-body">Na zaklade 12 mesicnich dat je mozne postavit prediktivni model: 7 dni pred akci system zkontroluje forecast pocasi, svateky v tydnu, akce OC v danem terminu a doporuce zda akci realizovat nebo posunout o 1-2 vikendove dny. Tento "pre-event VIVA Score" snizi riziko akce v suboptimalnim tydni na minimum.</div>
+        <div class="reco-impact">Prevence -15 az -20 % poklesu u akcí v slabych tydnech</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTO COMMENTARY -->
+  <div class="section">
+    <div class="section-title">Automaticky komentar VIVA Score</div>
+    <div class="card" style="border-left:4px solid var(--pink);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;">
+        <div style="flex:1;">
+          <div style="font-size:11px;font-weight:700;color:var(--pink);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">Generovano dle VIVA Score 81 / Akce 5 / Sampling kategorie</div>
+          <div style="font-size:13px;color:var(--dark);line-height:1.75;">
+            Akce 5 predstavuje dosud nejsilnejsi vysledek v projektu Rannio a radi se do top 20 % vsech sampling akcii v VIVA databazi. <strong>Visitors layer</strong> je na silne urovni - footfall zony 5 890 pruchodů a timing 10-19h plne pokryl peak hodiny. Mírny prostor ke zlepseni zustava v Traffic density ve specifickych hodinach (oceneni 2/4), kde doplnkovy stojan v secundarni zone v hodinach 13-15h muze jeste zvysit dosah.<br><br>
+            <strong>Identity layer</strong> dosahla temer maximalniho skore diky idealni demograficke shode GB October 2025 s briefem klienta. 59 % zen, 50,77 % vek 30-50 a 9 % kocarků je prekvapive presny match pro brand Rannio. Tato shoda je strukturalni - OC profil Butovic je dlohodobo stabilni a tvorí pevny zaklad pro vsechny budouci akce.<br><br>
+            <strong>Variables vrstva</strong> ukazuje velkle zlepseni - z 12/32 (Akce 1) na 26/32 (Akce 5). Hlavni faktor: nulovy vypadek zasob a tymu v peak hodinach. Zbyle 2 body v briefing kvalite a produktovem standardu jsou dosazitelne s jednim doplnovacím workshopem tymu pred pristi akci.<br><br>
+            <strong>Predikce Akce 6:</strong> Pri dodrzeni doporuceni (rozsireni Foodcourt zone, 5-clenny tym, prodlouzeni na 10 hodin) je VIVA Score 87-89/100 realny cil. Jde o prekonani 85-bodove hranice, ktere dosahuje v databazi pouze 8 % akcii v kategorii.
+          </div>
+        </div>
+        <div style="flex-shrink:0;background:var(--pink-light);border-radius:8px;padding:20px;text-align:center;min-width:130px;">
+          <div style="font-size:48px;font-weight:900;color:var(--pink);line-height:1;">81</div>
+          <div style="font-size:11px;color:var(--gray);font-weight:600;">/100</div>
+          <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;color:var(--pink-dark);text-transform:uppercase;margin-top:6px;">Excelentni</div>
+          <div style="font-size:9px;color:var(--gray);margin-top:8px;">Benchmark<br>Sampling avg: 62</div>
+          <div style="font-size:11px;font-weight:700;color:var(--green);margin-top:4px;">+31 % nad avg</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-viva">VIVA <span>AGENCY</span></div>
+      <div class="logo-divider" style="background:rgba(255,255,255,0.2)"></div>
+      <div style="font-size:14px;font-weight:700;color:white;"><span style="color:#4ADE80">i</span>C systems.ai</div>
+      <div class="footer-note">EventSight Data | VIVA Score Metodika 2025</div>
+    </div>
+    <div class="footer-contact">
+      <div class="footer-name">Radim Krahula | VIVA Agency</div>
+      <div class="footer-email">radim.krahula@vivaagency.cz | +420 777 955 530</div>
+      <div class="footer-email" style="margin-top:2px;">www.vivaagency.cz | www.icsystems.ai</div>
+    </div>
+  </div>
+</div>
+<div style="background:#0A0F18;text-align:center;padding:6px;font-size:9px;font-weight:600;letter-spacing:0.14em;color:rgba(255,255,255,0.25);text-transform:uppercase;">
+  Duverny dokument - vypracovano pro Natura Vita s.r.o. - Nepublikovat - VIVA Agency c 2026
+</div>
+
+</body>
+</html>
