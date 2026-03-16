@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #FFFFFF;
+            color: #1D1D1F;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #00B8A9 0%, #008F82 100%);
+            color: white;
+            padding: 80px 60px;
+            border-radius: 12px;
+            margin-bottom: 50px;
+        }
+        
+        .case-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 25px;
+        }
+        
+        .hero-subtitle {
+            font-size: 24px;
+            font-weight: 300;
+            opacity: 0.95;
+            line-height: 1.4;
+        }
+        
+        /* Client Info Bar */
+        .client-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #F5F5F7;
+            padding: 30px 40px;
+            border-radius: 12px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .client-logo {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 700;
+            color: #00B8A9;
+            border: 2px solid #E8E8ED;
+        }
+        
+        .client-details h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1D1D1F;
+            margin-bottom: 5px;
+        }
+        
+        .client-details p {
+            font-size: 14px;
+            color: #6E6E73;
+        }
+        
+        .client-meta {
+            display: flex;
+            gap: 40px;
+            font-size: 14px;
+        }
+        
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .meta-label {
+            color: #6E6E73;
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 3px;
+        }
+        
+        .meta-value {
+            color: #1D1D1F;
+            font-weight: 600;
+        }
+        
+        /* Typography */
+        h2 {
+            font-size: 32px;
+            font-weight: 600;
+            color: #00B8A9;
+            margin: 50px 0 25px 0;
+        }
+        
+        h3 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #1D1D1F;
+            margin: 30px 0 15px 0;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            color: #1D1D1F;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+        
+        /* Challenge Section */
+        .challenge-section {
+            background: #FFF3E6;
+            padding: 50px;
+            border-radius: 12px;
+            border-left: 6px solid #FF9500;
+            margin: 40px 0;
+        }
+        
+        .challenge-section h2 {
+            color: #FF9500;
+            margin-top: 0;
+        }
+        
+        .challenge-points {
+            margin-top: 25px;
+        }
+        
+        .challenge-point {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .challenge-icon {
+            width: 40px;
+            height: 40px;
+            background: #FF9500;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        .challenge-content h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .challenge-content p {
+            font-size: 14px;
+            color: #6E6E73;
+            margin-bottom: 0;
+        }
+        
+        /* Solution Section */
+        .solution-section {
+            margin: 40px 0;
+        }
+        
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .solution-card {
+            background: #F5F5F7;
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid #00B8A9;
+        }
+        
+        .solution-card h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1D1D1F;
+            margin-bottom: 12px;
+        }
+        
+        .solution-card p {
+            font-size: 15px;
+            margin-bottom: 0;
+        }
+        
+        /* Results - Big Impact Numbers */
+        .results-hero {
+            background: linear-gradient(135deg, #2C3E50 0%, #1a252f 100%);
+            color: white;
+            padding: 60px;
+            border-radius: 12px;
+            margin: 50px 0;
+        }
+        
+        .results-hero h2 {
+            color: white;
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+        
+        .result-card {
+            text-align: center;
+        }
+        
+        .result-number {
+            font-size: 72px;
+            font-weight: 700;
+            color: #00B8A9;
+            line-height: 1;
+            margin-bottom: 15px;
+        }
+        
+        .result-label {
+            font-size: 18px;
+            color: rgba(255,255,255,0.9);
+            font-weight: 500;
+        }
+        
+        .result-detail {
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+            margin-top: 8px;
+        }
+        
+        /* Timeline */
+        .timeline {
+            margin: 40px 0;
+        }
+        
+        .timeline-item {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #E8E8ED;
+        }
+        
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+        
+        .timeline-phase {
+            min-width: 120px;
+            font-weight: 600;
+            color: #00B8A9;
+            font-size: 16px;
+        }
+        
+        .timeline-content h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .timeline-content p {
+            font-size: 15px;
+            margin-bottom: 0;
+        }
+        
+        /* Quote Section */
+        .quote-section {
+            background: #F5F5F7;
+            padding: 50px;
+            border-radius: 12px;
+            border-left: 6px solid #00B8A9;
+            margin: 50px 0;
+            position: relative;
+        }
+        
+        .quote-mark {
+            font-size: 120px;
+            color: #E8E8ED;
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            line-height: 1;
+            font-family: Georgia, serif;
+        }
+        
+        .quote-text {
+            font-size: 24px;
+            font-style: italic;
+            line-height: 1.6;
+            color: #1D1D1F;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .quote-author {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            background: #00B8A9;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .author-details h5 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+        
+        .author-details p {
+            font-size: 14px;
+            color: #6E6E73;
+            margin-bottom: 0;
+        }
+        
+        /* Key Takeaways */
+        .takeaways {
+            background: white;
+            border: 2px solid #00B8A9;
+            padding: 40px;
+            border-radius: 12px;
+            margin: 40px 0;
+        }
+        
+        .takeaways h3 {
+            color: #00B8A9;
+            margin-top: 0;
+            font-size: 24px;
+        }
+        
+        .takeaways ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        
+        .takeaways li {
+            padding-left: 35px;
+            position: relative;
+            margin-bottom: 15px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .takeaways li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #34C759;
+            font-weight: 700;
+            font-size: 20px;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #00B8A9 0%, #008F82 100%);
+            color: white;
+            padding: 50px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 50px 0;
+        }
+        
+        .cta-section h3 {
+            color: white;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #00B8A9;
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Footer */
+        footer {
+            margin-top: 80px;
+            padding-top: 30px;
+            border-top: 1px solid #E8E8ED;
+            text-align: center;
+            color: #6E6E73;
+            font-size: 14px;
+        }
+        
+        footer a {
+            color: #00B8A9;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        footer .motto {
+            margin-top: 20px;
+            font-style: italic;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero -->
+        <div class="hero">
+            <div class="case-label">Case Study</div>
+            <h1>Jak DEMO s.r.o. zvýšila efektivitu o 35% pomocí AI transformace</h1>
+            <div class="hero-subtitle">Od strategické vize k měřitelným výsledkům za 6 měsíců</div>
+        </div>
+
+        <!-- Client Info Bar -->
+        <div class="client-bar">
+            <div class="client-info">
+                <div class="client-logo">D</div>
+                <div class="client-details">
+                    <h3>DEMO s.r.o.</h3>
+                    <p>Tech & Manufacturing | 120 zaměstnanců | 45 mil. Kč obrat</p>
+                </div>
+            </div>
+            <div class="client-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Odvětví</span>
+                    <span class="meta-value">Manufacturing</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Doba projektu</span>
+                    <span class="meta-value">6 měsíců</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Období</span>
+                    <span class="meta-value">Q3 2025 - Q1 2026</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Challenge -->
+        <div class="challenge-section">
+            <h2>Výzva: Stagnace růstu a nízká efektivita</h2>
+            <p>DEMO s.r.o. čelila několika klíčovým problémům které brzily růst a snižovaly konkurenceschopnost. Management věděl že je potřeba změna, ale nevěděl kde začít.</p>
+            
+            <div class="challenge-points">
+                <div class="challenge-point">
+                    <div class="challenge-icon">1</div>
+                    <div class="challenge-content">
+                        <h4>Neefektivní operativní procesy</h4>
+                        <p>Manuální zpracování objednávek a skladové operace konzumovaly 40% kapacity týmu. Vysoká chybovost a pomalý průběh.</p>
+                    </div>
+                </div>
+                
+                <div class="challenge-point">
+                    <div class="challenge-icon">2</div>
+                    <div class="challenge-content">
+                        <h4>Nedostatečná data-driven kultura</h4>
+                        <p>Rozhodování založené na intuici místo dat. Chybějící real-time insights do výkonnosti byznysu.</p>
+                    </div>
+                </div>
+                
+                <div class="challenge-point">
+                    <div class="challenge-icon">3</div>
+                    <div class="challenge-content">
+                        <h4>Zastaralá IT infrastruktura</h4>
+                        <p>Legacy systémy nespolupracovaly, data v silech, žádná automatizace. Nízká připravenost pro AI.</p>
+                    </div>
+                </div>
+                
+                <div class="challenge-point">
+                    <div class="challenge-icon">4</div>
+                    <div class="challenge-content">
+                        <h4>Talent retention problémy</h4>
+                        <p>Zaměstnanci frustrovaní repetitivními úkoly, nízké engagement, rostoucí fluktuace (18% ročně).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Solution -->
+        <section class="solution-section">
+            <h2>Řešení: Komplexní AI transformace s focus na ROI</h2>
+            <p>Navrhli jsme a implementovali systematický přístup založený na rychlých wins a postupném škálování. Každá iniciativa měla jasný business case a měřitelné KPI.</p>
+            
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <h4>1. AI Readiness Assessment</h4>
+                    <p>Kompletní hodnocení připravenosti firmy na AI, identifikace gaps a prioritizace use cases podle ROI potenciálu.</p>
+                </div>
+                
+                <div class="solution-card">
+                    <h4>2. Data Foundation</h4>
+                    <p>Konsolidace dat z legacy systémů, čištění, vytvoření data warehouse. Základ pro všechny AI aplikace.</p>
+                </div>
+                
+                <div class="solution-card">
+                    <h4>3. Pilot AI Projekty</h4>
+                    <p>Spuštění 3 pilotů: automatizace customer support, prediktivní maintenance, demand forecasting. Quick wins pro buy-in.</p>
+                </div>
+                
+                <div class="solution-card">
+                    <h4>4. Process Reengineering</h4>
+                    <p>Redesign klíčových procesů s AI v centru. Eliminace zbytečných kroků, automatizace rutinních úkolů.</p>
+                </div>
+                
+                <div class="solution-card">
+                    <h4>5. Talent Development</h4>
+                    <p>Upskilling týmu v AI skillech, najímání AI specialisty, vytvoření AI Center of Excellence pro long-term sustainability.</p>
+                </div>
+                
+                <div class="solution-card">
+                    <h4>6. Change Management</h4>
+                    <p>Transparentní komunikace, zapojení zaměstnanců, celebration wins. Změna kultury směrem k data-driven decision making.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline -->
+        <section>
+            <h2>Implementace v 6 měsících</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-phase">Měsíc 1-2</div>
+                    <div class="timeline-content">
+                        <h4>Discovery & Foundation</h4>
+                        <p>AI Readiness Assessment, business case pro piloty, start data consolidation. Kick-off s celým týmem a alignment na vizi.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-phase">Měsíc 3-4</div>
+                    <div class="timeline-content">
+                        <h4>Pilot Launch</h4>
+                        <p>Spuštění prvních 3 AI pilotů. Customer support bot (ChatGPT), prediktivní maintenance model, demand forecasting algoritmus. První measurable wins.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-phase">Měsíc 5-6</div>
+                    <div class="timeline-content">
+                        <h4>Scale & Optimize</h4>
+                        <p>Rollout úspěšných pilotů na celou firmu, fine-tuning based on learnings, training zaměstnanců. Handover k internímu AI týmu.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results -->
+        <div class="results-hero">
+            <h2>Výsledky: Měřitelný dopad na bottom line</h2>
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-number">35%</div>
+                    <div class="result-label">Zvýšení efektivity</div>
+                    <div class="result-detail">Operativní procesy</div>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-number">2,8M</div>
+                    <div class="result-label">Úspora Kč/rok</div>
+                    <div class="result-detail">Reduced overhead costs</div>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-number">60%</div>
+                    <div class="result-label">Rychlejší processing</div>
+                    <div class="result-detail">Order to delivery time</div>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-number">12%</div>
+                    <div class="result-label">Fluktuace ↓</div>
+                    <div class="result-detail">Z 18% na 6% ročně</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Metrics -->
+        <section>
+            <h3>Další klíčové metriky</h3>
+            <p><strong>Customer satisfaction:</strong> NPS vzrostl z 32 na 58 díky rychlejším response times a lepšímu servisu<br>
+            <strong>Employee engagement:</strong> +40% engagement score, zaměstnanci oceňují eliminaci repetitivních úkolů<br>
+            <strong>Error rate:</strong> 75% snížení chybovosti v order processing díky automatizaci<br>
+            <strong>Time to market:</strong> 45% rychlejší uvedení nových produktů na trh díky prediktivním insights<br>
+            <strong>ROI:</strong> Projekt se zaplatil za 14 měsíců, očekávaný 3-year ROI je 280%</p>
+        </section>
+
+        <!-- Quote -->
+        <div class="quote-section">
+            <div class="quote-mark">"</div>
+            <div class="quote-text">
+                Jiří nám pomohl nejen implementovat AI technologie, ale především změnit způsob jak přemýšlíme o byznysu. Data-driven rozhodování je teď součástí naší DNA a vidíme to na výsledcích. Za 6 měsíců jsme dosáhli toho, co jsme 2 roky plánovali ale nevěděli jak na to.
+            </div>
+            <div class="quote-author">
+                <div class="author-avatar">PK</div>
+                <div class="author-details">
+                    <h5>Petr Kovář</h5>
+                    <p>CEO, DEMO s.r.o.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Takeaways -->
+        <div class="takeaways">
+            <h3>Klíčové learnings z projektu</h3>
+            <ul>
+                <li><strong>Start small, scale fast:</strong> Piloty s jasným ROI přinesly quick wins a buy-in pro širší transformaci</li>
+                <li><strong>Data je základ:</strong> Bez kvalitních dat AI nemůže fungovat - investice do data foundation byla kritická</li>
+                <li><strong>Lidé > technologie:</strong> Change management a training týmu bylo důležitější než samotná AI technologie</li>
+                <li><strong>Measure everything:</strong> Jasné KPI a continuous tracking pomohly udržet projekt on track a prokázat value</li>
+                <li><strong>External + Internal:</strong> Kombinace external expertise (rychlý start) a internal capability building (sustainability)</li>
+            </ul>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <h3>Podobné výzvy ve vaší firmě?</h3>
+            <p>Pomohu vám dosáhnout podobných výsledků s AI transformací<br>přizpůsobenou vašemu byznysu a odvětví</p>
+            <a href="mailto:jiri.koukal@gmail.com" class="cta-button">Pojďme si promluvit</a>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p><strong>Strategic management | AI Transformation | Fractional COO</strong></p>
+            <p>Jiří Koukal, MSc. MBA | <a href="mailto:jiri.koukal@gmail.com">jiri.koukal@gmail.com</a> | <a href="https://www.linkedin.com/in/jirikoukal/">LinkedIn</a></p>
+            <p class="motto">"Vše je jen otázka úhlu pohledu"</p>
+        </footer>
+    </div>
+</body>
+</html>
