@@ -5,8 +5,9 @@ Centrální knihovna pro projekty, brand, prompty a dokumentaci.
 ## Struktura
 
 - `/brand/personal` – osobní brand (barvy, typografie, hlas, tech stack, šablony)
-- `/brand/viva-agency` – brand manuál Viva Agency
+- `/brand/viva-agency` – brand manuál Viva Agency + šablony
 - `/brand/icons` – sdílený icon systém (master-icons.html)
+- `/prompts` – prompt knihovna (Prompt Architect, systémové prompty)
 
 ## Projekty
 
