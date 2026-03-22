@@ -2,44 +2,44 @@
 # Jiří Koukal | Strategic Consultant | github.com/jirikoukal/knowledge
 
 ## Kdo jsem
-→ me/about.md
+→ personal/me/about.md
 
 ## Jak pracuji a komunikuji
-→ me/working-style.md
+→ personal/me/working-style.md
 
 ## Nástroje a tech stack
-→ me/techstack.md
+→ personal/me/techstack.md
 
 ## Můj brand (vizuální identita)
-→ brand/personal/brand.md
+→ personal/brand/brand.md
 Transformation Teal #00B8A9, Montserrat, Apple-like minimalismus.
 
 ## Jak píšu (hlas, styl, lingvistický otisk)
-→ brand/personal/voice.md
+→ personal/brand/voice.md
 Obsahuje systémové prompty pro e-maily, LinkedIn a konzultační texty.
 
 ## HTML šablony pro dokumenty
-→ brand/personal/templates/
-- proposal.html — nabídka
+→ personal/brand/templates/
+- proposal_template.html — nabídka
 - strategic_report_template.html — strategická zpráva
-- financni_analyza_template.html — finanční analýza
+- financni_analyza_template_v2.html — finanční analýza
 - case_study_template.html — případová studie
 - qbr_template.html — quarterly business review
 - presentation_onepager_template.html — prezentační onepager
 - ai_readiness_assessment_template.html — AI readiness assessment
 
 ## Sdílený icon systém
-→ brand/icons/master-icons.html
+→ personal/brand/icons/master-icons.html
 
 ## Viva Agency brand
-→ brand/viva-agency/brand.md
-→ brand/viva-agency/templates/
+→ clients/viva-agency/brand.md
+→ clients/viva-agency/templates/
 
 ## System prompty
 → prompts/prompt-architect.md
 
 ## Klienti
-→ clients/ (připraveno, zatím prázdné)
+→ clients/
 
 ---
 
@@ -59,20 +59,21 @@ Obsahuje systémové prompty pro e-maily, LinkedIn a konzultační texty.
 
 knowledge/
 ├── CLAUDE.md
-├── me/
-│   ├── about.md
-│   ├── techstack.md
-│   └── working-style.md
-├── brand/
-│   ├── personal/
-│   │   ├── brand.md
-│   │   ├── voice.md
-│   │   └── templates/
-│   ├── viva-agency/
-│   │   ├── brand.md
-│   │   └── templates/
-│   └── icons/
-│       └── master-icons.html
-├── prompts/
-│   └── prompt-architect.md
-└── clients/
+├── README.md
+├── personal/
+│   ├── me/
+│   │   ├── about.md
+│   │   ├── techstack.md
+│   │   └── working-style.md
+│   └── brand/
+│       ├── brand.md
+│       ├── voice.md
+│       ├── icons/
+│       │   └── master-icons.html
+│       └── templates/
+├── clients/
+│   └── viva-agency/
+│       ├── brand.md
+│       └── templates/
+└── prompts/
+    └── prompt-architect.md
