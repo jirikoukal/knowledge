@@ -4,6 +4,12 @@
 ## Kdo jsem
 → personal/me/about.md
 
+## Osobní kontext (rodina, zájmy, sport)
+→ personal/me/personal.md
+
+## Zdroje a inspirace
+→ personal/me/sources.md
+
 ## Jak pracuji a komunikuji
 → personal/me/working-style.md
 
