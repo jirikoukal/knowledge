@@ -9,11 +9,13 @@ knowledge/
 ├── CLAUDE.md
 ├── README.md
 ├── personal/
-│   ├── me/          – profil, pracovní styl, tech stack
-│   └── brand/       – vizuální identita, hlas, ikony, šablony
+│   ├── me/           – profil, pracovní styl, tech stack
+│   ├── brand/        – vizuální identita, hlas, ikony, šablony
+│   ├── services/     – definice služeb, metodologie, výstupy
+│   └── instructions/ – instrukce pro Claude (chat, code, workflow)
 ├── clients/
-│   └── viva-agency/ – brand manuál + šablony
-└── prompts/         – prompt knihovna
+│   └── viva-agency/  – brand manuál + šablony
+└── prompts/          – prompt knihovna
 ```
 
 ## Rychlé odkazy
