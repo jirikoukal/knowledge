@@ -4,18 +4,17 @@ Centrální knihovna pro projekty, brand, prompty a dokumentaci.
 
 ## Struktura
 
-- `/personal/me` – profil, pracovní styl, tech stack
-- `/personal/brand` – osobní brand (barvy, typografie, hlas, ikony, šablony)
-- `/clients/viva-agency` – brand manuál Viva Agency + šablony
-- `/prompts` – prompt knihovna (Prompt Architect, systémové prompty)
-
-## Projekty
-
-| Kategorie | Topics tag |
-|-----------|-----------|
-| Osobní | `personal` |
-| Viva Agency | `viva-agency` |
-| Klientské | `client` |
+```
+knowledge/
+├── CLAUDE.md
+├── README.md
+├── personal/
+│   ├── me/          – profil, pracovní styl, tech stack
+│   └── brand/       – vizuální identita, hlas, ikony, šablony
+├── clients/
+│   └── viva-agency/ – brand manuál + šablony
+└── prompts/         – prompt knihovna
+```
 
 ## Rychlé odkazy
 
