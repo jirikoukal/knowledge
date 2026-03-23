@@ -41,6 +41,20 @@ Obsahuje systémové prompty pro e-maily, LinkedIn a konzultační texty.
 → clients/viva-agency/brand.md
 → clients/viva-agency/templates/
 
+## Služby (co dělám, metodologie, výstupy)
+→ personal/services/
+- strategy.md — strategické řízení a transformace
+- fractional-coo.md — fractional COO služby
+- ai-transformation.md — AI transformace pro firmy
+- due-diligence.md — due diligence a analytika
+- brand-marketing.md — brand a marketing
+
+## Instrukce pro Claude (jak pracovat se mnou)
+→ personal/instructions/
+- claude-chat.md — instrukce pro Claude.ai chat
+- claude-code.md — instrukce pro Claude Code
+- workflow.md — pracovní workflow a postupy
+
 ## System prompty
 → prompts/prompt-architect.md
 
@@ -71,12 +85,16 @@ knowledge/
 │   │   ├── about.md
 │   │   ├── techstack.md
 │   │   └── working-style.md
-│   └── brand/
-│       ├── brand.md
-│       ├── voice.md
-│       ├── icons/
-│       │   └── master-icons.html
-│       └── templates/
+│   ├── brand/
+│   │   ├── brand.md
+│   │   ├── voice.md
+│   │   ├── icons/
+│   │   │   └── master-icons.html
+│   │   └── templates/
+│   ├── services/
+│   │   └── (5 service definitions)
+│   └── instructions/
+│       └── (claude-chat, claude-code, workflow)
 ├── clients/
 │   └── viva-agency/
 │       ├── brand.md
