@@ -4,6 +4,9 @@
 ## Kdo jsem
 → personal/me/about.md
 
+## Osobnostní profil (testy, certifikáty, CV podklady)
+→ personal/me/personal-profile.md
+
 ## Osobní kontext (rodina, zájmy, sport)
 → personal/me/personal.md
 
@@ -40,6 +43,9 @@ Obsahuje systémové prompty pro e-maily, LinkedIn a konzultační texty.
 ## Viva Agency brand
 → clients/viva-agency/brand.md
 → clients/viva-agency/templates/
+
+## Vivas.cz
+→ clients/vivas-cz
 
 ## Služby (co dělám, metodologie, výstupy)
 → personal/services/
@@ -83,6 +89,9 @@ knowledge/
 ├── personal/
 │   ├── me/
 │   │   ├── about.md
+│   │   ├── personal-profile.md
+│   │   ├── personal.md
+│   │   ├── sources.md
 │   │   ├── techstack.md
 │   │   └── working-style.md
 │   ├── brand/
@@ -91,14 +100,30 @@ knowledge/
 │   │   ├── icons/
 │   │   │   └── master-icons.html
 │   │   └── templates/
+│   │       ├── ai_readiness_assessment_template.html
+│   │       ├── case_study_template.html
+│   │       ├── financni_analyza_template_v2.html
+│   │       ├── presentation_onepager_template.html
+│   │       ├── proposal_template.html
+│   │       ├── qbr_template.html
+│   │       └── strategic_report_template.html
 │   ├── services/
-│   │   └── (5 service definitions)
+│   │   ├── ai-transformation.md
+│   │   ├── brand-marketing.md
+│   │   ├── due-diligence.md
+│   │   ├── fractional-coo.md
+│   │   └── strategy.md
 │   └── instructions/
-│       └── (claude-chat, claude-code, workflow)
+│       ├── claude-chat.md
+│       ├── claude-code.md
+│       └── workflow.md
 ├── clients/
-│   └── viva-agency/
-│       ├── brand.md
-│       └── templates/
+│   ├── viva-agency/
+│   │   ├── brand.md
+│   │   └── templates/
+│   │       ├── viva_demo_report.html
+│   │       └── viva_score_calculator.html
+│   └── vivas-cz
 └── prompts/
     └── prompt-architect.md
 ___
