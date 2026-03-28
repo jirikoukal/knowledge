@@ -101,3 +101,7 @@ knowledge/
 │       └── templates/
 └── prompts/
     └── prompt-architect.md
+___
+
+## Startup
+Always run `git pull --rebase` before any task.
