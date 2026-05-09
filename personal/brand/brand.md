@@ -1,9 +1,10 @@
-# Jiří Koukal - Brand Identity Skill
+# jirikoukal — Brand Identity & Design System
 
 ## Overview
-Tento skill definuje kompletní brand identity pro Jiřího Koukala (Jirka) - strategického konzultanta specializujícího se na strategic management, AI transformation a fractional COO služby pro české klienty.
 
-**Core Philosophy**: Apple-like minimalismus, čistota, přehlednost, profesionalita s lidským přístupem.
+Personal brand of Jiří Koukal, MSc., MBA — strategic consultant, fractional COO, AI-first advisor. This design system is the umbrella identity covering the consulting brand Nasvítíme (nasvitime.online), personal brand (jirikoukal.cz), and all professional deliverables including studies, analyses, SaaS tools, documents, and presentations.
+
+**Core Philosophy**: Apple-inspired minimalism. Clean, confident, functional. Every element earns its place. No decorative clutter.
 
 ---
 
@@ -13,11 +14,10 @@ Tento skill definuje kompletní brand identity pro Jiřího Koukala (Jirka) - st
 - **Design**: Dynamické logo znázorňující "oko" které se dívá různými směry
 - **Význam**: Metafora pro různé úhly pohledu na problémy a příležitosti
 - **Motto**: "Vše je jen otázka úhlu pohledu"
-- **Použití**: Sekundární - logo se používá selektivně, ne ve všech dokumentech
+- **Použití**: Sekundární — logo se používá selektivně, ne ve všech dokumentech
 
 ### Logo Varianty
-Logo je k dispozici v těchto variantách (na vyžádání):
-- **Full color**: Transformation Teal (#00B8A9) nebo tmavě modrá (#2C3E50)
+- **Full color**: Transformation Teal (#00B8A9) nebo Deep Forest (#085041)
 - **Monochrome black**: Černé logo na světlém pozadí
 - **Monochrome white**: Bílé logo na tmavém pozadí
 - **Transparent background**: PNG s průhledným pozadím
@@ -31,351 +31,303 @@ Logo je k dispozici v těchto variantách (na vyžádání):
 
 ---
 
-## 2. BAREVNÁ PALETA
+## 2. TWO VISUAL MODES
 
-### Primary Colors (Transformation Teal Palette)
-```
-Transformation Teal (Primary)
-HEX: #00B8A9
-RGB: 0, 184, 169
-CMYK: 75, 0, 35, 0
-Použití: Hlavní brand barva, akcenty, call-to-actions, headings
+### Mode A — Documents & Tools (jirikoukal)
 
-Teal Dark (Variant)
-HEX: #008F82
-RGB: 0, 143, 130
-Použití: Gradienty, hover states, tmavší akcenty
+**Use for:** studies, analyses, reports, financial diagnostics, mini SaaS apps, dashboards, assessment tools, branded documents, presentations, one-pagers.
 
-Teal Light
-HEX: #80DCD4
-RGB: 128, 220, 212
-Použití: Backgrounds, subtle highlights
-```
+- **Background:** white (#FFFFFF) or warm off-white (#F8F9F7)
+- **Cards:** white with subtle shadow (0 2px 24px rgba(0,0,0,0.07)), border-radius 16px
+- **Headings:** deep forest green (#085041)
+- **Body text:** dark grey (#444444)
+- **Muted labels:** light grey (#AAAAAA), uppercase, letter-spacing 0.8px, 10px
+- **Accent panels:** light teal background (#F4FAF8) with left border 3px solid #0F6E56
+- **Interactive/highlight elements:** Transformation Teal (#00B8A9)
+- **Copyright line:** "© jirikoukal", 9px, color #CCCCCC, right-aligned
 
-### Secondary Colors (Professional Palette)
-```
-Dark Navy Blue
-HEX: #2C3E50
-RGB: 44, 62, 80
-Použití: Primary text, professional documents, alternativní brand color
+### Mode B — Web / nasvitime.online
 
-Orange Accent
-HEX: #E67E22
-RGB: 230, 126, 34
-Použití: Warm accents, warnings, secondary CTAs
+**Use for:** website nasvitime.online, landing pages, marketing materials, portfolio, AI guide content.
 
-Light Grey
-HEX: #ECF0F1
-RGB: 236, 240, 241
-Použití: Backgrounds, subtle sections, cards
-```
+- **Background:** dark teal-black (#1A2E2A to #1C2B28)
+- **Cards:** semi-transparent dark (#1E3530 to #243D38), subtle teal border, border-radius 12-16px
+- **Navigation bar:** transparent/dark, logo "Nasvítíme" white + "AI" in teal
+- **Headings:** white (#FFFFFF), large bold
+- **Subtitles/descriptions:** muted seafoam (#5BA89A to #6DB5A5)
+- **Accent highlight text:** warm yellow (#E8C547 to #F0D060) — used for key phrases in headings
+- **Body text on dark:** light grey-white (#D0D0D0 to #E0E0E0)
+- **CTA primary:** Transformation Teal (#00B8A9) filled, white text, border-radius 8px
+- **CTA secondary:** dark with light border, hover teal
+- **Portfolio cards:** gradient overlays with muted tones (teal, warm brown, grey-blue)
+
+### Lampička (Lamp) — Signature Visual Element
+- **Concept**: Desktop lamp symbolizing "nasvícení" (illuminating) a topic/problem
+- **Usage**: AI/technology content, "Insights" sections, hero visual on nasvitime.online
+- **Visual style**: 3D rendered or clean 2D, teal color scheme, warm light glow (subtle yellow/cream), modern minimalist
+
+---
+
+## 3. COLOR PALETTE
+
+### Core Colors (Green Scale)
+
+| Name | HEX | RGB | Usage |
+|---|---|---|---|
+| Transformation Teal | #00B8A9 | 0, 184, 169 | Primary brand color, CTA buttons, highlights, interactive elements |
+| Deep Forest | #085041 | 8, 80, 65 | Headings in light mode, darkest anchor color |
+| Forest Green | #0F6E56 | 15, 110, 86 | Secondary headings, accent borders, detail panel borders |
+| Mid Green | #1D9E75 | 29, 158, 117 | Functional elements, secondary buttons, progress indicators |
+| Light Teal | #9FE1CB | 159, 225, 203 | Light accents, hover states, soft backgrounds, badges |
+| Teal Wash | #E1F5EE | 225, 245, 238 | Badge backgrounds, light tag fills |
+| Panel Background | #F4FAF8 | 244, 250, 248 | Detail/info panels in light mode |
+
+### Neutral Colors
+
+| Name | HEX | RGB | Usage |
+|---|---|---|---|
+| Dark Charcoal | #2C2C2A | 44, 44, 42 | Dark tags, phase labels |
+| Body Text | #444444 | 68, 68, 68 | Default body text in light mode |
+| Muted Charcoal | #5F5E5A | 95, 94, 90 | Secondary dark labels |
+| Mid Grey | #888780 | 136, 135, 128 | Footer elements, low-priority labels |
+| Label Grey | #AAAAAA | 170, 170, 170 | Section labels, timestamps, meta info |
+| Border Grey | #CCCCCC | 204, 204, 204 | Subtle borders, copyright text |
+| Warm Stone | #D3D1C7 | 211, 209, 199 | Operational elements, muted bars, tertiary info |
+| Light Background | #F8F9F7 | 248, 249, 247 | Card backgrounds, section backgrounds |
+
+### Web Dark Mode Colors
+
+| Name | HEX | Usage |
+|---|---|---|
+| Dark Background | #1A2E2A | Page background on nasvitime.online |
+| Card Dark | #1E3530 | Card/section backgrounds |
+| Seafoam Muted | #5BA89A | Subtitles, descriptions on dark |
+| Highlight Yellow | #E8C547 | Accent words in headings on dark |
 
 ### Functional Colors (Status & Data)
-```
-Success Green
-HEX: #34C759
-RGB: 52, 199, 89
-Použití: Positive metrics, growth indicators, "good" status
 
-Warning Orange
-HEX: #FF9500
-RGB: 255, 149, 0
-Použití: Caution indicators, "attention needed" status
-
-Error Red
-HEX: #FF3B30
-RGB: 255, 59, 48
-Použití: Negative metrics, decline indicators, "bad" status
-```
-
-### Neutral Palette
-```
-Black
-HEX: #1D1D1F
-RGB: 29, 29, 31
-Použití: Primary text, high contrast elements
-
-Dark Grey
-HEX: #6E6E73
-RGB: 110, 110, 115
-Použití: Secondary text, metadata, captions
-
-Mid Grey
-HEX: #E8E8ED
-RGB: 232, 232, 237
-Použití: Borders, dividers, subtle separators
-
-Light Background
-HEX: #F5F5F7
-RGB: 245, 245, 247
-Použití: Card backgrounds, section backgrounds
-
-White
-HEX: #FFFFFF
-RGB: 255, 255, 255
-Použití: Primary background, clean spaces
-```
+| Name | HEX | Usage |
+|---|---|---|
+| Success Green | #34C759 | Positive metrics, growth indicators |
+| Warning Orange | #FF9500 | Caution indicators, attention needed |
+| Error Red | #FF3B30 | Negative metrics, decline indicators |
 
 ### Color Usage Rules
-- **Documents for clients**: Start with Transformation Teal (#00B8A9) as primary accent
-- **Nasvítime.online project**: Use dark teal/green variants prominently
+- **Documents (Mode A)**: White background, Deep Forest headings, Teal accents
+- **Web (Mode B)**: Dark teal background, white headings, yellow highlights, seafoam subtitles
 - **Financial reports**: Functional colors (green/red/orange) for metrics, Teal for branding
-- **LinkedIn content**: Transformation Teal as primary with professional navy as support
+- **LinkedIn content**: Transformation Teal as primary
 - **Client-specific work**: Adapt to client's brand colors while maintaining structure/style
 
 ---
 
-## 3. TYPOGRAFIE
+## 4. TYPOGRAPHY
 
-### Primary Font Family
+### Font Family
+
+**Montserrat** — all weights from Thin (100) to ExtraBold (800). Variable font supported.
+
 ```
-Montserrat
-- Regular (400): Body text, general content
-- Semi-Bold (600): Subheadings, emphasis
-- Bold (700): Headings, strong emphasis
-- Light (300): Optional for large display text
-
-Font Source: Google Fonts
-Link: https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap
+https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swap
 ```
 
-### Typography Scale
-```
-H1 (Main Title)
-Font: Montserrat Bold (700)
-Size: 42px
-Color: #1D1D1F (black)
-Line Height: 1.2
-Use: Document titles, main headings
+Font files: Montserrat-Thin.ttf, Montserrat-Regular.ttf, Montserrat-Medium.ttf, Montserrat-SemiBold.ttf, Montserrat-Bold.ttf, Montserrat-ExtraBold.ttf, Montserrat-Black.ttf, Montserrat-Italic.ttf, Montserrat-VariableFont_wght.ttf.
 
-H2 (Section Headers)
-Font: Montserrat Semi-Bold (600)
-Size: 28px
-Color: #00B8A9 (Transformation Teal)
-Line Height: 1.3
-Border Bottom: 1px solid #E8E8ED
-Use: Major sections
+### Type Scale
 
-H3 (Subsections)
-Font: Montserrat Semi-Bold (600)
-Size: 20px
-Color: #1D1D1F (black)
-Line Height: 1.4
-Use: Subsections, important points
+| Element | Weight | Size | Color (light) | Color (dark) | Notes |
+|---|---|---|---|---|---|
+| Page title / H1 | 700 (Bold) | 28-40px | #085041 | #FFFFFF | letter-spacing -0.3px to -0.5px |
+| Card title / H2 | 700 (Bold) | 17-22px | #085041 | #FFFFFF | letter-spacing -0.3px |
+| Section heading / H3 | 600 (SemiBold) | 14-17px | #085041 | #FFFFFF | — |
+| Body text | 400 (Regular) | 11.5-14px | #444444 | #D0D0D0 | line-height 1.6 |
+| Small label | 600 (SemiBold) | 9-10px | #AAAAAA | #5BA89A | uppercase, letter-spacing 0.8px |
+| Badge / tag | 700 (Bold) | 9px | #085041 | #FFFFFF | inside pill shape |
+| Source / copyright | 400 (Regular) | 9px | #CCCCCC | #5BA89A | right-aligned |
 
-Body Text
-Font: Montserrat Regular (400)
-Size: 16px
-Color: #1D1D1F (black)
-Line Height: 1.6
-Use: Paragraphs, main content
-
-Small Text / Metadata
-Font: Montserrat Regular (400)
-Size: 14px
-Color: #6E6E73 (dark grey)
-Line Height: 1.5
-Use: Captions, metadata, dates, footnotes
-
-Labels / Tags
-Font: Montserrat Semi-Bold (600)
-Size: 12px
-Color: Varies (functional colors)
-Text Transform: UPPERCASE
-Use: Priority labels, status tags
-```
-
-### Typography Best Practices
-- **Hierarchy**: Always maintain clear visual hierarchy (H1 > H2 > H3 > Body)
-- **Consistency**: Use exact size/weight combinations, don't improvise
-- **Readability**: Never go below 12px for any text
-- **Line length**: Max 80-100 characters per line for body text
-- **Spacing**: Generous white space between sections (50px+ margins)
+### Typography Rules
+- Hierarchy: always maintain clear visual hierarchy (H1 > H2 > H3 > Body)
+- Consistency: use exact size/weight combinations, don't improvise
+- Readability: never go below 9px for any text
+- Line length: max 80-100 characters per line for body text
+- Spacing: generous white space between sections
 
 ---
 
-## 4. VISUAL ELEMENTS & ICONOGRAPHY
+## 5. SPACING & LAYOUT
 
-### Lampička (Lamp) Icon - Signature Element
-**Concept**: Desktop lamp icon symbolizing "nasvícení" (illuminating) a topic/problem
-**Usage**:
-- AI/technology related content (Nasvítime.online project)
-- "Insights" or "Key findings" sections
-- Visual metaphor for clarity and understanding
-- Can be combined with "AI" text or lightbulb icon
-
-**Visual Style**:
-- 3D rendered or clean 2D illustration
-- Teal color scheme (#00B8A9 or darker variants)
-- Warm light glow (subtle yellow/cream)
-- Modern, minimalist design
-
-### Other Icons
-- **General use**: Lucide icons or similar (open source, clean, modern)
-- **Style**: Outline style, simple line icons, 2px stroke width
-- **Color**: Teal (#00B8A9 or lighter variant #80DCD4)
-- **Background options**:
-  - Dark Teal/Navy background (#2C3E50 or darker teal) with Teal icon - for featured cards, hero sections
-  - White background with Teal icon - for clean, minimal contexts
-  - Warm white/light grey background (#F5F5F7, #ECF0F1) with Teal icon - for subtle sections
-  - No background - just the icon itself, inline or standalone
-- **Labels**: Icon names/labels are optional and context-dependent:
-  - Use labels: In navigation, feature lists, learning materials where clarity is needed
-  - Skip labels: In dashboards, infographics, decorative elements where icons are self-explanatory or space is limited
-- **Size**: 24-32px for cards/featured, 16-20px for inline use, 48px+ for hero/large featured sections
-- **Format**: SVG preferred for scalability
-
-### Icon Set Examples
-Based on actual usage, primary icon set includes:
-- **Brain icon**: AI, intelligence, strategic thinking
-- **Chat/Message bubble**: Communication, dialogue, consultation
-- **Target/Bullseye**: Goals, objectives, focus
-- **Headphones**: Support, listening, understanding
-- **Document/File**: Reports, documentation, deliverables
-- **Users/People**: Team, collaboration, stakeholders
-- **Lightbulb**: Ideas, insights, innovation (also lampička concept)
-- **Rocket**: Growth, launch, acceleration
-- **Scales/Balance**: Analysis, assessment, evaluation
-- **Briefcase**: Business, professional services
-- **Server/Database**: Data, systems, infrastructure
-- **Trending up**: Growth, positive metrics, improvement
-- **Book/Learning**: Education, knowledge, resources
-- **Email/Mail**: Contact, communication
-
----
-
-## 5. DESIGN SYSTEM
-
-### Spacing System (8px grid)
+### Spacing System
 ```
 Extra Small: 8px
 Small: 16px
 Medium: 24px
 Large: 32px
 Extra Large: 40px
-Section Gap: 50px
-Page Padding: 60px
+Section Gap: 24-50px (context-dependent)
 ```
 
-### Border Radius
+### Layout
+- **Card padding:** 36px (desktop), 24px (mobile)
+- **Card border-radius:** 16px (large cards), 7-12px (small elements)
+- **Card shadow:** 0 2px 24px rgba(0,0,0,0.07)
+- **Grid gap:** 4px for tight data grids, 16-24px for card layouts
+- **Max content width:** 1020px (documents), full-width with container on web
+- **Page padding:** 32px vertical, 24px horizontal
+
+### Shadows
 ```
-Small: 8px (buttons, small cards)
-Medium: 12px (cards, containers)
-Large: 16px (featured elements)
-None: 0px (formal documents, tables)
-```
-
-### Shadows (Apple-like subtle)
-```
-Card Hover:
-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08)
-
-Elevated Element:
-box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12)
-
-Subtle:
-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05)
-```
-
-### Component Styles
-
-#### Metric Cards
-```css
-background: #F5F5F7
-padding: 25px
-border-radius: 12px
-transition: transform 0.2s
-
-hover:
-  transform: translateY(-2px)
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08)
-```
-
-#### Conclusion/Highlight Boxes
-```css
-background: #F5F5F7
-padding: 30px
-border-radius: 12px
-border-left: 4px solid #00B8A9
-```
-
-#### Tables
-```css
-border-collapse: collapse
-th:
-  background: #F5F5F7
-  font-weight: 600
-  text-align: left
-  padding: 12px
-
-td:
-  padding: 12px
-  border-bottom: 1px solid #E8E8ED
-
-tr:hover:
-  background: #FAFAFA
+Subtle: 0 2px 8px rgba(0, 0, 0, 0.05)
+Card Default: 0 2px 24px rgba(0, 0, 0, 0.07)
+Card Hover: 0 4px 12px rgba(0, 0, 0, 0.08)
+Elevated: 0 8px 24px rgba(0, 0, 0, 0.12)
 ```
 
 ---
 
-## 6. TONE OF VOICE
+## 6. COMPONENT PATTERNS
 
-### Communication Style
-**Profesionální, ale ne přehnaně formální**
+### Info Panel (Light Mode)
+- Background: #F4FAF8
+- Left border: 3px solid #0F6E56
+- Border-radius: 0 7px 7px 0
+- Padding: 12px 16px
+- Title: bold #085041
+- Body: #444444, 11.5px, line-height 1.6
 
-**Charakteristika**:
+### Badge / Tag
+- Background: #E1F5EE
+- Text: #085041
+- Font: 9px, bold
+- Padding: 2px 6px
+- Border-radius: 3px
+
+### Card (Light Mode)
+- Background: #FFFFFF
+- Shadow: 0 2px 24px rgba(0,0,0,0.07)
+- Border-radius: 16px
+- Padding: 36px
+- Hover: transform translateY(-2px), shadow 0 4px 12px rgba(0,0,0,0.08)
+
+### Card (Dark Mode — Web)
+- Background: #1E3530 to #243D38
+- Border: 1px solid rgba(0,184,169,0.15)
+- Border-radius: 12-16px
+- Padding: 24-32px
+
+### Tables
+```css
+border-collapse: collapse
+th: background #F8F9F7, font-weight 600, text-align left, padding 12px
+td: padding 12px, border-bottom 1px solid #D3D1C7
+tr:hover: background #FAFAFA
+```
+
+### Buttons
+- **Primary CTA:** background #00B8A9, text white, border-radius 8px, padding 12px 24px, font-weight 600
+- **Secondary CTA:** background transparent, border 1px solid #085041 (light) or rgba(255,255,255,0.3) (dark), border-radius 8px
+- **Hover:** opacity 0.82 or subtle background shift
+
+### Navigation (Web)
+- Logo: "Nasvítíme" white 600 weight + "AI" in #00B8A9 600 weight
+- Nav items: white, 400 weight, hover underline
+- Active item: border-bottom or rounded border indicator
+- CTA button: #00B8A9 filled, "AI Test", border-radius 20px
+
+### Data Visualization
+- Primary bar/line: #085041
+- Secondary: #0F6E56
+- Tertiary: #1D9E75
+- Light accent: #9FE1CB
+- Neutral: #D3D1C7
+- Low priority: #888780
+- Opacity scale for intensity: 1.0 (dominant) → 0.65 → 0.45 → 0.3 (minimal)
+
+### Hierarchy Pattern
+When showing layered/hierarchical data (pyramids, funnels, priority scales):
+- Top layer: #085041 (darkest, most important)
+- Layer 2: #0F6E56
+- Layer 3: #1D9E75
+- Layer 4: #9FE1CB
+- Layer 5: #D3D1C7
+- Layer 6: #888780 (lightest, most operational)
+
+---
+
+## 7. ICONS & VISUAL ELEMENTS
+
+### Icon Style
+- Line-based, minimal, single-color, outline style, 2px stroke width
+- Format: SVG preferred for scalability
+- Source: Lucide icons or similar clean modern icon sets
+- Referenced from Master Icons PDF for custom set
+
+### Icon Colors
+- Light backgrounds: teal (#00B8A9) or forest green (#085041)
+- Dark backgrounds: white or light teal (#9FE1CB)
+- Icon containers: rounded squares (border-radius 8-12px) with subtle teal background
+
+### Icon Sizes
+- Inline: 16-20px
+- Cards/featured: 24-32px
+- Hero/large: 48px+
+
+### Primary Icon Set
+- **Brain**: AI, intelligence, strategic thinking
+- **Chat/Message bubble**: Communication, consultation
+- **Target/Bullseye**: Goals, objectives, focus
+- **Document/File**: Reports, deliverables
+- **Users/People**: Team, collaboration, stakeholders
+- **Lightbulb**: Ideas, insights, innovation (lampička concept)
+- **Trending up**: Growth, positive metrics
+- **Scales/Balance**: Analysis, assessment, evaluation
+- **Briefcase**: Business, professional services
+- **Book/Learning**: Education, knowledge, resources
+- **Email/Mail**: Contact, communication
+
+---
+
+## 8. TONE OF VOICE
+
+### Charakteristika
 - Odborný, ale přístupný
 - Jasný a konkrétní
 - Bez corporate speak floskul
 - Přímý a akční ("udělej", "implementuj", ne "bylo by vhodné zvážit")
 - Data-driven s lidským kontextem
 
-### Language Guidelines
-**Pro české publikum**:
+### Jazyková pravidla
 - Primárně český jazyk
-- Odborné/anglické termíny: český ekvivalent + (anglický termín v závorce)
+- "resp." pro upřesnění nebo alternativu (nikdy "nebo" v odborném kontextu)
+- "byť" místo "ačkoliv"
+- Anticipuj námitku adresáta předem
+- Uzavři konkrétním závěrem
+- Odborné termíny: český ekvivalent + (anglický termín v závorce)
   - Příklad: "rentabilita vlastního kapitálu (ROE)"
-  - Příklad: "strategické řízení (strategic management)"
-- Pokud neexistuje dobrý český ekvivalent, použij anglický termín s vysvětlením
+- Krátké, jasné věty (15-25 slov), aktivní slovesa
 
-**Struktura vět**:
-- Krátké, jasné věty (15-25 slov)
-- Aktivní slovesa místo pasivních
-- Konkrétní čísla a fakta, ne vágní prohlášení
-- Příklad DOBŘE: "Implementujte follow-up systém pro pohledávky. Cílová doba obratu: 45 dní."
-- Příklad ŠPATNĚ: "Bylo by vhodné zvážit možnost zlepšení procesu správy pohledávek."
+### Zakázané fráze
+"Dovolím si", "Tímto", "S úctou", "Zdravím", "game-changer", "unikátní řešení"
 
-### Content Sections Style
-**Executive Summary**: 
-- Stručný, max 150 slov
-- Hlavní findings + top 3 doporučení
-- Pro busy decision-makers
-
-**Analysis Sections**:
-- Data první, interpretace druhá
-- Srovnání s benchmarks kde relevantní
-- Jasné závěry na konci každé sekce
-
-**Recommendations**:
-- Konkrétní akce, ne obecné rady
-- Prioritizace (vysoká/střední/nízká)
-- Odhadovaný dopad (ROI, savings, čas)
+### Struktura obsahu
+- **Executive Summary**: max 150 slov, hlavní findings + top 3 doporučení
+- **Analysis**: data první, interpretace druhá, srovnání s benchmarks, závěr na konci sekce
+- **Recommendations**: konkrétní akce, prioritizace (vysoká/střední/nízká), odhadovaný dopad (ROI, savings, čas)
 
 ---
 
-## 7. KONTAKTNÍ INFORMACE
+## 9. DOCUMENT FORMATTING
 
-### Standard Footer for Documents
+### PDF / Branded Documents
+- Header: document title in bold #085041, subtitle in #AAAAAA or #5BA89A
+- Footer: "© jirikoukal" right-aligned, page number centered, "nasvitime.online" right
+- Tables: clean borders, header row bold #085041 on #F8F9F7, light row striping
+- Section dividers: thin line in #E1F5EE or generous spacing
+- Callout boxes: #F4FAF8 background with #0F6E56 left border
+
+### Standard Footer
 ```
 Strategic management | AI Transformation | Fractional COO
-Jiří Koukal, MSc. MBA | jiri.koukal@gmail.com | [LinkedIn Icon] LinkedIn
-```
-
-### LinkedIn Profile
-```
-URL: https://www.linkedin.com/in/jirikoukal/
-Icon: Standard LinkedIn icon, color #00B8A9 or inherit from link color
-Display: As clickable link with icon
+Jiří Koukal, MSc. MBA | jiri.koukal@gmail.com | LinkedIn
 ```
 
 ### Confidentiality Notice (when needed)
@@ -383,129 +335,121 @@ Display: As clickable link with icon
 "Tento dokument je důvěrný a určen výhradně pro interní použití společnosti [COMPANY NAME]."
 ```
 
----
-
-## 8. DOCUMENT TEMPLATES FRAMEWORK
-
-### For Client Work
-**Principle**: Stejná struktura a kvalita, jiné vizuální identity
-
-**Adapt these elements per client**:
-1. **Colors**: Use client's primary brand colors instead of Teal
-2. **Logo**: Client's logo in header, not Jirka's logo
-3. **Typography**: Client's brand font if specified, otherwise keep Montserrat
-4. **Footer**: Adjust for client's branding requirements
-
-**Keep consistent**:
-1. **Structure**: Same sections, same logic, same flow
-2. **Quality**: Same level of detail and professionalism
-3. **Data presentation**: Same chart styles, table formats, metric cards
-4. **Tone**: Same professional but accessible voice
-5. **Spacing**: Same generous white space and clean layout
-
-### Current Clients
-**VIVA Agency**: Marketing agency - use their brand colors
-**EFFK Group**: Use their corporate colors
-**TERRABUILD**: Development company - use their brand
-**Vivas CZ**: Construction company - use their brand
+### File Naming Convention
+`YYYY-MM-DD_file-name` — no diacritics, hyphens instead of spaces.
 
 ---
 
-## 9. AUTOMATION & DYNAMIC ELEMENTS
+## 10. CLIENT ADAPTATION
 
-### Auto-Generated Date
-Always use current month and year in Czech format:
+### Principle
+Stejná struktura a kvalita, jiné vizuální identity.
+
+**Adaptuj per client**:
+1. Colors: client's primary brand colors instead of Teal
+2. Logo: client's logo in header
+3. Typography: client's brand font if specified, otherwise Montserrat
+
+**Zachovej vždy**:
+1. Structure: stejné sekce, logika, flow
+2. Quality: stejná úroveň detailu
+3. Data presentation: chart styles, table formats, metric cards
+4. Tone: profesionální ale přístupný
+5. Spacing: generous white space, clean layout
+
+### Active Clients
+- **Viva Agency / Altarena s.r.o.**: has own design system in Claude Design (VIVA Agency Design System)
+
+---
+
+## 11. DYNAMIC ELEMENTS
+
+### Auto-Generated Date (Czech)
 ```javascript
-const months = ['Leden', 'Únor', 'Březen', 'Duben', 'Květen', 'Červen', 
+const months = ['Leden', 'Únor', 'Březen', 'Duben', 'Květen', 'Červen',
                'Červenec', 'Srpen', 'Září', 'Říjen', 'Listopad', 'Prosinec'];
 const now = new Date();
 const currentDate = `${months[now.getMonth()]} ${now.getFullYear()}`;
 ```
 
-### Dynamic Company Name
-Replace "DEMO s.r.o." placeholder with actual client name throughout document
-
-### Responsive Metrics
-Color-code metrics based on performance:
-- Positive/Good: #34C759 (green)
-- Neutral/Average: #1D1D1F (black)
-- Warning/Attention: #FF9500 (orange)
-- Negative/Bad: #FF3B30 (red)
+### Responsive Metrics Color-Coding
+- Positive/Good: #34C759
+- Neutral/Average: #444444
+- Warning/Attention: #FF9500
+- Negative/Bad: #FF3B30
 
 ---
 
-## 10. QUALITY CHECKLIST
+## 12. CSS VARIABLES TEMPLATE
 
-Before delivering any document, verify:
-- [ ] Montserrat font loaded and applied
-- [ ] Color palette matches brand (Teal or client colors)
-- [ ] Proper heading hierarchy (H1 > H2 > H3)
-- [ ] Consistent spacing (50px+ between sections)
-- [ ] Current date auto-generated
-- [ ] Footer with correct contact info and LinkedIn
-- [ ] No lorem ipsum or placeholder text
-- [ ] Charts/graphs use brand colors
-- [ ] Tables have proper hover states
-- [ ] Mobile-friendly if web/HTML artifact
-- [ ] PDF export tested (if applicable)
-- [ ] Spell check (Czech language)
-- [ ] Client name (not "DEMO") if client work
-
----
-
-## 11. SPECIAL PROJECTS
-
-### Nasvítime.online
-**Focus**: AI readiness assessment for Czech companies
-**Visual identity**: 
-- Dark teal/green palette as primary
-- Lampička (desk lamp) as hero visual element
-- "AI" lettering as secondary icon
-- Emphasis on "nasvícení" (illuminating) AI concepts for decision-makers
-
-**Target audience**: 
-- C-level executives
-- Business decision-makers
-- Mírně pokročilí (not tech experts)
-
-**Tone**: Educational but not condescending, empowering, ROI-focused
-
----
-
-## USAGE IN ARTIFACTS
-
-When creating artifacts using this brand skill:
-
-1. **Always load Montserrat font** from Google Fonts
-2. **Use CSS variables** for colors for easy maintenance:
 ```css
 :root {
+  /* Core */
   --color-primary: #00B8A9;
-  --color-primary-dark: #008F82;
-  --color-text: #1D1D1F;
-  --color-text-secondary: #6E6E73;
+  --color-deep-forest: #085041;
+  --color-forest: #0F6E56;
+  --color-mid-green: #1D9E75;
+  --color-light-teal: #9FE1CB;
+  --color-teal-wash: #E1F5EE;
+  --color-panel-bg: #F4FAF8;
+
+  /* Neutrals */
+  --color-text: #444444;
+  --color-text-secondary: #AAAAAA;
+  --color-charcoal: #2C2C2A;
+  --color-warm-stone: #D3D1C7;
+  --color-mid-grey: #888780;
+  --color-border: #CCCCCC;
   --color-bg: #FFFFFF;
-  --color-bg-secondary: #F5F5F7;
-  /* etc */
+  --color-bg-secondary: #F8F9F7;
+
+  /* Dark mode (web) */
+  --color-dark-bg: #1A2E2A;
+  --color-dark-card: #1E3530;
+  --color-dark-subtitle: #5BA89A;
+  --color-dark-yellow: #E8C547;
+
+  /* Functional */
+  --color-success: #34C759;
+  --color-warning: #FF9500;
+  --color-error: #FF3B30;
+
+  /* Typography */
+  --font-family: 'Montserrat', sans-serif;
+
+  /* Spacing */
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 32px;
+  --space-xl: 40px;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
 }
 ```
 
-3. **Component-based approach**: Create reusable components (metric cards, conclusion boxes, tables)
+---
 
-4. **Responsive design**: Use flexbox/grid for layouts, ensure mobile-friendly
+## 13. QUALITY CHECKLIST
 
-5. **Print-friendly**: Test PDF export, ensure proper page breaks, maintain colors
+Before delivering any document:
+- [ ] Montserrat font loaded and applied
+- [ ] Color palette matches brand (correct mode A or B)
+- [ ] Proper heading hierarchy (H1 > H2 > H3)
+- [ ] Consistent spacing
+- [ ] Current date auto-generated
+- [ ] Footer with correct contact info
+- [ ] No placeholder text
+- [ ] Charts/graphs use brand colors (green scale, not random)
+- [ ] Tables have proper styling
+- [ ] Mobile-friendly if web/HTML
+- [ ] PDF export tested if applicable
+- [ ] Client name (not placeholder) if client work
+- [ ] "© jirikoukal" attribution present
 
 ---
 
-## REFERENCES
-
-This skill is based on:
-- Personal brand guidelines PDF (Logotyp_JK_.pdf)
-- Financial analysis template (Finanční_analýza_-_Demo.pdf)
-- Nasvítime.online project materials
-- User preferences and past conversations
-
-**Last updated**: February 2026
-**Maintained by**: Claude (AI assistant) in collaboration with Jiří Koukal
-
+*Last updated: May 2026. This design system covers both nasvitime.online (dark web mode) and jirikoukal (light document mode) under one unified identity. The color palette, typography, and component logic are shared — only the surface treatment (dark vs. light) differs by context.*
