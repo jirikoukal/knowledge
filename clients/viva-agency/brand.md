@@ -169,8 +169,16 @@ www.vivaagency.cz | Praha – Brno – Bratislava
 
 ## 8. IKONY
 
-Sdílený icon systém s Jiří Koukal brand – viz `brand/icons/master-icons.html`
-Viva Agency varianta: růžová `#E91E8C` na tmavém pozadí `#8B0A4D`
+Ikony přebírají neutrální provedení z aplikace: čtverec 32 × 32 px,
+radius 8 px, pozadí #F5F6F8, ikona #6B7280.
+
+Růžová #E91E8C se u ikony použije jen tehdy, když ikona označuje
+aktivní stav nebo primární akci — ne jako dekorace.
+
+Na tmavém podkladu (#0F1724): ikona #C3CBD8, v aktivním stavu bílá
+na růžovém podkladu.
+
+Sada: lucide-react, stroke-width 1.9. Jiná knihovna ikon se nezavádí.
 
 ---
 
