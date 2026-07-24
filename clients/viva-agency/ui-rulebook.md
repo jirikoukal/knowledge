@@ -96,6 +96,10 @@ venku nepřečte. Drobné odkazy proto `#C2185B` (poměr 5.9:1), ne `#E91E8C`.
 
 Funkční barva nikdy neoznačuje typ nebo kategorii — jen stav a naléhavost.
 
+Dokumentovaná výjimka: kalendářní kategorie nepřítomnosti (dovolená,
+nemoc, osobní volno, meeting) mají vlastní barevnou sadu mimo funkční
+paletu. Barva tam označuje kategorii záměrně a jinde se to neopakuje.
+
 ---
 
 ## 3. Odznaky
