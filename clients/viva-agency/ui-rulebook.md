@@ -116,6 +116,8 @@ Pravidla:
 - Chip, na který se nedá kliknout, není chip — je to plná pilulka.
 - Počet v kolečku vždy znamená „tolik položek čeká na akci". Nikdy celkový
   počet záznamů; ten patří do `meta` jako text.
+- Odznak, který otevírá výběr, je ovládací prvek. Dostane chevron 12 px
+  za text, jinak vypadá jako statický údaj a nikdo na něj neklikne.
 
 To poslední mění dnešní stav: odznak u Akcí v menu ukazuje 38 jako celkový
 počet, u Směn 5 jako počet volných. Stejný slot, dva významy. Sjednotit na
