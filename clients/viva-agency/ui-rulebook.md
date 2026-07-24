@@ -111,7 +111,7 @@ paletu. Barva tam označuje kategorii záměrně a jinde se to neopakuje.
 | **Plná pilulka** | stav záznamu | funkční barva, 11 px / 700, radius 999 px, padding 4/10, min-height 22 px | Aktivní, Zaúčtováno, Obsazeno |
 | **Obrysová pilulka** | typ nebo kategorie | 1px `line`, text `muted`, bez výplně, stejná metrika jako plná | Event, Sampling, Výroba, Výdaj |
 | **Číslo v kolečku** | počet vyžadující pozornost | `#FEE2E2` / `#991B1B`, 20 × 20 px, 11 px / 700, `tabular-nums` | 6 chybí, 28 |
-| **Pastelový chip** | filtr — klikací | funkční pozadí, 12 px / 600, padding 5/12, min-height 26 px, kurzor pointer, aktivní stav rámečkem | Celkem 19, Volných 5 |
+| **Pastelový chip** | filtr — klikací | funkční pozadí, 12 px / 600, padding 5/12, min-height 26 px, kurzor pointer, aktivní stav rámečkem | Celkem 19, Volných 5 | Chip s počtem 0 se vykreslí neaktivní — text a rámeček faint, bez hoveru, neklikací. Filtr, který nic nevrátí, není akce.
 
 Pravidla:
 
