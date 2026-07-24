@@ -163,6 +163,29 @@ Jedna komponenta `ListRow`, jedna anatomie. Použije ji každý seznam v aplikac
 
 ---
 
+## 4b. Záhlaví tabulek a panelů
+
+Pozadí `ink` #0F1724, výška 44 px, horní rohy 8 px, bez svislých linek
+mezi sloupci a bez spodní linky. Text 12 px / 700 / uppercase /
+letter-spacing .06em / barva #C3CBD8, font Montserrat nastavený
+explicitně, ne děděný ze stylu tabulky.
+
+Popisek se nikdy nezalamuje na dva řádky — dlouhý název se zkrátí.
+Řazený sloupec bílým textem a bílou šipkou, nikdy růžovou.
+Ikony řazení #8B95A5, 16 px.
+
+Platí bez výjimky pro všechny datové tabulky i pro hlavičky panelů
+na Přehledu. Jedna stránka se světlým pruhem vypadá jako nedodělaná,
+ne jako záměr.
+
+Verzálky se čtou opticky větší než minusky, proto 12 px v záhlaví
+odpovídá 13px textu v buňce. Záhlaví nesmí být nikde menší než obsah.
+
+Sticky záhlaví se zastavuje pod komponentou `PageHeader` a má nižší
+z-index než ona. Tmavý pruh nesmí hlavičku stránky nikdy překrýt.
+
+---
+
 ## 5. Rozestupy
 
 Základ 4 px. Povolené hodnoty: 4, 8, 12, 16, 20, 24, 32. Nic mezi tím.
