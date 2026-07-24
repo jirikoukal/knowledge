@@ -31,7 +31,7 @@ Když prompt potřebuje hodnotu, která tu není, doplní se sem nejdřív.
 | Název | Velikost | Váha | Barva | Kde |
 |---|---|---|---|---|
 | `title` | 21 px | 700, −0.01em | `#0F1724` | název stránky — výhradně PageHeader |
-| `heading` | 15 px | 600 | `#0F1724` | nadpis karty nebo panelu |
+| `heading` | 15 px | 700 | `#0F1724` | nadpis karty nebo panelu |
 | `strong` | 13.5 px | 600 | `#0F1724` | primární text v řádku — název akce, firma |
 | `body` | 13 px | 400 | `#374151` | běžný text, hodnoty v tabulce |
 | `meta` | 12 px | 400 | `#6B7280` | doplněk — klient, místo, datum, podtitulek |
@@ -145,6 +145,10 @@ Jedna komponenta `ListRow`, jedna anatomie. Použije ji každý seznam v aplikac
 - **Oddělení:** spodní linka `line`. **Bez zebry.** Zebra patří jen do hustých
   datových tabulek nad 10 sloupců, a to v `surface`, nikdy v růžové.
 - **Focus:** viditelný ring, 2 px `#E91E8C`, offset 2 px.
+- Levý blok 32 px je v řádku vždy, i když ikona chybí. Bez něj se
+  vedle sebe postavené seznamy rozejdou o šířku ikony.
+- Ikona smí nést kategorii pomocí odlišného glyfu, nikdy barvou.
+  Když glyf nese typ, obrysová pilulka s typem se z řádku odstraňuje.
 
 ---
 
