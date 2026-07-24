@@ -1,5 +1,5 @@
 # Viva Agency — UI rulebook interních aplikací
-*Poslední aktualizace: červenec 2026*
+*Poslední aktualizace: 24. července 2026*
 
 **Platí pro:** VIVA Promoter Hub, VIVA Event Monitor a další interní aplikace.
 **Neplatí pro:** vivaagency.cz — veřejný web se řídí `brand.md`.
@@ -100,6 +100,14 @@ Dokumentovaná výjimka: kalendářní kategorie nepřítomnosti (dovolená,
 nemoc, osobní volno, meeting) mají vlastní barevnou sadu mimo funkční
 paletu. Barva tam označuje kategorii záměrně a jinde se to neopakuje.
 
+**Výjimka — peněžní evidence.** V modulech, které sčítají pohyby peněz
+(Interní evidence, výkazy s částkami), nese částka barvu podle znaménka
+pohybu: příjem `#065F46`, výdej `#991B1B`. Barva je zde redundantní ke
+znaménku, ne jeho náhrada — informace nezávisí jen na barvě.
+
+Neplatí pro odznak směru. Ten zůstává obrysová pilulka bez výplně, protože
+směr je kategorie, a kategorie se barvou neoznačuje ani tady.
+
 ---
 
 ## 3. Odznaky
@@ -111,21 +119,23 @@ paletu. Barva tam označuje kategorii záměrně a jinde se to neopakuje.
 | **Plná pilulka** | stav záznamu | funkční barva, 11 px / 700, radius 999 px, padding 4/10, min-height 22 px | Aktivní, Zaúčtováno, Obsazeno |
 | **Obrysová pilulka** | typ nebo kategorie | 1px `line`, text `muted`, bez výplně, stejná metrika jako plná | Event, Sampling, Výroba, Výdaj |
 | **Číslo v kolečku** | počet vyžadující pozornost | `#FEE2E2` / `#991B1B`, 20 × 20 px, 11 px / 700, `tabular-nums` | 6 chybí, 28 |
-| **Pastelový chip** | filtr — klikací | funkční pozadí, 12 px / 600, padding 5/12, min-height 26 px, kurzor pointer, aktivní stav rámečkem | Celkem 19, Volných 5 | Chip s počtem 0 se vykreslí neaktivní — text a rámeček faint, bez hoveru, neklikací. Filtr, který nic nevrátí, není akce.
+| **Pastelový chip** | filtr — klikací | funkční pozadí, 12 px / 600, padding 5/12, min-height 26 px, kurzor pointer, aktivní stav rámečkem | Celkem 19, Volných 5 |
 
 Pravidla:
 
 - Jeden odznak nese jeden význam. Nikdy nekombinuje stav s typem.
 - Na řádku seznamu **maximálně dva** odznaky. Třetí informace patří do `meta`.
 - Chip, na který se nedá kliknout, není chip — je to plná pilulka.
+- Chip s počtem 0 se vykreslí neaktivní — text a rámeček `faint`, kurzor
+  default, bez hoveru, neklikací. Filtr, který nic nevrátí, není akce.
 - Počet v kolečku vždy znamená „tolik položek čeká na akci". Nikdy celkový
   počet záznamů; ten patří do `meta` jako text.
 - Odznak, který otevírá výběr, je ovládací prvek. Dostane chevron 12 px
   za text, jinak vypadá jako statický údaj a nikdo na něj neklikne.
 - Prázdná hodnota není chybový stav. Chybějící údaj je pomlčka v barvě
-  faint, ne červený křížek. Červená patří tomu, co čeká na akci.
+  `faint`, ne červený křížek. Červená patří tomu, co čeká na akci.
 - Metrika odznaku se mění jen tady a propíše se komponentami
-  StatusPill, TypePill, CountCircle a FilterChip. Do promptu se
+  `StatusPill`, `TypePill`, `CountCircle` a `FilterChip`. Do promptu se
   nikdy nepíše jiná velikost, než která stojí v téhle tabulce.
 
 To poslední mění dnešní stav: odznak u Akcí v menu ukazuje 38 jako celkový
@@ -190,6 +200,23 @@ z-index než ona. Tmavý pruh nesmí hlavičku stránky nikdy překrýt.
 
 ---
 
+## 4c. Sumární patička tabulky
+
+Tabulka, která sčítá částky, končí patičkovým řádkem na pozadí `surface`.
+
+- vlevo `meta` „Zobrazeno X z Y záznamů"
+- vpravo hodnoty **v jednom řádku vedle sebe**, mezera 32 px, nikdy pod
+  sebou — sloupec čísel bez řádků tabulky se čte jako seznam, ne jako součet
+- každá hodnota je dvojice: popisek `label` nad hodnotou 15 px / 600
+  `tabular-nums`
+- barva podle pravidla peněžní evidence z kapitoly 2
+- pod 900 px se skupina zalomí pod text o počtu a zarovná doleva
+
+Součet napříč směry se nezobrazuje. Příjmy a výdeje jsou dvě veličiny;
+jedno číslo, které je slučuje, je vždy chyba — buď rozdíl, nebo nic.
+
+---
+
 ## 5. Rozestupy
 
 Základ 4 px. Povolené hodnoty: 4, 8, 12, 16, 20, 24, 32. Nic mezi tím.
@@ -214,8 +241,13 @@ Destruktivní akce **není v klidovém stavu vidět plnou barvou**. Odhalí se p
 hoveru řádku, nebo bydlí v menu pod třemi tečkami. Dnešní červený koš u každé
 karty v Q&A má stejnou vizuální váhu jako čtení obsahu, což je špatně.
 
+Mazání záznamu, který mění vypočtenou hodnotu na stránce — saldo, součet,
+stav fondu — potvrzuje dialog, který ten dopad uvádí číslem. „Záznam bude
+odstraněn" je málo; uživatel maže řádek, ale mění ukazatel, podle kterého
+se rozhoduje.
+
 Segmentový přepínač pohledu není primární akce. Aktivní segment je
-bílá karta na dráze canvas, nikdy růžová výplň.
+bílá karta na dráze `canvas`, nikdy růžová výplň.
 
 Výška tlačítek 36 px, v řádcích tabulky 30 px.
 
@@ -228,7 +260,7 @@ Kopírovat do každého Lovable promptu, který sahá na UI:
 ```
 === DESIGN ===
 Řiď se rulebookem aplikace:
-- Typografie: title 21/700, heading 15/600, strong 13.5/600, body 13/400,
+- Typografie: title 21/700, heading 15/700, strong 13.5/600, body 13/400,
   meta 12/400 #6B7280, label 10/700 uppercase +0.08em #9CA3AF.
   Metrika v KPI dlaždici 26/700 tabular-nums. Jiné velikosti nezaváděj.
 - Růžová #E91E8C jen pro primární tlačítko, aktivní navigaci a odkaz.
@@ -236,7 +268,12 @@ Kopírovat do každého Lovable promptu, který sahá na UI:
   Drobný růžový text #C2185B kvůli kontrastu.
 - Odznaky: plná pilulka = stav, obrysová = typ, číslo v kolečku = počet
   čekající na akci, pastelový chip = klikací filtr. Max dva na řádek.
-- Seznamy staví na komponentě ListRow, novou anatomii řádku nevymýšlej.
+  Chip s počtem 0 je neaktivní a neklikací.
+- V peněžních evidencích má částka barvu podle znaménka (příjem #065F46,
+  výdej #991B1B), odznak směru zůstává obrysový. Sumární patička staví
+  hodnoty vedle sebe, ne pod sebe.
+- Seznamy staví na komponentě ListRow, tabulky na sdíleném tmavém záhlaví.
+  Novou anatomii řádku ani hlavičky nevymýšlej.
 - Rozestupy jen 4, 8, 12, 16, 20, 24, 32.
 - Destruktivní akce se odhalí až při hoveru nebo bydlí v menu.
 - Montserrat, shadcn/ui a lucide-react. Žádná nová knihovna.
@@ -245,6 +282,9 @@ Kopírovat do každého Lovable promptu, který sahá na UI:
 ---
 
 ## 8. PROMPT Č. 1 — tokeny a Přehled jako referenční stránka
+
+*Archiv provedeného kroku. Ponecháno jako doklad, jak vznikly tokeny —
+hodnoty v něm nejsou kanonické, kanonická je kapitola 1.*
 
 Jedna stránka udělaná úplně správně se stane vzorem pro ostatní. Přehled proto,
 že je nejnavštěvovanější a rozdíl mezi jeho dvěma panely je nejkřiklavější.
@@ -321,6 +361,10 @@ Po jednom, ne najednou.
 **Prompt č. 4 — drobné vady.** Uříznuté popisky filtrů na Směnách, čas 00:00
 u akcí bez zadaného času (zobrazit pomlčku, ne půlnoc), destruktivní koš v Q&A
 až na hover, zebra na Směnách z růžové na surface.
+
+**Ověřit v kódu:** token `text-heading`. Kapitola 1 i blok DESIGN říkají
+15 px / 700, prompt č. 1 ho ale zaváděl jako 600. Zjistit, co je v
+`tailwind.config.ts`, a srovnat s rulebookem — ne naopak.
 
 **Provozní rozhodnutí, ne designové:** tab Výkazy uvnitř Směn versus položka
 Výkazy v menu. Buď je to tentýž pohled na dvou místech, nebo dvě věci se
