@@ -108,10 +108,10 @@ paletu. Barva tam označuje kategorii záměrně a jinde se to neopakuje.
 
 | Tvar | Význam | Provedení | Příklad |
 |---|---|---|---|
-| **Plná pilulka** | stav záznamu | funkční barva, 10 px / 700, radius 999 px, padding 3/9 | Aktivní, Zaúčtováno, Obsazeno |
-| **Obrysová pilulka** | typ nebo kategorie | 1px `line`, text `muted`, bez výplně | Event, Sampling, Výroba, Výdaj |
-| **Číslo v kolečku** | počet vyžadující pozornost | `#FEE2E2` / `#991B1B`, min 18 px, `tabular-nums` | 6 chybí, 28 |
-| **Pastelový chip** | filtr — klikací | funkční pozadí, kurzor pointer, aktivní stav rámečkem | Celkem 19, Volných 5 |
+| **Plná pilulka** | stav záznamu | funkční barva, 11 px / 700, radius 999 px, padding 4/10, min-height 22 px | Aktivní, Zaúčtováno, Obsazeno |
+| **Obrysová pilulka** | typ nebo kategorie | 1px `line`, text `muted`, bez výplně, stejná metrika jako plná | Event, Sampling, Výroba, Výdaj |
+| **Číslo v kolečku** | počet vyžadující pozornost | `#FEE2E2` / `#991B1B`, 20 × 20 px, 11 px / 700, `tabular-nums` | 6 chybí, 28 |
+| **Pastelový chip** | filtr — klikací | funkční pozadí, 12 px / 600, padding 5/12, min-height 26 px, kurzor pointer, aktivní stav rámečkem | Celkem 19, Volných 5 |
 
 Pravidla:
 
@@ -124,6 +124,9 @@ Pravidla:
   za text, jinak vypadá jako statický údaj a nikdo na něj neklikne.
 - Prázdná hodnota není chybový stav. Chybějící údaj je pomlčka v barvě
   faint, ne červený křížek. Červená patří tomu, co čeká na akci.
+- Metrika odznaku se mění jen tady a propíše se komponentami
+  StatusPill, TypePill, CountCircle a FilterChip. Do promptu se
+  nikdy nepíše jiná velikost, než která stojí v téhle tabulce.
 
 To poslední mění dnešní stav: odznak u Akcí v menu ukazuje 38 jako celkový
 počet, u Směn 5 jako počet volných. Stejný slot, dva významy. Sjednotit na
