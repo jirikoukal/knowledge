@@ -118,6 +118,8 @@ Pravidla:
   počet záznamů; ten patří do `meta` jako text.
 - Odznak, který otevírá výběr, je ovládací prvek. Dostane chevron 12 px
   za text, jinak vypadá jako statický údaj a nikdo na něj neklikne.
+- Prázdná hodnota není chybový stav. Chybějící údaj je pomlčka v barvě
+  faint, ne červený křížek. Červená patří tomu, co čeká na akci.
 
 To poslední mění dnešní stav: odznak u Akcí v menu ukazuje 38 jako celkový
 počet, u Směn 5 jako počet volných. Stejný slot, dva významy. Sjednotit na
@@ -177,6 +179,9 @@ Základ 4 px. Povolené hodnoty: 4, 8, 12, 16, 20, 24, 32. Nic mezi tím.
 Destruktivní akce **není v klidovém stavu vidět plnou barvou**. Odhalí se při
 hoveru řádku, nebo bydlí v menu pod třemi tečkami. Dnešní červený koš u každé
 karty v Q&A má stejnou vizuální váhu jako čtení obsahu, což je špatně.
+
+Segmentový přepínač pohledu není primární akce. Aktivní segment je
+bílá karta na dráze canvas, nikdy růžová výplň.
 
 Výška tlačítek 36 px, v řádcích tabulky 30 px.
 
