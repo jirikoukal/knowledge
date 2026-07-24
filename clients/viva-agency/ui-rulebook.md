@@ -165,21 +165,25 @@ Jedna komponenta `ListRow`, jedna anatomie. Použije ji každý seznam v aplikac
 
 ## 4b. Záhlaví tabulek a panelů
 
-Pozadí `ink` #0F1724, výška 44 px, horní rohy 8 px, bez svislých linek
-mezi sloupci a bez spodní linky. Text 12 px / 700 / uppercase /
-letter-spacing .06em / barva #C3CBD8, font Montserrat nastavený
-explicitně, ne děděný ze stylu tabulky.
+Referenční provedení je záhlaví na stránce Doklady.
+
+Pozadí `ink` #0F1724, výška 48 px, horní rohy 8 px, bez svislých linek
+mezi sloupci a bez spodní linky. Text 13 px / 600 / bílá, font Montserrat
+nastavený explicitně, ne děděný ze stylu tabulky.
+
+Popisky se píší větným tvarem — velké písmeno na začátku, zbytek malými.
+Žádné verzálky, žádné rozpalování písmen. Verzálky patří jen `label`
+uvnitř obsahu, ne do záhlaví.
 
 Popisek se nikdy nezalamuje na dva řádky — dlouhý název se zkrátí.
-Řazený sloupec bílým textem a bílou šipkou, nikdy růžovou.
+Text svisle na střed řádku. První sloupec začíná na stejné svislé ose
+jako obsah pod ním. Záhlaví se zarovnává stejně jako obsah svého sloupce.
+
+Řazený sloupec zůstává bílý a jeho šipka také, nikdy růžová.
 Ikony řazení #8B95A5, 16 px.
 
 Platí bez výjimky pro všechny datové tabulky i pro hlavičky panelů
-na Přehledu. Jedna stránka se světlým pruhem vypadá jako nedodělaná,
-ne jako záměr.
-
-Verzálky se čtou opticky větší než minusky, proto 12 px v záhlaví
-odpovídá 13px textu v buňce. Záhlaví nesmí být nikde menší než obsah.
+na Přehledu.
 
 Sticky záhlaví se zastavuje pod komponentou `PageHeader` a má nižší
 z-index než ona. Tmavý pruh nesmí hlavičku stránky nikdy překrýt.
