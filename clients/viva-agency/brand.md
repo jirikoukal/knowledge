@@ -182,5 +182,17 @@ Sada: lucide-react, stroke-width 1.9. Jiná knihovna ikon se nezavádí.
 
 ---
 
+---
+
+## 9. SOUVISEJÍCÍ DOKUMENTY
+
+- `voice.md` — tón komunikace, struktura nabídek, positioning
+- `ui-rulebook.md` — pravidla vzhledu interních aplikací
+  (Promoter Hub, Event Monitor): typografická škála, odznaky,
+  řádky seznamů, práce s růžovou
+
+Tento soubor je nadřazený. Pokud si `ui-rulebook.md` odporuje
+s brandem, platí brand a rulebook se opraví.
+
 *Zdroj: logo soubory, prezentační materiály, HTML brand soubory*
 *Maintained by: Jiří Koukal ve spolupráci s Viva Agency*
