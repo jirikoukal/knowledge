@@ -1,5 +1,5 @@
 # Viva Agency — UI rulebook interních aplikací
-*Poslední aktualizace: 24. července 2026*
+*Poslední aktualizace: 25. července 2026*
 
 **Platí pro:** VIVA Promoter Hub, VIVA Event Monitor a další interní aplikace.
 **Neplatí pro:** vivaagency.cz — veřejný web se řídí `brand.md`.
@@ -100,13 +100,19 @@ Dokumentovaná výjimka: kalendářní kategorie nepřítomnosti (dovolená,
 nemoc, osobní volno, meeting) mají vlastní barevnou sadu mimo funkční
 paletu. Barva tam označuje kategorii záměrně a jinde se to neopakuje.
 
-**Výjimka — peněžní evidence.** V modulech, které sčítají pohyby peněz
-(Interní evidence, výkazy s částkami), nese částka barvu podle znaménka
-pohybu: příjem `#065F46`, výdej `#991B1B`. Barva je zde redundantní ke
-znaménku, ne jeho náhrada — informace nezávisí jen na barvě.
+**Peněžní evidence.** Směr pohybu (příjem/výdej) je kategorie, ne stav —
+nese ho obrysová pilulka se šipkou (příjem `ArrowDownLeft`, výdej
+`ArrowUpRight`) a znaménko u částky, nikdy barva. Částka je vždy `ink`
+`#0F1724` bez ohledu na směr; výdej se znaménkem minus, příjem bez
+znaménka. Totéž platí pro součty v patičce.
 
-Neplatí pro odznak směru. Ten zůstává obrysová pilulka bez výplně, protože
-směr je kategorie, a kategorie se barvou neoznačuje ani tady.
+Jediné místo v takovém modulu, kde barva něco znamená, je saldo nebo stav
+fondu: pod nulou `#991B1B`, jinak `ink`. To je stav, ne kategorie —
+proto barvu nese. Nikdy růžová.
+
+Důvod je stejný jako u zákazu růžové na pěti místech: směr je v řádku
+zapsaný pilulkou, znaménkem i záložkou. Barva by byla čtvrtý nosič téže
+informace a odčerpala by funkční paletě význam, který má patřit stavu.
 
 ---
 
@@ -209,7 +215,8 @@ Tabulka, která sčítá částky, končí patičkovým řádkem na pozadí `sur
   sebou — sloupec čísel bez řádků tabulky se čte jako seznam, ne jako součet
 - každá hodnota je dvojice: popisek `label` nad hodnotou 15 px / 600
   `tabular-nums`
-- barva podle pravidla peněžní evidence z kapitoly 2
+- hodnoty jsou `ink` bez barvy podle znaménka; rozdíl se znaménkem
+  + nebo − (viz kapitola 2, peněžní evidence)
 - pod 900 px se skupina zalomí pod text o počtu a zarovná doleva
 
 Součet napříč směry se nezobrazuje. Příjmy a výdeje jsou dvě veličiny;
@@ -269,9 +276,10 @@ Kopírovat do každého Lovable promptu, který sahá na UI:
 - Odznaky: plná pilulka = stav, obrysová = typ, číslo v kolečku = počet
   čekající na akci, pastelový chip = klikací filtr. Max dva na řádek.
   Chip s počtem 0 je neaktivní a neklikací.
-- V peněžních evidencích má částka barvu podle znaménka (příjem #065F46,
-  výdej #991B1B), odznak směru zůstává obrysový. Sumární patička staví
-  hodnoty vedle sebe, ne pod sebe.
+- V peněžních evidencích je částka vždy ink #0F1724 bez barvy podle směru;
+  směr nese obrysová pilulka se šipkou (příjem ArrowDownLeft, výdej
+  ArrowUpRight) a znaménko. Barvu má jen saldo/stav fondu: pod nulou
+  #991B1B, jinak ink. Sumární patička staví hodnoty vedle sebe, ne pod sebe.
 - Seznamy staví na komponentě ListRow, tabulky na sdíleném tmavém záhlaví.
   Novou anatomii řádku ani hlavičky nevymýšlej.
 - Rozestupy jen 4, 8, 12, 16, 20, 24, 32.
@@ -369,3 +377,10 @@ až na hover, zebra na Směnách z růžové na surface.
 **Provozní rozhodnutí, ne designové:** tab Výkazy uvnitř Směn versus položka
 Výkazy v menu. Buď je to tentýž pohled na dvou místech, nebo dvě věci se
 stejným názvem. Rozhodnout s Radimem, pak se to promítne do menu.
+
+---
+
+*Změna 25. 7. 2026: pravidlo peněžní evidence v kapitole 2 se obrátilo.
+Dřív částka nesla barvu podle znaménka (příjem zelená, výdej červená); nově
+je částka vždy ink a barva pracuje jen u salda fondu. Směr přešel na
+obrysovou pilulku se šipkou. Dotčené: kap. 2, 4c a blok DESIGN v kap. 7.*
